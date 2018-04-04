@@ -39,6 +39,8 @@ You will start a pre-configured EC2 F1 instance and connect to it using a remote
 AWS F1 instances are ideal to accelerate complex workloads. In this module you will experience the potential of F1 by using FFmpeg to run both a software implementation and an F1-optimized implementation of a two-dimensional video filter accelerator. 
 1. **Developing and optimizing F1 applications with SDAccel** \
 You will use the SDAccel development environment to create, profile and optimize an F1 accelerator. The lab focuses on a programmable two-dimensional video filter, a compute intensive function used at the heart of many video algorithms such as noise reduction, and image sharpening.
+1. **Creating a custom FFmpeg plugin** \
+You will learn how the F1-optimized implementation of the video filter is integrated as a custom filter plugin into ```FFmpeg'''.
 1. **Wrap-up and next steps** \
 You will to close your RDP session, stop your F1 instance and explore next steps to continue your F1 experience after the Xilinx Developer Lab.
 
