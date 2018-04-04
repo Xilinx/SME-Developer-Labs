@@ -7,7 +7,7 @@
     <td width="20%" align="center"><a href="README.md">Introduction</a></td>
     <td width="20%" align="center"><a href="SETUP.md">1. Connecting to your F1 instance</a></td> 
     <td width="20%" align="center"><b>2. Experiencing F1 acceleration</b></td>
-    <td width="20%" align="center"><a href="IDCT_Lab.md">3. Developing F1 applications</a></td>
+    <td width="20%" align="center"><a href="FILTER2D_Lab.md">3. Developing F1 applications</a></td>
     <td width="20%" align="center"><a href="AVFILTER_Lab.md">4. Creating a custom FFmpeg plugin</td>
     <td width="20%" align="center"><a href="WRAP_UP.md">5. Wrapping-up</td>
   </tr>
@@ -108,6 +108,6 @@ Now that you have experienced the performance potential of AWS F1 instances, the
 ---------------------------------------
 
 <p align="center"><b>
-Start the next module: <a href="IDCT_Lab.md">3. Developing, profiling and optimizing F1 applications with SDAccel</a>
+Start the next module: <a href="FILTER2D_Lab.md">3. Developing, profiling and optimizing F1 applications with SDAccel</a>
 </b></p>
 
