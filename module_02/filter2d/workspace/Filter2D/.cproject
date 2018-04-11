@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="com.xilinx.sdx.opencl.config.sw_emu.796712516">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xilinx.sdx.opencl.config.sw_emu.796712516" moduleId="org.eclipse.cdt.core.settings" name="Emulation-CPU">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.xilinx.sdx.opencl.managedbuild.XoccErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="exe" artifactName="${ProjName}" buildArtefactType="com.xilinx.sdx.opencl.buildArtefactType.hostExe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=com.xilinx.sdx.opencl.buildArtefactType.hostExe" description="" errorParsers="org.eclipse.cdt.core.GLDErrorParser;com.xilinx.sdx.opencl.managedbuild.XoccErrorParser;org.eclipse.cdt.core.GCCErrorParser" id="com.xilinx.sdx.opencl.config.sw_emu.796712516" name="Emulation-CPU" parent="com.xilinx.sdx.opencl.config.sw_emu" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
+					<folderInfo id="com.xilinx.sdx.opencl.config.sw_emu.796712516." name="/" resourcePath="">
+						<toolChain errorParsers="com.xilinx.sdx.opencl.managedbuild.XoccErrorParser" id="com.xilinx.sdx.opencl.toolchain.sw_emu.debug.836307944" name="Xilinx SDx OpenCL Toolchain (x86_64)" superClass="com.xilinx.sdx.opencl.toolchain.sw_emu.debug">
+							<option id="com.xilinx.sdx.opencl.toolchain.sw_emu.debug.option.kernel_debug.1022573431" name="Enable debugging by default for kernel code" superClass="com.xilinx.sdx.opencl.toolchain.sw_emu.debug.option.kernel_debug"/>
+							<targetPlatform binaryParser="" id="com.xilinx.sdx.opencl.config.sw_emu.796712516..2048927385" name=""/>
+							<builder buildPath="${workspace_loc:/Filter2D}/Emulation-CPU" enableAutoBuild="true" errorParsers="" id="com.xilinx.sdx.opencl.make_builder.732810004" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Xilinx SDx OpenCL Builder" superClass="com.xilinx.sdx.opencl.make_builder"/>
+							<tool command="$(XILINX_SDX)/bin/xocc" commandLinePattern="${COMMAND} $(XOCC_OPTS) -c ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="" id="com.xilinx.sdx.opencl.toolchain.xocc_compiler.1607272270" name="SDx XOCC Kernel Compiler" superClass="com.xilinx.sdx.opencl.toolchain.xocc_compiler">
+								<inputType id="com.xilinx.sdx.opencl.toolchain.xocc_compiler.input.cl.866304319" name="OpenCL files" superClass="com.xilinx.sdx.opencl.toolchain.xocc_compiler.input.cl"/>
+							</tool>
+							<tool commandLinePattern="${COMMAND} $(XOCC_OPTS) -l ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} " errorParsers="" id="com.xilinx.sdx.opencl.toolchain.xocc_linker.1493507956" name="SDx XOCC Kernel Linker" superClass="com.xilinx.sdx.opencl.toolchain.xocc_linker"/>
+							<tool errorParsers="" id="com.xilinx.sdx.opencl.emconfigutil.1247744087" name="emconfigutil" superClass="com.xilinx.sdx.opencl.emconfigutil"/>
+							<tool command="$(XILINX_SDX)/bin/xcpp" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} -fopenmp" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="com.xilinx.sdx.opencl.toolchain.gcc_compiler.sw_emu.debug.2055609609" name="SDx GCC Host Compiler (x86_64)" superClass="com.xilinx.sdx.opencl.toolchain.gcc_compiler.sw_emu.debug">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1475712544" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool command="$(XILINX_SDX)/bin/xcpp" commandLinePattern="${COMMAND} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} ${FLAGS} -fopenmp -Wl,--as-needed -Wl,-rpath,$(XILINX_SDX)/lnx64/tools/opencv -L$(XILINX_SDX)/lnx64/tools/opencv -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_highgui -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab" errorParsers="org.eclipse.cdt.core.GLDErrorParser" id="com.xilinx.sdx.opencl.toolchain.gcc_linker.hw.1082656363" name="SDx GCC Host Linker (x86_64)" superClass="com.xilinx.sdx.opencl.toolchain.gcc_linker.hw">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.61441694" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="com.xilinx.sdx.opencl.config.hw_emu.63775359">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xilinx.sdx.opencl.config.hw_emu.63775359" moduleId="org.eclipse.cdt.core.settings" name="Emulation-HW">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.xilinx.sdx.opencl.managedbuild.XoccErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="exe" artifactName="${ProjName}" buildArtefactType="com.xilinx.sdx.opencl.buildArtefactType.hostExe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=com.xilinx.sdx.opencl.buildArtefactType.hostExe" description="" errorParsers="org.eclipse.cdt.core.GLDErrorParser;com.xilinx.sdx.opencl.managedbuild.XoccErrorParser;org.eclipse.cdt.core.GCCErrorParser" id="com.xilinx.sdx.opencl.config.hw_emu.63775359" name="Emulation-HW" parent="com.xilinx.sdx.opencl.config.hw_emu" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
+					<folderInfo id="com.xilinx.sdx.opencl.config.hw_emu.63775359." name="/" resourcePath="">
+						<toolChain errorParsers="com.xilinx.sdx.opencl.managedbuild.XoccErrorParser" id="com.xilinx.sdx.opencl.toolchain.hw_emu.debug.944987021" name="Xilinx SDx OpenCL Toolchain (x86_64)" superClass="com.xilinx.sdx.opencl.toolchain.hw_emu.debug">
+							<option id="com.xilinx.sdx.opencl.toolchain.hw_emu.debug.option.kernel_debug.62320267" name="Enable debugging by default for kernel code" superClass="com.xilinx.sdx.opencl.toolchain.hw_emu.debug.option.kernel_debug"/>
+							<targetPlatform id="com.xilinx.sdx.opencl.config.hw_emu.63775359..1807042194" name=""/>
+							<builder buildPath="${workspace_loc:/Filter2D}/Emulation-HW" enableAutoBuild="true" errorParsers="" id="com.xilinx.sdx.opencl.make_builder.549650165" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Xilinx SDx OpenCL Builder" superClass="com.xilinx.sdx.opencl.make_builder"/>
+							<tool command="$(XILINX_SDX)/bin/xocc" commandLinePattern="${COMMAND} $(XOCC_OPTS) -c ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="" id="com.xilinx.sdx.opencl.toolchain.xocc_compiler.1974504854" name="SDx XOCC Kernel Compiler" superClass="com.xilinx.sdx.opencl.toolchain.xocc_compiler">
+								<inputType id="com.xilinx.sdx.opencl.toolchain.xocc_compiler.input.cl.861450785" name="OpenCL files" superClass="com.xilinx.sdx.opencl.toolchain.xocc_compiler.input.cl"/>
+							</tool>
+							<tool command="$(XILINX_SDX)/bin/xocc" commandLinePattern="${COMMAND} $(XOCC_OPTS) -l ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="" id="com.xilinx.sdx.opencl.toolchain.xocc_linker.667049496" name="SDx XOCC Kernel Linker" superClass="com.xilinx.sdx.opencl.toolchain.xocc_linker"/>
+							<tool command="$(XILINX_SDX)/bin/emconfigutil --od ." commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="" id="com.xilinx.sdx.opencl.emconfigutil.289665690" name="emconfigutil" superClass="com.xilinx.sdx.opencl.emconfigutil"/>
+							<tool command="$(XILINX_SDX)/bin/xcpp" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} -fopenmp" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="com.xilinx.sdx.opencl.toolchain.gcc_compiler.hw_emu.debug.630190156" name="SDx GCC Host Compiler (x86_64)" superClass="com.xilinx.sdx.opencl.toolchain.gcc_compiler.hw_emu.debug">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.636860372" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool command="$(XILINX_SDX)/bin/xcpp" commandLinePattern="${COMMAND} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} ${FLAGS} -fopenmp -Wl,--as-needed -Wl,-rpath,$(XILINX_SDX)/lnx64/tools/opencv -L$(XILINX_SDX)/lnx64/tools/opencv -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_highgui -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab" errorParsers="org.eclipse.cdt.core.GLDErrorParser" id="com.xilinx.sdx.opencl.toolchain.gcc_linker.hw.1736617543" name="SDx GCC Host Linker (x86_64)" superClass="com.xilinx.sdx.opencl.toolchain.gcc_linker.hw">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.2132967858" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="com.xilinx.sdx.opencl.config.hw.681456421">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xilinx.sdx.opencl.config.hw.681456421" moduleId="org.eclipse.cdt.core.settings" name="System">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.xilinx.sdx.opencl.managedbuild.XoccErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="exe" artifactName="${ProjName}" buildArtefactType="com.xilinx.sdx.opencl.buildArtefactType.hostExe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=com.xilinx.sdx.opencl.buildArtefactType.hostExe" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.GLDErrorParser;com.xilinx.sdx.opencl.managedbuild.XoccErrorParser;org.eclipse.cdt.core.GCCErrorParser" id="com.xilinx.sdx.opencl.config.hw.681456421" name="System" parent="com.xilinx.sdx.opencl.config.hw" postannouncebuildStep="" postbuildStep="" preannouncebuildStep="" prebuildStep="">
+					<folderInfo id="com.xilinx.sdx.opencl.config.hw.681456421." name="/" resourcePath="">
+						<toolChain errorParsers="com.xilinx.sdx.opencl.managedbuild.XoccErrorParser" id="com.xilinx.sdx.opencl.toolchain.hw.1731608323" name="Xilinx SDx OpenCL Toolchain (x86_64)" superClass="com.xilinx.sdx.opencl.toolchain.hw">
+							<option id="com.xilinx.sdx.opencl.toolchain.hw.option.kernel_debug.514881949" name="Enable debugging by default for kernel code" superClass="com.xilinx.sdx.opencl.toolchain.hw.option.kernel_debug" value="true" valueType="boolean"/>
+							<targetPlatform id="com.xilinx.sdx.opencl.config.hw.681456421..1550935836" name=""/>
+							<builder buildPath="${workspace_loc:/Filter2D}/System" enableAutoBuild="true" errorParsers="" id="com.xilinx.sdx.opencl.make_builder.2061967517" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Xilinx SDx OpenCL Builder" superClass="com.xilinx.sdx.opencl.make_builder"/>
+							<tool commandLinePattern="${COMMAND} $(XOCC_OPTS) -c ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" errorParsers="" id="com.xilinx.sdx.opencl.toolchain.xocc_compiler.275359484" name="SDx XOCC Kernel Compiler" superClass="com.xilinx.sdx.opencl.toolchain.xocc_compiler">
+								<inputType id="com.xilinx.sdx.opencl.toolchain.xocc_compiler.input.cl.325543746" name="OpenCL files" superClass="com.xilinx.sdx.opencl.toolchain.xocc_compiler.input.cl"/>
+							</tool>
+							<tool errorParsers="" id="com.xilinx.sdx.opencl.toolchain.xocc_linker.907345883" name="SDx XOCC Kernel Linker" superClass="com.xilinx.sdx.opencl.toolchain.xocc_linker"/>
+							<tool errorParsers="" id="com.xilinx.sdx.opencl.emconfigutil.1734534281" name="emconfigutil" superClass="com.xilinx.sdx.opencl.emconfigutil"/>
+							<tool commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} -fopenmp" errorParsers="org.eclipse.cdt.core.GCCErrorParser" id="com.xilinx.sdx.opencl.toolchain.gcc_compiler.hw.814196196" name="SDx GCC Host Compiler (x86_64)" superClass="com.xilinx.sdx.opencl.toolchain.gcc_compiler.hw">
+								<option id="gnu.cpp.compiler.option.optimization.level.373191104" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="com.xilinx.sdx.opencl.toolchain.hw.gcc_compiler.option.debug.1570841582" name="Debug Level" superClass="com.xilinx.sdx.opencl.toolchain.hw.gcc_compiler.option.debug" value="gnu.cpp.compiler.debugging.level.default" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1503636096" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool commandLinePattern="${COMMAND} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS} ${FLAGS} -fopenmp -Wl,--as-needed -Wl,-rpath,$(XILINX_SDX)/lnx64/tools/opencv -L$(XILINX_SDX)/lnx64/tools/opencv -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_highgui -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab" errorParsers="org.eclipse.cdt.core.GLDErrorParser" id="com.xilinx.sdx.opencl.toolchain.gcc_linker.hw.415242273" name="SDx GCC Host Linker (x86_64)" superClass="com.xilinx.sdx.opencl.toolchain.gcc_linker.hw">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.810068879" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="Filter2D.com.xilinx.sdx.opencl.project.483560688" name="Xilinx SDx OpenCL Project" projectType="com.xilinx.sdx.opencl.project"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+	</storageModule>
+	<storageModule moduleId="refreshScope"/>
+</cproject>

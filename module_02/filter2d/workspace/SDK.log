@@ -1,0 +1,36 @@
+22:58:38 INFO  : Registering command handlers for SDK TCF services
+22:58:45 INFO  : Launching XSCT server: xsct -n -interactive /home/tbollaer/Work/blur/v10/workspace/temp_xsdb_launch_script.tcl
+22:58:46 INFO  : Validating SDSoC License...
+22:58:47 INFO  : XSCT server has started successfully.
+22:58:47 INFO  : Successfully done setting XSCT server connection channel  
+22:58:47 INFO  : License available for SDSoC
+22:58:47 INFO  : Validating SDAccel License...
+22:58:48 INFO  : Successfully done setting SDK workspace  
+22:58:49 INFO  : License available for SDAccel
+23:19:40 INFO  : Registering command handlers for SDK TCF services
+23:19:40 INFO  : Launching XSCT server: xsct -n -interactive /home/tbollaer/Work/blur/v10/workspace/temp_xsdb_launch_script.tcl
+23:19:41 INFO  : Validating SDSoC License...
+23:19:42 INFO  : License available for SDSoC
+23:19:42 INFO  : Validating SDAccel License...
+23:19:42 INFO  : XSCT server has started successfully.
+23:19:42 INFO  : Successfully done setting XSCT server connection channel  
+23:19:44 INFO  : License available for SDAccel
+23:19:44 INFO  : Successfully done setting SDK workspace  
+23:45:13 INFO  : Registering command handlers for SDK TCF services
+23:45:14 INFO  : Launching XSCT server: xsct -n -interactive /home/tbollaer/Work/blur/v10/workspace/temp_xsdb_launch_script.tcl
+23:45:14 INFO  : Validating SDSoC License...
+23:45:16 INFO  : XSCT server has started successfully.
+23:45:16 INFO  : Successfully done setting XSCT server connection channel  
+23:45:16 INFO  : License available for SDSoC
+23:45:16 INFO  : Validating SDAccel License...
+23:45:18 INFO  : License available for SDAccel
+23:45:19 INFO  : Successfully done setting SDK workspace  
+23:51:47 INFO  : Registering command handlers for SDK TCF services
+23:51:48 INFO  : Launching XSCT server: xsct -n -interactive /home/tbollaer/Work/blur/v10/workspace/temp_xsdb_launch_script.tcl
+23:51:49 INFO  : Validating SDSoC License...
+23:51:50 INFO  : XSCT server has started successfully.
+23:51:50 INFO  : Successfully done setting XSCT server connection channel  
+23:51:50 INFO  : License available for SDSoC
+23:51:50 INFO  : Validating SDAccel License...
+23:51:52 INFO  : Successfully done setting SDK workspace  
+23:51:52 INFO  : License available for SDAccel
