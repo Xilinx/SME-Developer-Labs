@@ -21,12 +21,12 @@
 <stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN_SYMBOL" value="main"/>
 <booleanAttribute key="org.eclipse.cdt.launch.ENABLE_REGISTER_BOOKKEEPING" value="false"/>
 <booleanAttribute key="org.eclipse.cdt.launch.ENABLE_VARIABLE_BOOKKEEPING" value="false"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_ARGUMENTS" value="-x ../binary_container_1.xclbin -i ../../../../img/picadilly_192x108.bmp -n 1"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Emulation-CPU/Filter2D.exe"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_ARGUMENTS" value="-x ../binary_container_1.xclbin -i ../../../../img/test.bmp -n 1"/>
+<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="Emulation-HW/Filter2D.exe"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="Filter2D"/>
 <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value=""/>
-<stringAttribute key="org.eclipse.cdt.launch.WORKING_DIRECTORY" value="${workspace_loc:Filter2D}/Emulation-CPU/Filter2D-Default"/>
+<stringAttribute key="org.eclipse.cdt.launch.WORKING_DIRECTORY" value="${workspace_loc:Filter2D}/Emulation-HW/Filter2D-Default"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/Filter2D"/>
 </listAttribute>
