@@ -1,0 +1,6 @@
+11:00:10 **** Incremental Build of configuration Emulation-CPU for project Filter2D ****
+make incremental 
+make: Nothing to be done for `incremental'.
+
+11:00:10 Build Finished (took 80ms)
+
