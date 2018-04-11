@@ -33,6 +33,7 @@ Please also note that although the entire tutorial is performed on an F1 instanc
     ```bash
     cd ~/aws-fpga
     source sdaccel_setup.sh
+    source $XILINX_SDX/settings64.sh 
     cd ~
     ```
 	*Note: the sdaccel_setup.sh script might generate warning messages, but these can be safely ignored.*
@@ -40,8 +41,7 @@ Please also note that although the entire tutorial is performed on an F1 instanc
 
 1. Launch the SDAccel GUI and open the predefined workspace containing the Filter2D project: 
     ```bash
-    cd ~/SME-Developer-Labs/module_02/filter2d
-    sdx -workspace workspace
+    sdx -workspace /home/centos/AWS-F1-Developer-Labs/workspace
     ```
 	*Note: a warning message may appear if loading Eclipse takes longer than expected. Click **Wait** to dismiss it.*
 
@@ -49,14 +49,13 @@ Please also note that although the entire tutorial is performed on an F1 instanc
 	* Creating a new project called **Filter2D**
 	* Adding the AWS-VU9P-F1 platform to the project and selecting it as the target for this project 
 	* Importing the host and kernel source files
-	* Setting GCC compile and link options
 	* Setting the name of the FPGA binary container as **binary_container_1**
 	* Setting the **Filter2DKernel** function to be a custom hardware function (also referred to as kernel).
-	* Setting command line arguments to be passed to the application when it is executed.	
+	* Mapping the ports of the **Filter2DKernel** function to two different memory interfaces; one for reads and one for writes. 
+	* Setting **binary_container_1** to be the first argument passed to the host application when it is executed.	
 
 	Most of this information is displayed in the **SDX Project Settings** window which is prominently displayed in the center of the GUI. It indicates the project name (**Filter2D**), the selected platform (**AWS-VU9-F1**) and the FPGA binary container (**binary_container_1**) with the hardware function (**Filter2DKernel**).  
  
- _TODO: Update screenshot_
     ![](./images/filter2d_lab/SDxWindows.PNG)
 
 1. Familiarize yourself with the different sections of the GUI layout:
@@ -123,7 +122,7 @@ The kernel code is comprised of the following files:
 	* The **main** function of the C++ program initializes the test vectors, sets-up OpenCL, runs the reference model, runs the hardware accelerator, releases the OpenCL resources, and compares the results of the reference Filter2D model with the accelerator implementation.
 	* The **Filter2DDispatcher** class takes care of calling the hardware accelerated Filter2DKernel. This class uses the OpenCL API calls to communicate with the FPGA and this is covered in greater detail later in this tutorial.
 
-1. Go to line 201 of the **host.cpp** file by pressing **Ctrl+L** and entering **201**. 
+1. Go to line 90 of the **host.cpp** file by pressing **Ctrl+L** and entering **90**. 
 
 	Locate the call to the **load_xclbin_file** function. This function is where the OpenCL environment is setup in the host application. This section is typical of most SDAccel application and will look very familiar to developers with prior OpenCL experience. This body of code can often be reused as-is from project to project. 
 
@@ -155,29 +154,36 @@ The kernel code is comprised of the following files:
 
 SDAccel provides two emulation flows which allow testing the application before deploying on the F1 instance. The flows are referred to as software emulation (or Emulation-CPU) and hardware emulation (or Emulation-HW), respectively.
 * Software emulation is used to identify syntax issues and verify the functional behavior of the application.
-	* In software emulation, both the host code and the kernel code are compiled to run on the x86 processor. 
-	* This allows iterative algorithm refinement through fast build and run loops.
 * Hardware emulation is used to get performance estimates for the accelerated application.
-	* In hardware emulation, the host code is compiled to run on the x86 processor and the kernel code is compiled into a hardware model (known as RTL or Register Transfer Level) which is run in a special simulator.
-	* The build and run cycle takes longer because the kernel code is compiled into a detailed hardware model which is slower to simulate.
-	* The more detailed hardware simulation allows more accurate reporting of kernel and system performance.
-	* This flow is also useful for testing the functionality of the logic that will go in the FPGA.
-
-In this lab, we will only run the hardware emulation flow.
 
 SDAccel uses Makefiles to perform incremental compilation of the project. This means that unless file changes require the recompilation of the host code or of the kernel code, no compilation is performed.
 
 1. Return to the **SDx Project Settings** by clicking on **project.sdx** in the **Project Explorer** window (left side of the GUI).
 
-1. In the upper right corner of the **SDx Project Settings** window, the **Active build configuration** is shown. Ensure that **Emulation-HW** is selected.
+1. In the upper right corner of the **SDx Project Settings** window, the **Active build configuration** is shown. Ensure that **Emulation-CPU** is selected.
 
-1. Click the **Run** button ![](./images/Filter2D_lab/RunButton.PNG) to run hardware emulation.
+1. Click the **Run** button ![](./images/Filter2D_lab/RunButton.PNG) to run software emulation.
+
+	* In software emulation, both the host code and the kernel code are compiled to run on the x86 processor. 
+	* This allows iterative algorithm refinement through fast build and run loops.
 	* The **Console** provides the detailed build log during the compilation of the kernel and the host code. It then displays the standard output produced by the application during the actual emulation run.  
-	* The hardware emulation is complete when the following messages are displayed at the bottom of the **Console**:
+	* The software emulation is complete when the following messages are displayed at the bottom of the **Console**:
 
- _TODO: Update messages below
+	```
+	TEST PASSED
+	RUN COMPLETE
+	```	
 	
+1. In the **SDx Project Settings**, change the **Active build configuration** to **Emulation-HW**.
 
+1. Click the **Run** button again or click **Ctrl+F11** to build and run the hardware emulation flow.
+
+	* In hardware emulation, the host code is compiled to run on the x86 processor and the kernel code is compiled into a hardware model (known as RTL or Register Transfer Level) which is run in a special simulator.
+	* The build and run cycle takes longer because the kernel code is compiled into a detailed hardware model which is slower to simulate.
+	* The more detailed hardware simulation allows more accurate reporting of kernel and system performance.
+	* This flow is also useful for testing the functionality of the logic that will go in the FPGA.
+	* The hardware emulation is complete when the following messages are displayed at the bottom of the **Console**:
+	
 	```
 	TEST PASSED
 	RUN COMPLETE
@@ -185,25 +191,30 @@ SDAccel uses Makefiles to perform incremental compilation of the project. This m
 
 ### Analyzing the Reports  
 
-This section covers how to locate and read the various reports generated by the emulation runs. 
+This section covers how to locate and read the various reports generated by the emulation runs. The goal of the section is to understand the analysis reports of SDAccel before utilizing them in the next section.  
 
 1. Locate the **Reports** window in the bottom-left corner of the GUI. 
 	* This window displays a tree layout of folders and reports for all runs and open projects. 
-	* The top level shows the **Filter2D** project for which we have executed the **Emulation-HW** run.
-
- _TODO: Update screenshot_
+	* The top level shows the **Filter2D** project for which we have executed two runs: **Emulation-CPU** and **Emulation-HW**.
 
     ![](./images/filter2d_lab/Reports.PNG)
+
+1. Look into the **Emulation-CPU** folder. 
+	* The **Filter2D-Default** run configuration folder contains the **Profile Summary** and **Application Timeline** report generated during the software emulation run.
 
 1. Look into the **Emulation-HW** folder.
 	* The **Filter2D-Default** run configuration folder contains the **Profile Summary** and **Application Timeline** report generated during the hardware emulation run.
 	* The **binary_container_1** folder contains the **HLS Report** from the compilation of the C++ kernel into the detailed hardware model (RTL). This compilation step is often referred to as High Level Synthesis or HLS.
 
-1. Open the **Profile Summary** report from the **Emulation-HW** run. 
-  
+1. Open the **Profile Summary** report from the **Emulation-CPU** run. 
+
+    ![](./images/filter2d_lab/SWProfile.PNG) 
+
+    _Note: in software emulation, profiling numbers may vary due to CPU and system loading._
+    
     This report provides data related to how the application runs. Notice that the report has four tabs at the top: **Top Operations**, **Kernels & Compute Units**, **Data Transfers**, and **OpenCL APIs**. 
     
-1. Click through and inspect each of the tabs:
+    Click through and inspect each of the tabs:
 
     * **Top Operations**: Shows all the major top operations of memory transfer between the host and kernel to global memory, and kernel execution. This allows you to identify throughput bottlenecks when transferring data. Efficient transfer of data to the kernel/host allows for faster execution times.
     
@@ -213,139 +224,123 @@ This section covers how to locate and read the various reports generated by the 
     
     * **OpenCL APIs**: Shows all the OpenCL API command executions, how many time each was executed, and how long they take to execute.
 
+1. Open the **Application Timeline** report from the **Emulation-CPU** run. 
+
+    ![](./images/filter2d_lab/SWTimeline.PNG)	
+       
+    The **Application Timeline** collects and displays host and device events on a common timeline to help you understand and visualize the overall health and performance of your systems. These events include OpenCL API calls from the host code: when they happen and how long each of them takes.
+    
+1. Open the **Profile Summary** from the **Emulation-HW** run.
+
+    ![](./images/filter2d_lab/HWProfile.PNG)
+
 1. Locate the **Profile Rule Checks** section at the bottom of the **Profile Summary** 
     - **Profile Rule Checks** (PRCs) interpret profiling results and suggest areas for performance improvements.
     - PRCs compare profiling results to threshold values. If a check does not meet the threshold value, the right hand column provides guidance on how to improve performance.
     - PRCs work for both hardware emulation and system runs on the FPGA.
 
-    ![](./images/filter2d_lab/opt_1kernel_1img_profile_checks.png) 
+1. Click on the **Kernels & Compute Units** tab of the **Profile Summary** report, locate and note the following numbers:
 
+    - Kernel Total Time (ms):
 
-1. Open the **Application Timeline** report from the **Emulation-HW** run. 
+    This number will serve as reference point to compare against after optimization.    
+    
+1. Open the **HLS Report** from the **Emulation-HW** run.
 
-    ![](./images/filter2d_lab/opt_1kernel_1img_timeline.png)	
-       
-    The **Application Timeline** collects and displays host and device events on a common timeline to help you understand and visualize the overall health and performance of your systems. These events include OpenCL API calls from the host code: when they happen and how long each of them takes.
+    - The **HLS Report** is explains the results of compiling the kernel into hardware. It contains many details (including clocking, resources or device utilization) about the performance and logic usage of the custom-generated hardware logic. These details provide many insights to guide the kernel optimization process.    
+    
+    - For the needs of this tutorial, we will focus on the **Performance Estimates** section located in the middle of the main **Synthesis** tab. This section provides information on the latency of the kernel, as well as loop implementation details.  
+
+1. In the left pane of the **HLS Report**, select the **Filter2DKernel** function.
+
+    ![](./images/filter2d_lab/LatencyKrnlIdctDataflow3.PNG)
+
+1. In the **Performance Estimates** section, locate the **Latency (clock cycles) > Summary** table and note the following numbers:
+
+    - Latency (min/max):
+    - Interval (min/max):
+
+	The numbers will serve as a baseline for comparison against optimized versions of the kernel.
+
+1. Right under the table, locate and expand the **Detail > Instance** sub-section.
+
+	* Note that the 3 sub-functions read, execute and write have roughly the same latency and that their sum total is equivalent to the total Interval reported in the **Summary** table. 
+	* This indicates that the three sub-functions are executing sequentially, hinting to an optimization opportunity.
+
+1. Close all the reports by clicking the **X** in each of the report tabs.
  
-	The green segments at the bottom indicate when the Filter2D kernel is running.
-
-
-1. Close the **Application Timeline** and **Profile Summary** report.
 
 ### Optimization   
 
 The previous section explained the SDAccel performance analysis capabilities. The next stage is to utilize these analysis capabilities to drive and measure code optimizations. This tutorial illustrates the DATAFLOW optimization for the kernel and software pipelining for the host application.
 
 
-### Adding More Kernels  
+### Kernel Optimization  
 
-Give explanations about processing Y,U,V in parallel. Refer to host code, host.cpp lines 263-265. 
+TBD, only thing I can propose is for example to get rid of the / in the filter and change it into a shift, not sure how much of a difference that will make.
+If we had more time, I would propose we change the kernel into a kernel that processes multiple pixels in parallel, but this has consequences to quite a bit of code.
 
-1. Return to the **SDx Project Settings** and locate the **Hardware Functions** section in the bottom half of the window
-
-1. Increase the number of **Compute Units** for the **Filter2DKernel** from 1 to 3
-
-1. Make sure **Emulation-HW** is still selected as the **Active build configuration** and run HW emulation by clicking the **Run** button ![](./images/Filter2D_lab/RunButton.PNG) or by pressing **Ctrl+F11**
-	- Rebuilding the design with 3 kernels takes about 5-6 minutes
-
-1. After HW emulation completes, open the newly generated **Application Timeline**. Observe that we now have 3 kernels executing in parallel, thereby improving the performance of our application.
-
-    ![](./images/filter2d_lab/opt_3kernel_1img_timeline.png)	
-
-1. Close the **Application Timeline**.
-
-
-### Processing More Images
-
-Up to this point, the application only processes one image per execution. Let's now look at the performance of the application when processing multiple images. 
-
-The application provides a command line argument to specify the number of times the input image should be processed. We will use this feature 
-
-1. From the main menu bar of the SDx GUI, choose the **Run** menu and open the **Run Configurations** window.
-
-1. In the **Run Configurations** window, choose the **Arguments** tab.
-	- This tab allows specifying the command line arguments passed to the application when it is executed
-		- -x is used to specify the name of FPGA image
-		- -i is used to specify the name of bitmap image to be processed
-		- -n is used to specify how many times the image should be processed
-
-1. Change ```-n 1``` to ```-n 2```. 
-	- This will cause the application to process the image twice instead of just once
-
-    ![](./images/filter2d_lab/opt_run_configuration.png)	
-
-1. Rerun HW emulation by clicking the **Run** button or by pressing **Ctrl+F11**.
-	- This time, the application doesn't need to be recompiled since only command line arguments were changed
-	- The HW emulation run should complete in under a minute
-	- Notice that in the console, 6 requests are now reported instead of the 3 we saw before
-
-1. Open the newly generated **Application Timeline**. 
-
-    ![](./images/filter2d_lab/opt_3kernel_2img_timeline.png)
-
-    - Observe that the 3 kernels are executing in parallel like we saw before
-    - Observe also that there is a gap between two executions of a given kernel instance
-    - Effectively the second execution of Filter2DKernel_1 only starts after the first execution of the Filter2DKernel_3
-	- The gap between the two segments is indicative of idle time between these two invocations 
-    - This behavior is caused by how the host application synchronizes kernel invocations
 
 ### Host Code Optimization
 
 1. Open **host.cpp** file (from the **Project Explorer** window).  
 
-1. Go to line 267 of the **host.cpp** file by pressing **Ctrl+L** and entering **267**. 
-	- Explain the synchronization mechanism
-	```C
-	for(int xx=0; xx<numRuns; xx++) 
-	{
-		// Make independent requests to Blur Y, U and V planes
-		// Requests will run sequentially if there is a single kernel
-		// Requests will run in parallel is there are two or more kernels
-		request[xx*3+0] = Filter(coeff.data(), y_src.data(), width, height, stride, y_dst.data());
-		request[xx*3+1] = Filter(coeff.data(), u_src.data(), width, height, stride, u_dst.data());
-		request[xx*3+2] = Filter(coeff.data(), v_src.data(), width, height, stride, v_dst.data());
+1. Using the **Outline** viewer, navigate to the **runFPGA** function.
 
-		// Wait for completion of the outstanding requests
-		request[xx*3+0]->sync();
-		request[xx*3+1]->sync();
-		request[xx*3+2]->sync();
-	}
-	```
+	For each block of 8x8 values, the **runFPGA** function writes data to the FPGA, runs the kernel, and reads results back. 
+	
+	Communication with the FPGA is handled by OpenCL API calls made within the cu.write, cu.run and cu.read functions.
+	- **clEnqueueMigrateMemObjects** schedules the transfer of data to or from the FPGA.
+	- **clEnqueueTask** schedules the executing of the kernel.
 
-1. Modify the source code as shown below
-	```C
-	for(int xx=0; xx<numRuns; xx++) 
-	{
-		// Make independent requests to Blur Y, U and V planes
-		// Requests will run sequentially if there is a single kernel
-		// Requests will run in parallel is there are two or more kernels
-		request[xx*3+0] = Filter(coeff.data(), y_src.data(), width, height, stride, y_dst.data());
-		request[xx*3+1] = Filter(coeff.data(), u_src.data(), width, height, stride, u_dst.data());
-		request[xx*3+2] = Filter(coeff.data(), v_src.data(), width, height, stride, v_dst.data());
-	}
-	for(int xx=0; xx<numRuns; xx++) 
-	{
-		// Wait for completion of the outstanding requests
-		request[xx*3+0]->sync();
-		request[xx*3+1]->sync();
-		request[xx*3+2]->sync();
-	}
-	```
-
-	- With this change _explain..._
-
-1. Save the file (**Ctrl-S**) and rerun hardware emulation by clicking the **Run** button ![](./images/filter2d_lab/RunButton.PNG). 
-
-    - Since only the **host.cpp** file was changed, the incremental makefile rebuilds only the host code before running emulation.
-    
+	These OpenCL functions use events to signal their completion and synchronize execution.
 	
 1. Open the **Application Timeline** of the **Emulation-HW** run.  
 
-    ![](./images/filter2d_lab/opt_3kernel_2img_timeline_improved.png)
+	The green segments at the bottom indicate when the Filter2D kernel is running.
 
+1. Notice that there are gaps between each of the green segments.
+
+1. Zoom in by performing a **Left mouse drag** across one of these gaps to get a more detailed view.  
+
+    ![](./images/filter2d_lab/ZoomApplicationTimeline.PNG)
+
+    - The two green segments correspond to two consecutive invocations of the Filter2D kernel. 
+    - The gap between the two segments is indicative of idle time between these two invocations. 
+    - The **Data Transfer** section of the timeline shows that **Read** and **Write** operations are happening when the kernel is idle. 
+    - The **Read** operation is to retrieve the results from the execution which just finished and the **Write** operation is to send inputs for the next execution. 
+    - This represents a sequential execution flow of each iteration.  
     
 1. Close the **Application Timeline**.    
 	
+1. In the **idct.cpp** file, go to the **oclDct::write** function.
+
+	- Observe that on line 353, the function synchronizes on the **outEvVec** event through a call to **clWaitForEvents**. 
+	- This event is generated by the completion of the **clEnqueueMigrateMemObjects** call in the **oclDct::read** function (line 429).
+	- Effectively the next execution of the **oclDct::write** function is gated by the completion of the previous **oclDct::read** function, resulting in the sequential behavior observed in the **Application Timeline**. 
+	
+	
+1. Use the **Outline** viewer to locate the definition of the **NUM_SCHED** macro in the **idct.cpp** file.
+	
+	- This macro defines the depth of the event queue.
+	- The value of **1** explains the observed behavior: new tasks (write, run, read) are only enqueued when the previous has completed effectively synchronizing each loop iteration. 
+	- By increasing the value of the **NUM_SCHED** macro, we increase the depth of the event queue and enable more blocks to be enqueued for processing. This will result in the write, run and read tasks to overlap and allow the kernel to execute continuously. 
+	- This technique is called **software pipelining**. 
+	
+1. Modify line 213 to increase the value of **NUM_SCHED** to 6 as follows:
+	```C
+	#define NUM_SCHED 6
+	```
+1. Save the file (**Ctrl-S**) and rerun hardware emulation by clicking the run button ![](./images/filter2d_lab/RunButton.PNG). 
+
+    - Since only the **idct.cpp** file was change, the incremental makefile rebuilds only the host code before running emulation.
+    - This results in a much faster iteration loop since it is usually the compilation of the kernel to hardware which takes the most time.
+    
+1. Once completed, reopen the **Application Timeline** and observe how **software pipelining** enables overlapping of data transfers and kernel execution.
+
+    ![](./images/filter2d_lab/ZoomApplicationTimelineEnd.PNG)
+	
+	Note: system tasks might slow down communication between the application and the hardware simulation, impacting on the measured performance results. The effect of software pipelining is considerably higher when running on the actual hardware. 
 
 ### Building the FPGA binary to execute on F1 
 
@@ -370,14 +365,12 @@ These steps would take too long to complete during this tutorial, therefore a pr
 
 	```bash
 	# Go the lab folder
-	cd /home/centos/SME-Developer-Labs/module_02/filter2d
+	cd /home/centos/AWS-F1-Developer-Labs/idct
 	
 	# List contents of the ./xclbin directory to look for the .awsxclbin FPGA binary
 	ls -la ./xclbin
 	```
 	
-_TODO: This section needs updating with name of awsxclbin files and AFI ids_
-
 1. Retrieve the FPGA Image Global Id (agfi) from the \<timestamp\>_afi_id.txt file.
 	
 	```bash
@@ -404,7 +397,7 @@ _TODO: This section needs updating with name of awsxclbin files and AFI ids_
 
     ``` shell
     # Copy the host application executable
-    cp /home/centos/SME-Developer-Labs/workspace/Filter2D/Emulation-HW/Filter2D.exe .
+    cp /home/centos/AWS-F1-Developer-Labs/workspace/Filter2D/Emulation-HW/Filter2D.exe .
    
     sudo sh
     # Source the SDAccel runtime environment
@@ -415,7 +408,7 @@ _TODO: This section needs updating with name of awsxclbin files and AFI ids_
 
     Note the performance difference between the Filter2D running on the CPU and the Filter2D running in the FPGA.
 
-	_TODO need to add on to this to show how to run 1 vs 3 kernels, then explain performance numbers based on 1 pixel per clock, kernel clock, image size, etc._
+	TBD need to add on to this to show how to run 1 vs 3 kernels, then explain performance numbers based on 1 pixel per clock, kernel clock, image size, etc.
 	
 ### Summary  
 
