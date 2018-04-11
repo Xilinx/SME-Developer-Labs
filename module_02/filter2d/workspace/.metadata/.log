@@ -1,0 +1,278 @@
+!SESSION 2018-04-10 22:58:30.755 -----------------------------------------------
+eclipse.buildId=2016.1
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data workspace
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-04-10 22:58:33.862
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-10 22:58:34.332
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-10 22:58:34.332
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-10 22:58:35.762
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-10 22:58:35.762
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 22:58:47.365
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-1
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 22:58:47.367
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 22:58:47.378
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 22:58:47.381
+!MESSAGE XSCT Command: [setws /home/tbollaer/Work/blur/v10/workspace], Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 22:58:48.920
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-1
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 22:58:48.922
+!MESSAGE XSCT command with result: [setws /home/tbollaer/Work/blur/v10/workspace], Result: [null, ]. Thread: Thread-18
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-10 22:59:59.364
+!MESSAGE Indexed 'Filter2D' (0 sources, 0 headers) in 0.003 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY ilg.gnuarmeclipse.packs.data 4 1 2018-04-10 23:02:34.971
+!MESSAGE File .repos.xml does not exist, using defaults.
+
+!ENTRY org.eclipse.cdt.debug.core 4 104 2018-04-10 23:07:49.684
+!MESSAGE The program file specified in the launch configuration does not exist
+!STACK 0
+java.io.FileNotFoundException: /home/tbollaer/Work/blur/v10/workspace/Filter2D/Emulation-CPU/Filter2D.exe not found
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:691)
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:707)
+	at com.xilinx.sdx.internal.opencl.language.ui.launch.SDXOpenCLLaunchConfigurationDelegate.finalLaunchCheck(SDXOpenCLLaunchConfigurationDelegate.java:349)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:868)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.debug.core 4 104 2018-04-10 23:11:50.714
+!MESSAGE The program file specified in the launch configuration does not exist
+!STACK 0
+java.io.FileNotFoundException: /home/tbollaer/Work/blur/v10/workspace/Filter2D/Emulation-CPU/Filter2D.exe not found
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:691)
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:707)
+	at com.xilinx.sdx.internal.opencl.language.ui.launch.SDXOpenCLLaunchConfigurationDelegate.finalLaunchCheck(SDXOpenCLLaunchConfigurationDelegate.java:349)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:868)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.debug.core 4 104 2018-04-10 23:14:53.598
+!MESSAGE The program file specified in the launch configuration does not exist
+!STACK 0
+java.io.FileNotFoundException: /home/tbollaer/Work/blur/v10/workspace/Filter2D/Emulation-CPU/Filter2D.exe not found
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:691)
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:707)
+	at com.xilinx.sdx.internal.opencl.language.ui.launch.SDXOpenCLLaunchConfigurationDelegate.finalLaunchCheck(SDXOpenCLLaunchConfigurationDelegate.java:349)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:868)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2018-04-10 23:19:24.816 -----------------------------------------------
+eclipse.buildId=2016.1
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data workspace
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-04-10 23:19:27.952
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-10 23:19:28.640
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-10 23:19:28.640
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-10 23:19:30.161
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-10 23:19:30.161
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:19:42.965
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:19:42.967
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-4
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:19:42.987
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:19:42.989
+!MESSAGE XSCT Command: [setws /home/tbollaer/Work/blur/v10/workspace], Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:19:44.760
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-4
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:19:44.762
+!MESSAGE XSCT command with result: [setws /home/tbollaer/Work/blur/v10/workspace], Result: [null, ]. Thread: Thread-18
+!SESSION 2018-04-10 23:44:56.741 -----------------------------------------------
+eclipse.buildId=2016.1
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data workspace
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-04-10 23:45:00.061
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-10 23:45:00.755
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-10 23:45:00.755
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-10 23:45:02.331
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-10 23:45:02.331
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:45:16.410
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:45:16.411
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-0
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:45:16.424
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:45:16.427
+!MESSAGE XSCT Command: [setws /home/tbollaer/Work/blur/v10/workspace], Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:45:19.865
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-0
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:45:19.867
+!MESSAGE XSCT command with result: [setws /home/tbollaer/Work/blur/v10/workspace], Result: [null, ]. Thread: Thread-18
+!SESSION 2018-04-10 23:51:31.462 -----------------------------------------------
+eclipse.buildId=2016.1
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data workspace
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-04-10 23:51:34.692
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-10 23:51:35.400
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-10 23:51:35.400
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-10 23:51:37.003
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-10 23:51:37.003
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:51:50.231
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:51:50.233
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-3
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:51:50.246
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:51:50.248
+!MESSAGE XSCT Command: [setws /home/tbollaer/Work/blur/v10/workspace], Thread: Thread-18
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:51:52.372
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-3
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-10 23:51:52.374
+!MESSAGE XSCT command with result: [setws /home/tbollaer/Work/blur/v10/workspace], Result: [null, ]. Thread: Thread-18
+
+!ENTRY org.eclipse.e4.ui.workbench.swt 4 2 2018-04-10 23:54:22.868
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.e4.ui.workbench.swt".
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4533)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:483)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:421)
+	at org.eclipse.swt.widgets.Widget.checkParent(Widget.java:359)
+	at org.eclipse.swt.widgets.Widget.<init>(Widget.java:242)
+	at org.eclipse.swt.widgets.Control.<init>(Control.java:104)
+	at org.eclipse.swt.widgets.Scrollable.<init>(Scrollable.java:75)
+	at org.eclipse.swt.widgets.Composite.<init>(Composite.java:108)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.createWidget(ElementReferenceRenderer.java:58)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:975)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:651)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:757)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$0(PartRenderingEngine.java:728)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:722)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:706)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.createElement(PartServiceImpl.java:1257)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(PartServiceImpl.java:1218)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:401)
+	at org.eclipse.ui.internal.ViewReference.getView(ViewReference.java:85)
+	at org.eclipse.ui.internal.WorkbenchPage.findView(WorkbenchPage.java:1966)
+	at com.xilinx.sdx.opencl.emulation.ui.views.SDXEmulationMessageView.findView(SDXEmulationMessageView.java:434)
+	at com.xilinx.sdx.internal.opencl.language.ui.launch.SDXOpenCLLaunchConfigurationDelegate.sdxLaunch(SDXOpenCLLaunchConfigurationDelegate.java:258)
+	at com.xilinx.sdx.internal.opencl.language.ui.launch.SDXOpenCLLaunchConfigurationDelegate.launch(SDXOpenCLLaunchConfigurationDelegate.java:173)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2018-04-10 23:54:22.876
+!MESSAGE Exception occurred while rendering: org.eclipse.e4.ui.model.application.ui.advanced.impl.PlaceholderImpl@13c8ac77 (elementId: com.xilinx.sdx.opencl.emulation.ui.views.SDXEmulationMessageView, tags: [], contributorURI: null) (widget: null, renderer: org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer@2e057637, toBeRendered: true, onTop: false, visible: true, containerData: null, accessibilityPhrase: null) (closeable: false)
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4533)
+	at org.eclipse.swt.SWT.error(SWT.java:4448)
+	at org.eclipse.swt.SWT.error(SWT.java:4419)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:483)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:421)
+	at org.eclipse.swt.widgets.Widget.checkParent(Widget.java:359)
+	at org.eclipse.swt.widgets.Widget.<init>(Widget.java:242)
+	at org.eclipse.swt.widgets.Control.<init>(Control.java:104)
+	at org.eclipse.swt.widgets.Scrollable.<init>(Scrollable.java:75)
+	at org.eclipse.swt.widgets.Composite.<init>(Composite.java:108)
+	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.createWidget(ElementReferenceRenderer.java:58)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createWidget(PartRenderingEngine.java:975)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:651)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeCreateGui(PartRenderingEngine.java:757)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$0(PartRenderingEngine.java:728)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$2.run(PartRenderingEngine.java:722)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.createGui(PartRenderingEngine.java:706)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.createElement(PartServiceImpl.java:1257)
+	at org.eclipse.e4.ui.internal.workbench.PartServiceImpl.showPart(PartServiceImpl.java:1218)
+	at org.eclipse.ui.internal.WorkbenchPartReference.getPart(WorkbenchPartReference.java:401)
+	at org.eclipse.ui.internal.ViewReference.getView(ViewReference.java:85)
+	at org.eclipse.ui.internal.WorkbenchPage.findView(WorkbenchPage.java:1966)
+	at com.xilinx.sdx.opencl.emulation.ui.views.SDXEmulationMessageView.findView(SDXEmulationMessageView.java:434)
+	at com.xilinx.sdx.internal.opencl.language.ui.launch.SDXOpenCLLaunchConfigurationDelegate.sdxLaunch(SDXOpenCLLaunchConfigurationDelegate.java:258)
+	at com.xilinx.sdx.internal.opencl.language.ui.launch.SDXOpenCLLaunchConfigurationDelegate.launch(SDXOpenCLLaunchConfigurationDelegate.java:173)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.debug.core 4 104 2018-04-10 23:59:36.070
+!MESSAGE The program file specified in the launch configuration does not exist
+!STACK 0
+java.io.FileNotFoundException: /home/tbollaer/Work/blur/v10/workspace/Filter2D/Emulation-HW/Filter2D.exe not found
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:691)
+	at org.eclipse.cdt.debug.core.CDebugUtils.verifyProgramPath(CDebugUtils.java:707)
+	at com.xilinx.sdx.internal.opencl.language.ui.launch.SDXOpenCLLaunchConfigurationDelegate.finalLaunchCheck(SDXOpenCLLaunchConfigurationDelegate.java:349)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:868)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
