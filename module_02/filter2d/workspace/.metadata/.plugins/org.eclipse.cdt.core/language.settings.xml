@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <plugin>
 	<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
-		<provider class="org.eclipse.cdt.managedbuilder.language.settings.providers.GCCBuiltinSpecsDetector" console="false" env-hash="-1488375761269985917" id="org.eclipse.cdt.managedbuilder.core.GCCBuiltinSpecsDetector" keep-relative-paths="false" name="CDT GCC Built-in Compiler Settings" parameter="${COMMAND} ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;">
+		<provider class="org.eclipse.cdt.managedbuilder.language.settings.providers.GCCBuiltinSpecsDetector" console="false" env-hash="660406896927411515" id="org.eclipse.cdt.managedbuilder.core.GCCBuiltinSpecsDetector" keep-relative-paths="false" name="CDT GCC Built-in Compiler Settings" parameter="${COMMAND} ${FLAGS} -E -P -v -dD &quot;${INPUTS}&quot;">
 			<language-scope id="org.eclipse.cdt.core.gcc"/>
 			<language-scope id="org.eclipse.cdt.core.g++"/>
 			<language id="org.eclipse.cdt.core.gcc">
-				<entry kind="includePath" name="/proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/include">
+				<entry kind="includePath" name="/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/include">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
-				<entry kind="includePath" name="/proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/include-fixed">
+				<entry kind="includePath" name="/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/include-fixed">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
 				<entry kind="includePath" name="/usr/local/include">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
-				<entry kind="includePath" name="/proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/lnx64/tools/gcc/include">
+				<entry kind="includePath" name="/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/lnx64/tools/gcc/include">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
 				<entry kind="includePath" name="/usr/include">
@@ -655,25 +655,25 @@
 				</entry>
 			</language>
 			<language id="org.eclipse.cdt.core.g++">
-				<entry kind="includePath" name="/proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/lnx64/tools/gcc/include/c++/4.6.3">
+				<entry kind="includePath" name="/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/lnx64/tools/gcc/include/c++/4.6.3">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
-				<entry kind="includePath" name="/proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/lnx64/tools/gcc/include/c++/4.6.3/x86_64-unknown-linux-gnu">
+				<entry kind="includePath" name="/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/lnx64/tools/gcc/include/c++/4.6.3/x86_64-unknown-linux-gnu">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
-				<entry kind="includePath" name="/proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/lnx64/tools/gcc/include/c++/4.6.3/backward">
+				<entry kind="includePath" name="/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/lnx64/tools/gcc/include/c++/4.6.3/backward">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
-				<entry kind="includePath" name="/proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/include">
+				<entry kind="includePath" name="/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/include">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
-				<entry kind="includePath" name="/proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/include-fixed">
+				<entry kind="includePath" name="/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/include-fixed">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
 				<entry kind="includePath" name="/usr/local/include">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
-				<entry kind="includePath" name="/proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/lnx64/tools/gcc/include">
+				<entry kind="includePath" name="/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/lnx64/tools/gcc/include">
 					<flag value="BUILTIN|READONLY"/>
 				</entry>
 				<entry kind="includePath" name="/usr/include">

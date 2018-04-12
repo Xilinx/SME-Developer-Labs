@@ -14,11 +14,11 @@ RMDIR = rm -rf
 SDX_PLATFORM = xilinx:aws-vu9p-f1:4ddr-xpr-2pr:4.0
 
 # host compiler global settings
-CXXFLAGS += -DC_KERNEL -DSDX_PLATFORM=$(SDX_PLATFORM) -D__USE_XOPEN2K8 -I/proj/xbuilds/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/runtime/include/1_2/ -I/proj/xbuilds/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/include/ -O0 -g -Wall -c -fmessage-length=0 -std=c++14
-LDFLAGS += -lxilinxopencl -lpthread -lrt -lstdc++ -L/proj/xbuilds/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/runtime/lib/x86_64
+CXXFLAGS += -DC_KERNEL -DSDX_PLATFORM=$(SDX_PLATFORM) -D__USE_XOPEN2K8 -I/opt/Xilinx/SDx/2017.1.op/runtime/include/1_2/ -I/opt/Xilinx/SDx/2017.1.op/Vivado_HLS/include/ -O0 -g -Wall -c -fmessage-length=0 -std=c++14
+LDFLAGS += -lxilinxopencl -lpthread -lrt -lstdc++ -L/opt/Xilinx/SDx/2017.1.op/runtime/lib/x86_64
 
 # kernel compiler global settings
-XOCC_OPTS = -t hw_emu --platform $(SDX_PLATFORM) --save-temps  --report estimate
+XOCC_OPTS = -t hw_emu --platform /home/centos/aws-fpga/SDAccel/aws_platform/xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0/xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.xpfm --save-temps  --report estimate
 
 #
 # OpenCL kernel files
@@ -99,7 +99,7 @@ src/host/filter2d.o: ../src/host/filter2d.cpp ../src/host/filter2d.h ../src/host
 	@mkdir -p $(@D)
 	$(SDX_CXX) $(CXXFLAGS) -o "$@" "$<" -fopenmp
 
-src/host/host.o: ../src/host/host.cpp ../src/host/logger.h ../src/host/cmdlineparser.h ../src/host/xclbin_helper.h ../../../../../../../../../../proj/xbuilds/released/2017.1_sdx/AWS/2017.1_sdx_0715_1/installs/lin64/SDx/2017.1/Vivado_HLS/include/opencv2/opencv.hpp ../src/host/coefficients.h ../src/host/filter2d.h
+src/host/host.o: ../src/host/host.cpp ../src/host/logger.h ../src/host/cmdlineparser.h ../src/host/xclbin_helper.h ../../../../../../../../../../opt/Xilinx/SDx/2017.1.op/Vivado_HLS/include/opencv2/opencv.hpp ../src/host/coefficients.h ../src/host/filter2d.h
 	@mkdir -p $(@D)
 	$(SDX_CXX) $(CXXFLAGS) -o "$@" "$<" -fopenmp
 
@@ -119,6 +119,6 @@ $(HOST_EXE): $(HOST_OBJECTS)
 #
 
 $(EMCONFIG_FILE): makeemconfig.mk
-	$(EMCONFIGUTIL) --platform xilinx:aws-vu9p-f1:4ddr-xpr-2pr:4.0 --nd $(NUMBER_OF_DEVICES)
+	$(EMCONFIGUTIL) --platform /home/centos/aws-fpga/SDAccel/aws_platform/xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0/xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.xpfm --nd $(NUMBER_OF_DEVICES)
 	-@$(RMDIR) TempConfig .Xil
 

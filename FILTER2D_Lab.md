@@ -33,6 +33,7 @@ Please also note that although the entire tutorial is performed on an F1 instanc
     ```bash
     cd ~/aws-fpga
     source sdaccel_setup.sh
+    source $XILINX_SDX/settings64.sh 
     cd ~
     ```
 	*Note: the sdaccel_setup.sh script might generate warning messages, but these can be safely ignored.*
@@ -125,7 +126,7 @@ _TODO: Update screenshot_
 	* The **main** function of the C++ program initializes the test vectors, sets-up OpenCL, runs the reference model, runs the hardware accelerator, releases the OpenCL resources, and compares the results of the reference Filter2D model with the accelerator implementation.
 	* The **Filter2DDispatcher** class takes care of calling the hardware accelerated Filter2DKernel. This class uses the OpenCL API calls to communicate with the FPGA and this is covered in greater detail later in this tutorial.
 
-1. Go to line 201 of the **host.cpp** file by pressing **Ctrl+L** and entering **201**. 
+1. Go to line 201 of the **host.cpp** file by pressing **Ctrl+L** and entering **203**. 
 
 	Locate the call to the **load_xclbin_file** function. This function is where the OpenCL environment is setup in the host application. This section is typical of most SDAccel application and will look very familiar to developers with prior OpenCL experience. This body of code can often be reused as-is from project to project. 
 
@@ -181,6 +182,12 @@ SDAccel uses Makefiles to perform incremental compilation of the project. This m
 	
 
 	```
+	Running FPGA version
+	   kernel finished processing request 0
+	   kernel finished processing request 1
+	   kernel finished processing request 2
+	Running Software version
+
 	*******************************************************
 	MATCH PASS: Output matches reference
 	*******************************************************
@@ -303,7 +310,7 @@ The source code already provides a command line argument to specify the number o
 
 1. Open **host.cpp** file (from the **Project Explorer** window).  
 
-1. Go to line 267 of the **host.cpp** file by pressing **Ctrl+L** and entering **267**. 
+1. Go to line 267 of the **host.cpp** file by pressing **Ctrl+L** and entering **265**. 
 	_Explain the synchronization mechanism_
 
 	```C
@@ -393,13 +400,13 @@ _TODO: This section needs updating with name of awsxclbin files and AFI ids_
 1. Retrieve the FPGA Image Global Id (agfi) from the \<timestamp\>_afi_id.txt file.
 	
 	```bash
-	more ./xclbin/17_10_25-143305_afi_id.txt
+	more ./xclbin/18_04_12-035517_afi_id.txt
 	```	
 
 1. Confirm that the FPGA Image is ready and available using the retrieved Id.
 
 	``` bash
-	aws ec2 describe-fpga-images --filters Name=fpga-image-global-id,Values=agfi-0b8ba55a71fd665b9
+	aws ec2 describe-fpga-images --filters Name=fpga-image-global-id,Values=agfi-0710dc06e6e142782
 	```
    
    The output of this command should contain:
@@ -422,7 +429,8 @@ _TODO: This section needs updating with name of awsxclbin files and AFI ids_
     # Source the SDAccel runtime environment
     source /opt/Xilinx/SDx/2017.1.rte/setup.sh
     # Execute the host application with the .awsxclbin FPGA binary
-    ./Filter2D.exe ./xclbin/binary_container_1.awsxclbin
+    ./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.1k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
+	./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.3k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
     ```
 
     Note the performance difference between the Filter2D running on the CPU and the Filter2D running in the FPGA.
