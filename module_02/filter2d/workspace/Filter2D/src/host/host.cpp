@@ -25,7 +25,9 @@ static void Raw2IplImage(uchar* y, int stride_y, uchar* u, int stride_u, uchar* 
 // -------------------------------------------------------------------------------------------
 void event_cb(cl_event event, cl_int cmd_status, void *id) 
 {
-  std::cout << "  kernel finished processing request " << *(int *)id << std::endl;
+	if (getenv("XCL_EMULATION_MODE") != NULL) {	
+		std::cout << "  kernel finished processing request " << *(int *)id << std::endl;
+	}
 }
 
 // -------------------------------------------------------------------------------------------
@@ -335,9 +337,8 @@ int main(int argc, char** argv)
 	std::cout << "*******************************************************" << std::endl;	
 
 
-	// Report performance (if not running in emulatio mode)
-	char *xcl_mode = getenv("XCL_EMULATION_MODE");
-	if (xcl_mode == NULL) {
+	// Report performance (if not running in emulation mode)
+	if (getenv("XCL_EMULATION_MODE") == NULL) {
 
 		std::chrono::duration<double> fpga_duration = fpga_end - fpga_begin;
 		std::cout << "FPGA Time:       " << fpga_duration.count() << " s" << std::endl;

@@ -182,6 +182,12 @@ SDAccel uses Makefiles to perform incremental compilation of the project. This m
 	
 
 	```
+	Running FPGA version
+	   kernel finished processing request 0
+	   kernel finished processing request 1
+	   kernel finished processing request 2
+	Running Software version
+
 	*******************************************************
 	MATCH PASS: Output matches reference
 	*******************************************************
@@ -394,13 +400,13 @@ _TODO: This section needs updating with name of awsxclbin files and AFI ids_
 1. Retrieve the FPGA Image Global Id (agfi) from the \<timestamp\>_afi_id.txt file.
 	
 	```bash
-	more ./xclbin/17_10_25-143305_afi_id.txt
+	more ./xclbin/18_04_12-035517_afi_id.txt
 	```	
 
 1. Confirm that the FPGA Image is ready and available using the retrieved Id.
 
 	``` bash
-	aws ec2 describe-fpga-images --filters Name=fpga-image-global-id,Values=agfi-0b8ba55a71fd665b9
+	aws ec2 describe-fpga-images --filters Name=fpga-image-global-id,Values=agfi-0710dc06e6e142782
 	```
    
    The output of this command should contain:
@@ -423,7 +429,12 @@ _TODO: This section needs updating with name of awsxclbin files and AFI ids_
     # Source the SDAccel runtime environment
     source /opt/Xilinx/SDx/2017.1.rte/setup.sh
     # Execute the host application with the .awsxclbin FPGA binary
-    ./Filter2D.exe ./xclbin/binary_container_1.awsxclbin
+    ./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.1k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
+
+	./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.3k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
+
+	./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.6k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
+
     ```
 
     Note the performance difference between the Filter2D running on the CPU and the Filter2D running in the FPGA.

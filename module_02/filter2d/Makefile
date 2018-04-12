@@ -13,6 +13,8 @@ KERNEL_HEADER_FILES = ./workspace/Filter2D/src/kernel/*.h
 sw_emu_XOCC_OPTIONS = -O3 -I./workspace/Filter2D/src/kernel
 hw_emu_XOCC_OPTIONS = --debug
 
+APP 				= Filter2D.exe
+
 # -----------------------------------------------------------------------------
 
 XO_FILE	= xclbin/${KERNEL}.${TARGET}.${DEVICE}.xo
@@ -21,7 +23,7 @@ XCLBIN_FILE = xclbin/fpga.${NKERNEL}k.${TARGET}.${DEVICE}.xclbin
 # -----------------------------------------------------------------------------
 
 # Compile and build the host application (.exe file)
-app.exe: ${APP_SOURCE_FILES} ${APP_HEADER_FILES}
+${APP}: ${APP_SOURCE_FILES} ${APP_HEADER_FILES}
 	xcpp -O3 -fopenmp -o $@ ${APP_SOURCE_FILES} \
 	-I${XILINX_SDX}/include -I${XILINX_SDX}/runtime/include/1_2 -L${XILINX_SDX}/runtime/lib/x86_64 -L${XILINX_SDX}/lib/lnx64.o -lOpenCL -pthread \
 	-Wl,--as-needed \
@@ -39,11 +41,11 @@ ${XCLBIN_FILE}: ${XO_FILE}
 	--xp "param:compiler.preserveHlsOutput=1" --xp "param:compiler.generateExtraRunData=true"
 
 # Build both the host application and XCLBIN
-build: ${XCLBIN_FILE} app.exe 
+build: ${XCLBIN_FILE} ${APP} 
 
 # Execute the accelerated application
-check: ${XCLBIN_FILE} emconfig.json app.exe 
-	XCL_EMULATION_MODE=${TARGET} ./app.exe -x ${XCLBIN_FILE} -i ./img/test.bmp
+check: ${XCLBIN_FILE} emconfig.json ${APP} 
+	XCL_EMULATION_MODE=${TARGET} ./${APP} -x ${XCLBIN_FILE} -i ./img/test.bmp
 
 # Create the emulation config file
 emconfig.json:
@@ -80,7 +82,7 @@ profile:
 # -------------------------------------------------
 
 clean:
-	rm -rf *.exe sdaccel_* emconfig.json emulation* xsim* *.wcfg *.wdb .Xil prj sdx_* *.log
+	rm -rf ${APP} sdaccel_* emconfig.json emulation* xsim* *.wcfg *.wdb .Xil prj sdx_* *.log
 	
 emuclean: clean
 	rm -rf xclbin/*emu*
