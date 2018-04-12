@@ -142,3 +142,39 @@
 10:59:57 INFO  : License available for SDAccel
 10:59:58 INFO  : Successfully done setting XSCT server connection channel  
 10:59:58 INFO  : Successfully done setting SDK workspace  
+04:42:19 INFO  : Registering command handlers for SDK TCF services
+04:42:20 INFO  : Launching XSCT server: xsct -n -interactive /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace/temp_xsdb_launch_script.tcl
+04:42:21 INFO  : XSCT server has started successfully.
+04:42:21 INFO  : Validating SDSoC License...
+04:42:21 INFO  : Successfully done setting XSCT server connection channel  
+04:42:21 INFO  : Successfully done setting SDK workspace  
+04:42:21 INFO  : License for SDSoC is unavailable
+04:42:21 INFO  : Validating SDAccel License...
+04:42:21 INFO  : License available for SDAccel
+05:45:24 INFO  : Registering command handlers for SDK TCF services
+05:45:24 INFO  : Launching XSCT server: xsct -n -interactive /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace/temp_xsdb_launch_script.tcl
+05:45:25 INFO  : Validating SDSoC License...
+05:45:25 INFO  : XSCT server has started successfully.
+05:45:25 INFO  : License for SDSoC is unavailable
+05:45:25 INFO  : Validating SDAccel License...
+05:45:25 INFO  : Successfully done setting XSCT server connection channel  
+05:45:25 INFO  : License available for SDAccel
+05:45:25 INFO  : Successfully done setting SDK workspace  
+05:49:48 INFO  : Registering command handlers for SDK TCF services
+05:49:48 INFO  : Launching XSCT server: xsct -n -interactive /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace/temp_xsdb_launch_script.tcl
+05:49:49 INFO  : Validating SDSoC License...
+05:49:49 INFO  : XSCT server has started successfully.
+05:49:49 INFO  : Successfully done setting XSCT server connection channel  
+05:49:50 INFO  : License for SDSoC is unavailable
+05:49:50 INFO  : Validating SDAccel License...
+05:49:50 INFO  : Successfully done setting SDK workspace  
+05:49:50 INFO  : License available for SDAccel
+05:51:18 INFO  : Registering command handlers for SDK TCF services
+05:51:18 INFO  : Launching XSCT server: xsct -n -interactive /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace/temp_xsdb_launch_script.tcl
+05:51:19 INFO  : Validating SDSoC License...
+05:51:19 INFO  : License for SDSoC is unavailable
+05:51:19 INFO  : Validating SDAccel License...
+05:51:19 INFO  : License available for SDAccel
+05:51:19 INFO  : XSCT server has started successfully.
+05:51:19 INFO  : Successfully done setting XSCT server connection channel  
+05:51:19 INFO  : Successfully done setting SDK workspace  

@@ -126,7 +126,7 @@ _TODO: Update screenshot_
 	* The **main** function of the C++ program initializes the test vectors, sets-up OpenCL, runs the reference model, runs the hardware accelerator, releases the OpenCL resources, and compares the results of the reference Filter2D model with the accelerator implementation.
 	* The **Filter2DDispatcher** class takes care of calling the hardware accelerated Filter2DKernel. This class uses the OpenCL API calls to communicate with the FPGA and this is covered in greater detail later in this tutorial.
 
-1. Go to line 201 of the **host.cpp** file by pressing **Ctrl+L** and entering **201**. 
+1. Go to line 201 of the **host.cpp** file by pressing **Ctrl+L** and entering **203**. 
 
 	Locate the call to the **load_xclbin_file** function. This function is where the OpenCL environment is setup in the host application. This section is typical of most SDAccel application and will look very familiar to developers with prior OpenCL experience. This body of code can often be reused as-is from project to project. 
 
@@ -310,7 +310,7 @@ The source code already provides a command line argument to specify the number o
 
 1. Open **host.cpp** file (from the **Project Explorer** window).  
 
-1. Go to line 267 of the **host.cpp** file by pressing **Ctrl+L** and entering **267**. 
+1. Go to line 267 of the **host.cpp** file by pressing **Ctrl+L** and entering **265**. 
 	_Explain the synchronization mechanism_
 
 	```C
@@ -430,11 +430,7 @@ _TODO: This section needs updating with name of awsxclbin files and AFI ids_
     source /opt/Xilinx/SDx/2017.1.rte/setup.sh
     # Execute the host application with the .awsxclbin FPGA binary
     ./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.1k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
-
 	./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.3k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
-
-	./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.6k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
-
     ```
 
     Note the performance difference between the Filter2D running on the CPU and the Filter2D running in the FPGA.

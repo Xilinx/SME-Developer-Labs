@@ -1064,3 +1064,154 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64 -data workspace
 
 !ENTRY com.xilinx.sdk.utils 0 0 2018-04-11 10:59:58.303
 !MESSAGE XSCT command with result: [setws /home/tbollaer/Work/SME/SME-Developer-Labs-master/module_02/filter2d/workspace], Result: [null, ]. Thread: Thread-18
+!SESSION 2018-04-12 04:42:12.184 -----------------------------------------------
+eclipse.buildId=2016.1
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data workspace
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-04-12 04:42:13.630
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-12 04:42:14.022
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-12 04:42:14.022
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-12 04:42:14.837
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-12 04:42:14.837
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 04:42:21.453
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-8
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 04:42:21.454
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 04:42:21.602
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-8
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 04:42:21.603
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 04:42:21.606
+!MESSAGE XSCT Command: [setws /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace], Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 04:42:21.633
+!MESSAGE XSCT command with result: [setws /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace], Result: [null, ]. Thread: Thread-16
+!SESSION 2018-04-12 05:45:16.755 -----------------------------------------------
+eclipse.buildId=2016.1
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data workspace
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-04-12 05:45:18.199
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-12 05:45:18.743
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-12 05:45:18.743
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-12 05:45:19.868
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-12 05:45:19.868
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:45:25.722
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:45:25.723
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-2
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:45:25.760
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:45:25.766
+!MESSAGE XSCT Command: [setws /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace], Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:45:25.859
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-2
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:45:25.860
+!MESSAGE XSCT command with result: [setws /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace], Result: [null, ]. Thread: Thread-16
+!SESSION 2018-04-12 05:49:40.373 -----------------------------------------------
+eclipse.buildId=2016.1
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data workspace
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-04-12 05:49:42.068
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-12 05:49:42.603
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-12 05:49:42.604
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-12 05:49:43.752
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-12 05:49:43.752
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:49:49.942
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-5
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:49:49.942
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:49:49.964
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:49:49.964
+!MESSAGE XSCT Command: [setws /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace], Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:49:50.087
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-5
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:49:50.087
+!MESSAGE XSCT command with result: [setws /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace], Result: [null, ]. Thread: Thread-16
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-04-12 05:50:00.614
+!MESSAGE Indexed 'Filter2D' (7 sources, 289 headers) in 16.6 sec: 90,014 declarations; 120,426 references; 1 unresolved inclusions; 642 syntax errors; 15,268 unresolved names (6.8%)
+!SESSION 2018-04-12 05:51:10.906 -----------------------------------------------
+eclipse.buildId=2016.1
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data workspace
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-04-12 05:51:12.265
+!MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-12 05:51:12.765
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-12 05:51:12.766
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY org.eclipse.ui 2 0 2018-04-12 05:51:13.908
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2018-04-12 05:51:13.908
+!MESSAGE Commands should really have a category: plug-in='com.xilinx.sdk.appwiz', id='com.xilinx.sdk.app.commands.ChangeAtfBuiltReferences', categoryId='com.xilinx.sdk.app.commands.category'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:51:19.723
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-1
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:51:19.726
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:51:19.889
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-1
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:51:19.890
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:51:19.890
+!MESSAGE XSCT Command: [setws /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace], Thread: Thread-16
+
+!ENTRY com.xilinx.sdk.utils 0 0 2018-04-12 05:51:19.892
+!MESSAGE XSCT command with result: [setws /home/centos/thomas/Labs/SME-Developer-Labs-master/module_02/filter2d/workspace], Result: [null, ]. Thread: Thread-16

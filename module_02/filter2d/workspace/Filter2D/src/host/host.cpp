@@ -25,8 +25,8 @@ static void Raw2IplImage(uchar* y, int stride_y, uchar* u, int stride_u, uchar* 
 // -------------------------------------------------------------------------------------------
 void event_cb(cl_event event, cl_int cmd_status, void *id) 
 {
-	if (getenv("XCL_EMULATION_MODE") != NULL) {	
-		std::cout << "  kernel finished processing request " << *(int *)id << std::endl;
+	if (getenv("XCL_EMULATION_MODE") != NULL) {
+	 	std::cout << "  kernel finished processing request " << *(int *)id << std::endl;
 	}
 }
 
@@ -178,11 +178,11 @@ int main(int argc, char** argv)
 		std::cout << "ERROR: input image file must be specified using -i command line switch" << std::endl;
 		exit(1);
 	}
-	// if ((coeffs<0) || (coeffs>3)) {
-	// 	std::cout << std::endl;	
-	// 	std::cout << "ERROR: Supported filter type values are [0:3]" << std::endl;
-	// 	exit(1);
-	// }
+	if ((coeffs<0) || (coeffs>3)) {
+		std::cout << std::endl;	
+		std::cout << "ERROR: Supported filter type values are [0:3]" << std::endl;
+		exit(1);
+	}
 
 	std::cout << std::endl;	
 	std::cout << "FPGA binary    : " << fpgaBinary << std::endl;
