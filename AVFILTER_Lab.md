@@ -31,10 +31,10 @@ We will follow these steps during this tutorial
     cd ~/SME-Developer-Labs/module_02/plugin
     ```
 3. The directory contains following scripts and directories
-  1. build_ffmpeg.sh : Script to download the FFMpeg source code, its dependencies and build ```ffmpeg``` executable
-  2. merge_plugin_code.sh : Script to merge Xilinx 2D filter plugin code inside ffmpeg code base
-  3. build_ffmpeg_with_plugin.sh : Script to do incremental build with the Xilinx 2D filter plugin and rebuild ```ffmpeg``` executable
-  4. plugin_code : Directory contains Xilinx 2D filter plugin code
+ 1. build_ffmpeg.sh : Script to download the FFMpeg source code, its dependencies and build ```ffmpeg``` executable
+ 2. merge_plugin_code.sh : Script to merge Xilinx 2D filter plugin code inside ffmpeg code base
+ 3. build_ffmpeg_with_plugin.sh : Script to do incremental build with the Xilinx 2D filter plugin and rebuild ```ffmpeg``` executable
+ 4. plugin_code : Directory contains Xilinx 2D filter plugin code
 
 #### Building FFMpeg Application
 
