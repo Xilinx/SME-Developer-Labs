@@ -38,10 +38,21 @@ We will follow these steps during this tutorial
 
 #### Building FFMpeg Application
 
+We will execute script build_ffmpeg.sh to Build the FFMpeg executable.
+The script will do following things
+1. DOwnload and build FFMpeg Dependencies: NASM and YASM
+2. Clone FFMpeg from git.ffmpeg.org
+3. Copy Xilinx SDAccel Runtime library and OpenCL library
+4. Build FFMpeg
 
-3. The directory contains following files/directories:
-    i) Script: build_ffmpeg_standalone.sh 
- 
+This is pretty much standard FFMpeg building procedure. We have included Xilinx SDAccel runtime and OpenCL library as these libraries will be used when we add Xilinx 2D filter plugin code in next step. 
+
+Execute the script 
+```
+  ./build_ffmpeg.sh
+```
+This build procedure takes little less than 5 minutes. Have a nice short break :) 
+
 ---------------------------------------
 
 <p align="center"><b>
