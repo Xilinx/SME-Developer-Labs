@@ -53,6 +53,8 @@ Execute the script
 ```
 This build procedure takes little less than 5 minutes. Have a nice short break :) 
 
+After the build process, you can find a new directory XlnxFilter (though it does not contain Xilinx 2D filter yet). You can find the ```ffmpeg``` execuatble inside XlnxFilter/bin/ffmpeg
+
 ---------------------------------------
 
 <p align="center"><b>
