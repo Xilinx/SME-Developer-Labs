@@ -55,7 +55,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 #### Step 2: Running with the filter on the F1 FPGA 
   
 
-1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels
+1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding AFI. 
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
     ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
