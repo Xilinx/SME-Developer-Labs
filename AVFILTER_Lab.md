@@ -55,6 +55,23 @@ This build procedure takes little less than 5 minutes. Have a nice short break :
 
 After the build process, you can find a new directory XlnxFilter (though it does not contain Xilinx 2D filter yet). You can find the ```ffmpeg``` execuatble inside XlnxFilter/bin/ffmpeg
 
+#### Xilinx 2D filter FFMpeg Plugin code
+You can find all related code inside plugin_code directory. 
+
+First take a look at the plugin_code/allfilters.c. The line number 140 shows we have registered a new filter named xlnxfilter
+
+File plugin_code/vf_xlnxfilter.c contains main callback functions. It defines the command line switches and formats, defining input/output formats and required configurations. The filter_frame function calls xlnxfilter_core (line 157). This xlnxfilter_core function uses OpenCL API to communicate with Xilinx FPGA connected to the AWS F1 instance. 
+
+plugin_code/xlnxfilter_core/xlnxfilter_core.c is the Host code writen in OpenCL. 
+
+Directory plugin_code also contains couple of modified Makefile to compile our newly added plugin code. 
+
+Now execute the following script so that these files will be copied inside the ffmpeg code base we built before. 
+
+```
+  ./merge_plugin_code.sh
+```
+
 ---------------------------------------
 
 <p align="center"><b>
