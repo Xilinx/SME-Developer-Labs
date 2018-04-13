@@ -17,20 +17,18 @@
 
 ### Experiencing F1 Acceleration
 
-In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 video, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
-
-![](images/ffmpeg_lab/ffmpeg_filter2d_lab.png)
+In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 image, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
 
 ```ffmpeg``` is a very popular framework providing very fast video and audio converters. The ```ffmpeg``` code is open-source and allows for the addition of custom plugins. For this lab, a custom AVFilter plugin has been created to transparently use the hardware accelerated two-dimensional filter running on AWS F1.
 
-Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write video frames to the FPGA, execute the filter on the FPGA, and read back the filtered video. A number of preset filters (identity, blur, motionblur, sharpen) can be accesses via the ffmpeg command line.
+Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write image Y, U and V planes to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accesses via the ffmpeg command line.
 
 #### Setting-up the lab
 
 1. Open a new terminal by right-clicking anywhere in the Desktop area and selecting **Open Terminal**. 
 1. Navigate to the FFmpeg lab directory.
     ```bash
-    cd ~/AWS-F1-Developer-Labs/ffmpeg
+    cd ~/SME-Developer-Labs/module_02/ffmpeg
     ```
 
 1. Source the SDAccel runtime environment.
