@@ -23,7 +23,7 @@ The kernel used in this tutorial is a 2D image filter, that you already seen in 
 We will follow these steps during this tutorial
 * Building FFMpeg standalone without XilinxFilter Plugin
 * Observe XilinxFilter Plugin code, run a script to add XilinxFilter Plugin code inside the FFMpeg code base that we downloaded in the previous step
-* Build FFMpeg with XilinxFilter Plugin code
+* Build FFMpeg with XilinxFilter Plugin code and generate the execuatable that can be used to run 2D filter on FPGA to enjoy the acceleration
 
 
  
