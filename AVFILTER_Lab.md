@@ -25,13 +25,20 @@ We will follow these steps during this tutorial
 * Observe Xilinx 2D Filter Plugin code, run a script to add Xilinx 2D Filter Plugin code inside the FFMpeg code base that we downloaded in the previous step
 * Build FFMpeg with Xilinx 2D Filter Plugin code and generate the execuatable that can be used to run 2D filter on FPGA to enjoy the acceleration
 
-#### Building FFMpeg Application
-
 1. Right Click anywhere in the desktop and Open a Terminal
 2. Navigate to the FFmpeg lab directory
    ```bash
     cd ~/SME-Developer-Labs/module_02/plugin
     ```
+3. The directory contains following scripts and directories
+  1. build_ffmpeg.sh : Script to download the FFMpeg source code, its dependencies and build ```ffmpeg``` executable
+  2. merge_plugin_code.sh : Script to merge Xilinx 2D filter plugin code inside ffmpeg code base
+  3. build_ffmpeg_with_plugin.sh : Script to do incremental build with the Xilinx 2D filter plugin and rebuild ```ffmpeg``` executable
+  4. plugin_code : Directory contains Xilinx 2D filter plugin code
+
+#### Building FFMpeg Application
+
+
 3. The directory contains following files/directories:
     i) Script: build_ffmpeg_standalone.sh 
  
