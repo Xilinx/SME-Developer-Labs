@@ -57,6 +57,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels
     ```bash
+    fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
     ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
     ```
 
@@ -67,6 +68,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 1. Run with the filter running on the F1 FPGA, now using just three hardware unit for filter kernels
     ```bash
+      fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
       ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=3:coeff=blur" picadilly_1080p_fpga_3.bmp
     ```
 
