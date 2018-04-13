@@ -39,19 +39,18 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 #### Step 1: Running with the filter on the CPU 
 
-1. Load the FFmpeg settings. 
-    ```bash
-    source ./ffsetup.sh
-    ```
 
-1. Run with the video filter running on the CPU.
+1. Run with the video filter running on the CPU. Plugin xlnxfilter takes two switches. Switch ncompute_unit denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU. Switch "coeff" specifies the type of applied filter on the input image. 
     ```bash
-    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv -an -frames 1000 -c:v libx265 -preset medium -g 30 -q 40 -f hevc -y ./crowd8_420_1920x1080_50_libx265_out0_qp40.hevc
+    ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=0:coeff=blur" picadilly_1080p_cpu.bmp
     ```
 
     ```ffmpeg``` will finish with a message similar to this one: \
-    *frame=500 **fps=9.0** q=-0.0 **Lsize=19933kB** time=00:00:19.92 bitrate=8197.4kbits/s **speed=0.358x*** 
-    > **fps** measures the performance of the encoder in processed frames per second.
+    Running Software version
+
+ Software time spent = 2.280000 seconds
+Output #0, image2, to 'picadilly_1080p_cpu.bmp':
+
  
 #### Step 2: Running with the filter on the F1 FPGA 
   
