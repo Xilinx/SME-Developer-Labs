@@ -18,12 +18,14 @@
 
 This tutorial is designed to show how we add filter plugin that would be used to accelerate on FPGA. 
 
-The kernel used in this tutorial is a 2D image filter, that you already seen in the previous section while working with standalone SDAccel environment. The Kernel is already precompiled with SDAccel with 1 and 3 hardware unit version (selected on FFMpeg command line by ncompute_unit=1 and ncompute_unit=3 respectively). The OpenCL Host code is used to write FFMpeg Plugin code by using standard FFMpeg filter writing process. 
+The kernel used in this tutorial is a 2D image filter, that you already have seen in the previous section while working with standalone SDAccel environment. The Kernel is already precompiled with SDAccel with 1 and 3 hardware unit version (can be selected through FFMpeg command line by ncompute_unit=1 and ncompute_unit=3 respectively). The OpenCL Host code is used to write FFMpeg Plugin code by using standard FFMpeg filter writing process. 
 
 We will follow these steps during this tutorial
-* Building FFMpeg standalone without XilinxFilter Plugin
-* Observe XilinxFilter Plugin code, run a script to add XilinxFilter Plugin code inside the FFMpeg code base that we downloaded in the previous step
-* Build FFMpeg with XilinxFilter Plugin code and generate the execuatable that can be used to run 2D filter on FPGA to enjoy the acceleration
+* Building FFMpeg standalone without Xilinx 2D Filter Plugin
+* Observe Xilinx 2D Filter Plugin code, run a script to add Xilinx 2D Filter Plugin code inside the FFMpeg code base that we downloaded in the previous step
+* Build FFMpeg with Xilinx 2D Filter Plugin code and generate the execuatable that can be used to run 2D filter on FPGA to enjoy the acceleration
+
+## Building FFMpeg Application
 
 
  
