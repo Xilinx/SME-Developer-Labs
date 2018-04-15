@@ -45,7 +45,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
     time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=0:coeff=blur" picadilly_1080p_cpu.bmp
     ```
 
-    ```ffmpeg``` will show with a message similar to this one: \
+    ```ffmpeg``` will show with a message similar to this one: 
     
     > Running Software version
 
@@ -67,14 +67,14 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
     time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
     ```
 
-    ```ffmpeg``` will show with a message similar to this one: \
+    ```ffmpeg``` will show with a message similar to this one: 
     
-     Hardware time spent = 0.040000 seconds
-     Output #0, image2, to 'picadilly_1080p_fpga_1.bmp':
+     > Hardware time spent = 0.040000 seconds
+     > Output #0, image2, to 'picadilly_1080p_fpga_1.bmp':
 
-     real	0m1.356s
+     > real	0m1.356s
 
-     user	0m0.085s
+     > user	0m0.085s
 
 
 
@@ -84,15 +84,15 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
       time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=3:coeff=blur" picadilly_1080p_fpga_3.bmp
     ```
 
-    ```ffmpeg``` will show with a message similar to this one: \
+    ```ffmpeg``` will show with a message similar to this one: 
     
-    Hardware time spent = 0.030000 seconds
+    > Hardware time spent = 0.030000 seconds
     
-    Output #0, image2, to 'picadilly_1080p_fpga_3.bmp':
+    > Output #0, image2, to 'picadilly_1080p_fpga_3.bmp':
     
-    real	0m1.319s
+    > real	0m1.319s
     
-    user	0m0.065s
+    > user	0m0.065s
 
 
 
