@@ -42,39 +42,59 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 1. Run with the video filter running on the CPU. Plugin xlnxfilter takes two switches. Switch ncompute_unit denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU. Switch "coeff" specifies the type of applied filter on the input image. 
     ```bash
-    ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=0:coeff=blur" picadilly_1080p_cpu.bmp
+    time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=0:coeff=blur" picadilly_1080p_cpu.bmp
     ```
 
-    ```ffmpeg``` will show with a message similar to this one: \
-    Running Software version
+    ```ffmpeg``` will show with a message similar to this one: 
+    
+    > Running Software version
 
-    Software time spent = 2.280000 seconds
-    Output #0, image2, to 'picadilly_1080p_cpu.bmp':
+    > Software time spent = 2.230000 seconds
+    
+    > Output #0, image2, to 'picadilly_1080p_cpu.bmp':
 
- 
+    > real	0m2.911s
+    
+    > user	0m2.268s
+
 #### Step 2: Running with the filter on the F1 FPGA 
   
 
 1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding AFI. 
+
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
-    ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
+    time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
     ```
 
-    ```ffmpeg``` will show with a message similar to this one: \
-     Hardware time spent = 0.040000 seconds
-     Output #0, image2, to 'picadilly_1080p_fpga_1.bmp':
+    ```ffmpeg``` will show with a message similar to this one: 
+    
+     > Hardware time spent = 0.040000 seconds
+     
+     > Output #0, image2, to 'picadilly_1080p_fpga_1.bmp':
+
+     > real	0m1.356s
+
+     > user	0m0.085s
+
 
 
 1. Run with the filter running on the F1 FPGA, now using just three hardware unit for filter kernels
     ```bash
       fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
-      ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=3:coeff=blur" picadilly_1080p_fpga_3.bmp
+      time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=3:coeff=blur" picadilly_1080p_fpga_3.bmp
     ```
 
-    ```ffmpeg``` will show with a message similar to this one: \
-    Hardware time spent = 0.030000 seconds
-    Output #0, image2, to 'picadilly_1080p_fpga_3.bmp':
+    ```ffmpeg``` will show with a message similar to this one: 
+    
+    > Hardware time spent = 0.030000 seconds
+    
+    > Output #0, image2, to 'picadilly_1080p_fpga_3.bmp':
+    
+    > real	0m1.319s
+    
+    > user	0m0.065s
+
 
 
 #### Step 3: Comparing performance 

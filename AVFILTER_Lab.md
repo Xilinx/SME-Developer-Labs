@@ -71,6 +71,27 @@ Now execute the following script so that these files will be copied inside the f
 ```
   ./merge_plugin_code.sh
 ```
+This script copy the plugin code at the proper directories. 
+
+```
+======================== Replacing allfilters.c=========================
+======================== Replacing Makefiles===========================
+======================== Copying vf_xlnxfilter.c=========================
+======================== Copying Directory xlnxfilter_core========================
+```
+
+Now finally you rebuild FFMpeg with new plugin code. 
+Execute the following script
+
+```
+./build_ffmpeg_with_plugin.sh
+```
+
+The new ffmpeg executable will be created with the xilinx filter plugin. 
+
+
+
+
 
 ---------------------------------------
 
