@@ -17,20 +17,18 @@
 
 ### Experiencing F1 Acceleration
 
-In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 video, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
-
-![](images/ffmpeg_lab/ffmpeg_filter2d_lab.png)
+In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 image, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
 
 ```ffmpeg``` is a very popular framework providing very fast video and audio converters. The ```ffmpeg``` code is open-source and allows for the addition of custom plugins. For this lab, a custom AVFilter plugin has been created to transparently use the hardware accelerated two-dimensional filter running on AWS F1.
 
-Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write video frames to the FPGA, execute the filter on the FPGA, and read back the filtered video. A number of preset filters (identity, blur, motionblur, sharpen) can be accesses via the ffmpeg command line.
+Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write image Y, U and V planes to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accesses via the ffmpeg command line.
 
 #### Setting-up the lab
 
 1. Open a new terminal by right-clicking anywhere in the Desktop area and selecting **Open Terminal**. 
 1. Navigate to the FFmpeg lab directory.
     ```bash
-    cd ~/AWS-F1-Developer-Labs/ffmpeg
+    cd ~/SME-Developer-Labs/module_02/ffmpeg
     ```
 
 1. Source the SDAccel runtime environment.
@@ -41,42 +39,43 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 #### Step 1: Running with the filter on the CPU 
 
-1. Load the FFmpeg settings. 
+
+1. Run with the video filter running on the CPU. Plugin xlnxfilter takes two switches. Switch ncompute_unit denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU. Switch "coeff" specifies the type of applied filter on the input image. 
     ```bash
-    source ./ffsetup.sh
+    ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=0:coeff=blur" picadilly_1080p_cpu.bmp
     ```
 
-1. Run with the video filter running on the CPU.
-    ```bash
-    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv -an -frames 1000 -c:v libx265 -preset medium -g 30 -q 40 -f hevc -y ./crowd8_420_1920x1080_50_libx265_out0_qp40.hevc
-    ```
+    ```ffmpeg``` will show with a message similar to this one: \
+    Running Software version
 
-    ```ffmpeg``` will finish with a message similar to this one: \
-    *frame=500 **fps=9.0** q=-0.0 **Lsize=19933kB** time=00:00:19.92 bitrate=8197.4kbits/s **speed=0.358x*** 
-    > **fps** measures the performance of the encoder in processed frames per second.
+    Software time spent = 2.280000 seconds
+    Output #0, image2, to 'picadilly_1080p_cpu.bmp':
+
  
 #### Step 2: Running with the filter on the F1 FPGA 
   
-1. Load the HEVC encoder FPGA binary in the F1 instance. 
+
+1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding AFI. 
     ```bash
-    fpga-load-local-image -S 0 -I agfi-0015437e933b3e725
+    fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
+    ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
     ```
 
-1. Run with the filter running on the F1 FPGA, using just one filter kernel.
+    ```ffmpeg``` will show with a message similar to this one: \
+     Hardware time spent = 0.040000 seconds
+     Output #0, image2, to 'picadilly_1080p_fpga_1.bmp':
+
+
+1. Run with the filter running on the F1 FPGA, now using just three hardware unit for filter kernels
     ```bash
-    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv -an -frames 1000 -c:v xlnx_hevc_enc -psnr -g 30 -global_quality 40 -f hevc -y ./crowd8_420_1920x1080_50_NGcodec_out0_g30_gq40.hevc 
+      fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
+      ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=3:coeff=blur" picadilly_1080p_fpga_3.bmp
     ```
 
-    ```ffmpeg``` will finish with a message similar to this one: \
-    *frame=500 **fps=52** q=-0.0 LPSNR=Y:inf U:inf V:inf \*:inf **size=17580kB** time=00:00:20.00 bitrate=7200.9kbits/s **speed=2.08x***
+    ```ffmpeg``` will show with a message similar to this one: \
+    Hardware time spent = 0.030000 seconds
+    Output #0, image2, to 'picadilly_1080p_fpga_3.bmp':
 
-1. Run with the filter running on the F1 FPGA, now using just three filter kernels.
-    ```bash
-    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv -an -frames 1000 -c:v xlnx_hevc_enc -psnr -g 30 -global_quality 40 -f hevc -y ./crowd8_420_1920x1080_50_NGcodec_out0_g30_gq40.hevc 
-    ```
-
-    ```ffmpeg``` will finish with a message similar to this one: \
-    *frame=500 **fps=52** q=-0.0 LPSNR=Y:inf U:inf V:inf \*:inf **size=17580kB** time=00:00:20.00 bitrate=7200.9kbits/s **speed=2.08x***
 
 #### Step 3: Comparing performance 
 
@@ -84,8 +83,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     |                           | Filter on CPU | Filter on F1 (1 kernel) | Filter on F1 (3 kernels) |
     | :------------------------ |-------------:| -------:| -------:|
-    | performance               | 9 fps        | 52 fps  | 52 fps  |
-    | duration                  | 55.6 sec     | 9.6 sec | 9.6 sec |
+    | duration                  | 2.28 sec     | 0.04 sec | 0.03 sec |
 
 1. Close your terminal to conclude this module.
     ```bash
@@ -95,9 +93,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 #### Conclusion
 
-AWS F1 instances with Xilinx FPGAs can provide significant performance improvements over CPUs. The 2D video filter running on F1 is **5.7x** faster than the filter running on the CPU.
-
-Multiple instances of the video filter could be loaded in the FPGA, allowing parallel processing of multiple video streams and easily delivering more than a 10x increase in performance/$ over a CPU-based solution. 
+AWS F1 instances with Xilinx FPGAs can provide significant performance improvements over CPUs. 
 
 It is possible to use F1 to accelerate popular frameworks such as ```ffmpeg```. This is a very powerful proposition as it allows end-users to keep working with their preferred tools and APIs while transparently benefiting from acceleration.
 
