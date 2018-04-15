@@ -86,8 +86,8 @@ The host code is comprised of the following files:
 1. Expand the **kernel** directory in the **Project Explorer**. 
 The kernel code is comprised of the following files:
 	* **filter2d.cpp** contains the code for the filter function running on the FPGA.
-	* **axi2stream.cpp and .h** contains the code for efficiently reading from and writing to memory.
-	* **window_2d.h and hls_video_mem.h** contains the code for handling video line buffers and pixel windows.
+	* **axi2stream.cpp** and **.h** contains the code for efficiently reading from and writing to memory.
+	* **window_2d.h** and **hls_video_mem.h** contains the code for handling video line buffers and pixel windows.
 
 1. Now open the **filter2d.cpp** file in the **src/kernel** folder.
 
@@ -98,51 +98,40 @@ The kernel code is comprised of the following files:
     ![](./images/filter2d_lab/OutlineKrnl.PNG)
 
 1. In the **Outline** viewer, click **Filter2DKernel** to look-up this function. 
-	* The **Filter2DKernel** function is the top-level of the filter kernel implemented in the custom hardware accelerator. Interface properties for the accelerator are specified in this function. 
-	* This computationally heavy function can be highly parallelized on the FPGA, providing significant acceleration over a CPU-based implementation.
+	* The **Filter2DKernel** function is the top-level of the filter kernel implemented in the custom hardware accelerator. Interface properties for the accelerator are specified in this function. This computationally heavy function can be highly parallelized on the FPGA, providing significant acceleration over a CPU-based implementation.
 	* The kernel encapsulates the three main functions of the accelerator: **AXIBursts2PixelStream**, **Filter2D**, and **PixelStream2AXIBursts**.
-	* The **AXIBursts2PixelStream** function reads from global memory values sent by the host application and streams them to the **Filter2D** function.
-	* The **Filter2D** function receives the pixel data and performs the actual filter computations, and streams the results back out.
-	* The **PixelStream2AXIBursts** function receives the streaming results from the **Filter2D** function and writes them back to global memory for the host application.
+		* The **AXIBursts2PixelStream** function reads from global memory values sent by the host application and streams them to the **Filter2D** function.
+		* The **Filter2D** function receives the pixel data and performs the actual filter computations, and streams the results back out.
+		* The **PixelStream2AXIBursts** function receives the streaming results from the **Filter2D** function and writes them back to global memory for the host application.
 	* Observe that the three functions are communicating using `hls::streams` objects. These objects model a FIFO-based communication scheme. This is the recommended coding style which should be used whenever possible to exhibit streaming behavior and allow DATAFLOW optimization.
 		- The DATAFLOW optimization allows each of the subsequent functions to execute as independent processes. 
 		- This results in overlapping and pipelined execution of the read, execute and write functions instead of sequential execution.
 		- The FIFO channels between the different processes do not need to buffer the complete dataset anymore but can directly stream the data to the next block. 
-	* Note that the **Filter2D** kernel processes only a single plane. At compile time, we can choose to have 1 or many kernels in the FPGA. 
+	* Note that the **Filter2D** kernel processes only a single color plane. At compile time, we can choose to have 1 or many kernels in the FPGA. 
 		- In case there is only 1 kernel in the FPGA, a planar formatted YUV 4:4:4 image will have its luma and chroma planes procesed sequentially. 
 		- In case there are 3 kernels in the FPGA, the luma and both chroma planes can be processed in parallel, therefore having a higher performance, at the cost of more FPGA resources. We will get back to this later in the lab.
 
 1. Using the **Outline** viewer, quickly look-up and inspect the other important function of the accelerator:
 	* The **Filter2D** function is the heart of the custom hardware accelerator that peforms the filter computations.
 	* It uses the **Window2D** class that provides an abstraction for getting a two-dimensial pixel window, then performs a simple convolution of the pixels in this window with a programmable filter.
-
-> The ```#pragma HLS PIPELINE II=1``` statement on line 26. This pragma tells the compiler that a new iteration of the ```for x``` loop (on line 23) should be started exactly one clock cycle after the previous one.  As a result, the SDAccel compiler builds an  accelerator with 15*15=225 multipliers. Where the 225 multiply-add operations of the 2D convolution would be executed sequentially on a conventional CPU architecture, they are executed in parallel in the purpose-built FPGA accelerator. This results in a significant performance improvement.  
+	* Note the ```#pragma HLS PIPELINE II=1``` statement on line 26. This pragma tells the compiler that a new iteration of the ```for x``` loop (on line 23) should be started exactly one clock cycle after the previous one.  As a result, the SDAccel compiler builds an  accelerator with 15*15=225 multipliers. Where the 225 multiply-add operations of the 2D convolution would be executed sequentially on a conventional CPU architecture, they are executed in parallel in the purpose-built FPGA accelerator. This results in a significant performance improvement.  
 	
-1. Now open the **host.cpp** file (from the **src/host** folder of the **Project Explorer** view).  
-
-1. Again, use the **Outline** viewer to quickly look-up and inspect the two main functions of the host application:
-	* The **main** function of the C++ program initializes the test vectors, sets-up OpenCL, runs the reference model, runs the hardware accelerator, releases the OpenCL resources, and compares the results of the reference Filter2D model with the accelerator implementation.
-	* The **Filter2DDispatcher** class takes care of calling the hardware accelerated Filter2DKernel. This class uses OpenCL API calls to communicate with the FPGA and this is covered in greater detail later in this tutorial.
-
-1. Go to line 203 of the **host.cpp** file by pressing **Ctrl+L** and entering **203**. 
-	* The **load_xclbin_file** function is where the OpenCL environment is setup in the host application. 
+1. Now open file **host.cpp** from the **src/host** folder of the **Project Explorer** view.  
+	* This C++ program initializes the test vectors, sets-up OpenCL, runs the reference model, runs the hardware accelerator, releases the OpenCL resources, and compares the results of the reference Filter2D model with the accelerator implementation.
+	
+1. Go to line 203 of the **host.cpp** file by pressing **Ctrl+L** and entering **203**. The **load_xclbin_file** function is where the OpenCL environment is setup in the host application. 
 
 1. Using the right mouse button, click on the **load_xclbin_file** function and chose **Open Declaration** to jump to the declaration of the function located in the **xclbin_helper.cpp** file.
-
-	The function takes care of retrieving the OpenCL platform, device ID, creating the OpenCL context and create the OpenCL program. These four steps are typical of all SDAccel application.
+	* This function takes care of retrieving the OpenCL platform, device ID, creating the OpenCL context and create the OpenCL program. These four steps are typical of all SDAccel application.
 	* The functions implementing these four steps (also located in the **xclbin_helper.cpp** file) will look very familiar to developers with prior OpenCL experience. This code can often be reused as-is from project to project. 
 	* Of particular note is the call to **clCreateProgramWithBinary** (line 87). This function loads contents of the specified FPGA binary file (xclbin file) into the FPGA device of the AWS EC2 F1 instance. 
-	* All objects accessed through a **clCreate...** function call are to be released before terminating the program by calling **clRelease...**. This avoids memory leakage and clears the locks on the device.
+	* All objects accessed through a **clCreate...** function call are to be released before terminating the program by calling **clRelease...**. This avoids memory leakage and clears the lock on the device.
 
-1. Now go back to the **host.cpp** file and go line 304. 
-
-	This where the image is processed using a conventional software implementation.
+1. Now go back to the **host.cpp** file and go to line 304. This where the image is processed using a conventional software implementation.
 	* Line 308-310, the **Filter2D** function is called 3 times to process the Y, U and V color planes of the image, respectively.
 	* Line 304, the OpenMP ```#pragma omp parallel for``` pragma is used to multi-thread the calls to the **Filter2D** function. This ensures a fair benchmark comparison betweem the CPU and FPGA executions.
 
-1. Scroll upwards to line 255. 
-
-	This is where the image is processed using the FPGA accelerator.
+1. Scroll upwards to line 255. This is where the image is processed using the FPGA accelerator.
 	* Notice how this code looks very similar to the software implementation you just inspected. 
 	* Line 265-267, the **Filter()** operator is used to issue independent requests to process the Y, U and V color planes using the FPGA accelerator.
 	* **Filter** is declared line 255 as an object of type **Filter2DDispatcher**. The **Filter2DDispatcher** class encapsulates the necessary OpenCL API calls used to send requests to the hardware accelerated Filter2DKernel.
@@ -177,13 +166,11 @@ SDAccel provides two emulation flows which allow testing the application before 
 
 In this lab, we will only run the hardware emulation flow.
 
-SDAccel uses Makefiles to perform incremental compilation of the project. This means that unless file changes require the recompilation of the host code or of the kernel code, no compilation is performed.
-
-1. Return to the **SDx Project Settings** by clicking on **Filter2D** tab in the central window of the SDx the GUI.
+1. Return to the **SDx Project Settings** window by clicking on **Filter2D** tab in the central window of the SDx the GUI.
 
 1. In the upper right corner of the **SDx Project Settings** window, the **Active build configuration** is shown. Ensure that **Emulation-HW** is selected.
 
-1. Click the **Run** button ![](./images/filter2D_lab/RunButton.PNG) to run hardware emulation.
+1. Click the **Run** button ![](./images/filter2d_lab/RunButton.PNG) to run hardware emulation.
 	* The **Console** provides the detailed build log during the compilation of the kernel and the host code. It then displays the standard output produced by the application during the actual emulation run.  
 	* The hardware emulation is complete when the following messages are displayed at the bottom of the **Console**:	
 
@@ -216,13 +203,11 @@ This section covers how to locate and read the various reports generated by the 
 1. Locate the **Reports** window in the bottom-left corner of the GUI. 
 	* This window displays a tree layout of folders and reports for all runs and open projects. 
 	* The top level shows the **Filter2D** project for which we have executed the **Emulation-HW** run.
+	* The **Filter2D-Default** run configuration folder contains the **Profile Summary** and **Application Timeline** report generated during the hardware emulation run.
 
     ![](./images/filter2d_lab/Reports.PNG)
 
-1. Look into the **Emulation-HW** folder.
-	* The **Filter2D-Default** run configuration folder contains the **Profile Summary** and **Application Timeline** report generated during the hardware emulation run.
-
-1. Open the **Profile Summary** report. 
+1. Open the **Profile Summary** report by double-clicking on the item in the **Reports** window. 
 
 	* This report provides data related to how the application runs. 
 	* Notice that the report has four tabs at the top: **Top Operations**, **Kernels & Compute Units**, **Data Transfers**, and **OpenCL APIs**. 
@@ -242,13 +227,14 @@ This section covers how to locate and read the various reports generated by the 
     - PRCs compare profiling results to threshold values. If a check does not meet the threshold value, the right hand column provides guidance on how to improve performance.
     - PRCs work for both hardware emulation and system runs on the FPGA.
 
-    ![](./images/filter2d_lab/opt_1kernel_1img_profile_checks.PNG) 
-
+	![](./images/filter2d_lab/opt_1kernel_1img_profile_checks.PNG) 
 
 1. Open the **Application Timeline** report from the **Emulation-HW** run. 
 	- The **Application Timeline** collects and displays host and device events on a common timeline to help you understand and visualize the overall health and performance of your systems. 
 	- These events include OpenCL API calls from the host code: when they happen and how long each of them takes.
-    ![](./images/filter2d_lab/opt_1kernel_1img_timeline.PNG)
+
+	![](./images/filter2d_lab/opt_1kernel_1img_timeline.PNG)
+
 	- Observe at the bottom of the timeline view that we have one instance of **Filter2DKernel**
 	- The green segments indicate that the kernel is executed consecutively 3 times and is continuously running
 	- The blue and brown segments located immediately above represent when the kernel is reading input and writing results to and from global memory
@@ -261,7 +247,7 @@ This section covers how to locate and read the various reports generated by the 
 The first hardware emulation run helped establish a performance baseline. The next step is to optimize the application to improve overall performance. This tutorial illustrates two optimization techniques: 1) improving throughput by executing multiple kernels in parallel and 2) improving latency by optimally scheduling execution of kernels within the host application.
 
 
-### Adding More Kernels  
+#### Adding More Kernels  
 
 As we saw earlier, lines 265, 266 and 267 of **host.cpp** is where the host application issues requests to the FPGA accelerator. The three requests are indepedent of each other and could be therefore be executed in parallel. But since there is a single kernel in the FPGA device, the three requests need to be processed sequentially on that single kernel.
 
@@ -283,7 +269,7 @@ The kernel is the main bottleneck in our application. By putting more kernels in
 
 1. After HW emulation completes, open the newly generated **Application Timeline**. 
 
-    ![](./images/filter2d_lab/opt_3kernel_1img_timeline.PNG)	
+	![](./images/filter2d_lab/opt_3kernel_1img_timeline.PNG)	
 
 	- Observe that we now have 3 kernels instances executing in parallel
 	- Instead of processing Y, U and V planes sequentially, the application is now processing them at the same time
@@ -293,10 +279,10 @@ The kernel is the main bottleneck in our application. By putting more kernels in
 
 By using more kernel instances, we took advantage of task-level parallelism to improve the performance of the application
 
-Notice that we didn't have to modify the host application to take advantage of the extra kernels instances. The application simply submits requests in the OpenCL command queue. These requests are handled by the Xilinx OpenCL runtime. The runtime sees that there are 3 kernel instances in the FPGA and is able to execute the requests to the first available instance.  
+Notice that we didn't have to modify the host application to take advantage of the extra kernels instances. The application simply submits requests to the OpenCL command queue. These requests are handled by the Xilinx OpenCL runtime. The runtime sees that there are 3 kernel instances in the FPGA and is able to execute the requests on the first available instance.  
 
 
-### Processing More Images
+#### Processing More Images
 
 In the previous run, the application processed a single image. In a real life scenario, the application would most likely need to process multiple images or video frames. It is therefore important to profile the performance of the application when processing multiple images. 
 
@@ -313,7 +299,7 @@ As can be seen line 164 of **host.cpp**, the application already supports a comm
 1. Change ```-n 1``` to ```-n 2```. 
 	- This will cause the application to process the image twice instead of just once
 
-    ![](./images/filter2d_lab/opt_run_configuration.PNG)	
+	![](./images/filter2d_lab/opt_run_configuration.PNG)	
 
 1. Click **Apply** and the **Close**.
 
@@ -324,7 +310,7 @@ As can be seen line 164 of **host.cpp**, the application already supports a comm
 
 1. Open the newly generated **Application Timeline**. 
 
-    ![](./images/filter2d_lab/opt_3kernel_2img_timeline.PNG)
+	![](./images/filter2d_lab/opt_3kernel_2img_timeline.PNG)
 
     - Observe that there are now 6 total invocations of **Filter2DKernel**, as expected
     - Since there are 3 instances of the kernel, each kernel instance is put to work twice
@@ -335,7 +321,7 @@ As can be seen line 164 of **host.cpp**, the application already supports a comm
 
 We can improve the latency of our application by removing the idle time between consecutive kernel invocations.
 
-### Host Code Optimization
+#### Host Code Optimization
 
 1. Go to line 260 of **host.cpp**.
 
@@ -392,7 +378,7 @@ We can improve the latency of our application by removing the idle time between 
 	
 1. Open the **Application Timeline** of the **Emulation-HW** run.  
 
-    ![](./images/filter2d_lab/opt_3kernel_2img_timeline_improved.PNG)
+	![](./images/filter2d_lab/opt_3kernel_2img_timeline_improved.PNG)
 
     - Observe that gaps between two consecutive kernel invocations has been almost eliminated
     - The previous sequence was: send 3 requests, wait for their completion, send 3 new requests, wait for their completion
