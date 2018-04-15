@@ -42,7 +42,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 1. Run with the video filter running on the CPU. Plugin xlnxfilter takes two switches. Switch ncompute_unit denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU. Switch "coeff" specifies the type of applied filter on the input image. 
     ```bash
-    ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=0:coeff=blur" picadilly_1080p_cpu.bmp
+    time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=0:coeff=blur" picadilly_1080p_cpu.bmp
     ```
 
     ```ffmpeg``` will show with a message similar to this one: \
@@ -58,7 +58,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding AFI. 
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
-    ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
+    time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
     ```
 
     ```ffmpeg``` will show with a message similar to this one: \
@@ -69,7 +69,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 1. Run with the filter running on the F1 FPGA, now using just three hardware unit for filter kernels
     ```bash
       fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
-      ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=3:coeff=blur" picadilly_1080p_fpga_3.bmp
+      time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=3:coeff=blur" picadilly_1080p_fpga_3.bmp
     ```
 
     ```ffmpeg``` will show with a message similar to this one: \
