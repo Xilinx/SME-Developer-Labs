@@ -70,6 +70,11 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
      Hardware time spent = 0.040000 seconds
      Output #0, image2, to 'picadilly_1080p_fpga_1.bmp':
 
+     real	0m1.356s
+
+     user	0m0.085s
+
+
 
 1. Run with the filter running on the F1 FPGA, now using just three hardware unit for filter kernels
     ```bash
