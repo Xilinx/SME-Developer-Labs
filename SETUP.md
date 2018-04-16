@@ -100,7 +100,7 @@ You should now be connected to the remote F1 instance running Centos 7.
 
     ```bash  
     cd /home/centos
-    git clone https://github.com/Xilinx/AWS-F1-Developer-Labs.git
+    git clone https://github.com/Xilinx/SME-Developer-Labs.git
     ```
 
 1. Source the SDAccel environment. 
@@ -122,7 +122,7 @@ The hello world example is an OpenCL application with a simple vector-addition a
 
     ```bash
     # Go to the example directory
-    cd ~/AWS-F1-Developer-Labs/helloworld_ocl
+    cd ~/SME-Developer-Labs/helloworld_ocl
 
     # Compile the host application (./helloworld)
     make TARGETS=hw DEVICES=$AWS_PLATFORM exe
