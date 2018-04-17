@@ -1,6 +1,6 @@
-05:45:32 **** Incremental Build of configuration Emulation-HW for project Filter2D ****
+05:40:50 **** Incremental Build of configuration Emulation-HW for project Filter2D ****
 make incremental 
 make: Nothing to be done for `incremental'.
 
-05:45:32 Build Finished (took 79ms)
+05:40:50 Build Finished (took 69ms)
 

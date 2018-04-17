@@ -24,7 +24,7 @@ XCLBIN_FILE = xclbin/fpga.${NKERNEL}k.${TARGET}.${DEVICE}.xclbin
 
 # Compile and build the host application (.exe file)
 ${APP}: ${APP_SOURCE_FILES} ${APP_HEADER_FILES}
-	xcpp -O3 -fopenmp -o $@ ${APP_SOURCE_FILES} \
+	xcpp -O2 -fopenmp -o $@ ${APP_SOURCE_FILES} \
 	-I${XILINX_SDX}/include -I${XILINX_SDX}/runtime/include/1_2 -L${XILINX_SDX}/runtime/lib/x86_64 -L${XILINX_SDX}/lib/lnx64.o -lOpenCL -pthread \
 	-Wl,--as-needed \
 	-Wl,-rpath,${XILINX_SDX}/lnx64/tools/opencv -L${XILINX_SDX}/lnx64/tools/opencv -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_highgui -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab
