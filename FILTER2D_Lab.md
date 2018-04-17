@@ -183,6 +183,7 @@ In this lab, we will only run the hardware emulation flow.
 	Filter type    : 0
 
 	Programming FPGA
+	INFO: [SDx-EM 01] Hardware emulation runs detailed simulation underneath. It may take long time for large data set. Please use a small dataset for faster execution. You can still get performance trend for your kernel with smaller dataset.
 
 	Running FPGA version
 	   kernel finished processing request 0
@@ -193,7 +194,12 @@ In this lab, we will only run the hardware emulation flow.
 
 	*******************************************************
 	MATCH PASS: Output matches reference
-	*******************************************************    
+	*******************************************************
+	INFO: [SDx-EM 22] [Wall clock time: 23:29, Emulation time: 0.183738 ms] Data transfer between kernel(s) and global memory(s)
+	BANK0          RD = 48.094 KB              WR = 27.000 KB
+	BANK1          RD = 0.000 KB               WR = 0.000 KB
+	BANK2          RD = 0.000 KB               WR = 0.000 KB
+	BANK3          RD = 0.000 KB               WR = 0.000 KB 	    
 	```
 
 ### Analyzing the Reports  
@@ -420,7 +426,7 @@ These steps would take too long to complete during this tutorial, therefore prec
 
 1. Copy the host application executable built in the SDAccel workspace to the local directory.
 	```bash
-    cp ~/SME-Developer-Labs/workspace/Filter2D/Emulation-HW/Filter2D.exe .
+    cp ~/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/Filter2D.exe .
 	```
 
 1. Setup the SDAccel runtime environment and F1 drivers.
@@ -431,18 +437,18 @@ These steps would take too long to complete during this tutorial, therefore prec
 
 1. Execute on F1 using the FPGA binary with 1 kernel instance.    
 	```sh
-	./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.1k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
+	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga.1k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
 	```
 
 	- The application loads a 1080p image (```-i``` argument)
-	- It processes this image 20 times (```-n``` argument)
+	- It processes this image 10 times (```-n``` argument)
 	- It uses a FPGA binary with 1 kernel (```-x``` argument)
 
 1. Note the performance difference between the FPGA-accelerated and CPU-only executions of the 2D image filtering function. With a single kernel, the accelerated version is already 16x faster than the multi-threaded CPU version.
 
 1. Now perform the same run using 3 kernels instead of 1.
 	```sh 
-	./Filter2D.exe -i img/picadilly_1080p.bmp -n 20 -x ./xclbin/fpga.3k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
+	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga.3k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
 	```
 
 1. Compare the new performance numbers and confirm that with 3 kernels performance is 48x faster than the multi-threaded CPU version.
