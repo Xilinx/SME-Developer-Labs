@@ -168,10 +168,14 @@ In this lab, we will only run the hardware emulation flow.
 
 1. Return to the **SDx Project Settings** window by clicking on **Filter2D** tab in the central window of the SDx the GUI.
 
+1. Uncheck the **Host debug** check box located in the right side of the **SDx Project Settings** window. 
+
 1. In the upper right corner of the **SDx Project Settings** window, the **Active build configuration** is shown. Ensure that **Emulation-HW** is selected.
 
 1. Click the **Run** button ![](./images/filter2d_lab/RunButton.PNG) to run hardware emulation.
-	* The **Console** provides the detailed build log during the compilation of the kernel and the host code. It then displays the standard output produced by the application during the actual emulation run.  
+	* Compiling the entire project takes about 5 minutes.
+	* The **Console** provides the detailed build log during the compilation of the kernel and the host code. 
+	* It then displays the standard output produced by the application during the actual emulation run.  
 	* The hardware emulation is complete when the following messages are displayed at the bottom of the **Console**:	
 
 	```
