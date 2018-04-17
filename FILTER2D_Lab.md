@@ -444,14 +444,14 @@ These steps would take too long to complete during this tutorial, therefore prec
 	- It processes this image 10 times (```-n``` argument)
 	- It uses a FPGA binary with 1 kernel (```-x``` argument)
 
-1. Note the performance difference between the FPGA-accelerated and CPU-only executions of the 2D image filtering function. With a single kernel, the accelerated version is already 16x faster than the multi-threaded CPU version.
+1. Note the performance difference between the FPGA-accelerated and CPU-only executions of the 2D image filtering function. With a single kernel, the accelerated version is already more than 20x faster than the multi-threaded CPU version.
 
 1. Now perform the same run using 3 kernels instead of 1.
 	```sh 
 	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga.3k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
 	```
 
-1. Compare the new performance numbers and confirm that with 3 kernels performance is 48x faster than the multi-threaded CPU version.
+1. Compare the new performance numbers.
 
 	
 ### Summary  
