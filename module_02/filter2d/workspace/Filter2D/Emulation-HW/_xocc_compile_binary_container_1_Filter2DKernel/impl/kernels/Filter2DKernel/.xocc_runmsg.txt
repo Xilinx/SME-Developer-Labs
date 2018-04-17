@@ -1,0 +1,2 @@
+performing high-level synthesis for kernel: Filter2DKernel
+Log file:/home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_compile_binary_container_1_Filter2DKernel/impl/kernels/Filter2DKernel/vivado_hls.log

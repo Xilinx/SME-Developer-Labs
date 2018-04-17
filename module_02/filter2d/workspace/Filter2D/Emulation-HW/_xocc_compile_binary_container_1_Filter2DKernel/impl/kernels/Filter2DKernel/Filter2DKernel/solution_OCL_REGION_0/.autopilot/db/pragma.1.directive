@@ -1,0 +1,357 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="Window" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="val"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Window" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="val"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="2"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_left" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_left" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_left" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_right" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_right" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_right" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_up" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_up" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_up" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_down" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_down" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_pixels_down" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_pixel" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_row" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_row" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_top_row" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_bottom_row" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_col" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_col" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_left_col" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_right_col" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::getval" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::operator ()" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_left" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_right" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_up" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::shift_down" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_top" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_bottom" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_left" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Window&lt;ROWS, COLS, T&gt;::insert_right" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="val"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="LineBuffer" label="">
+<pragma name="DEPENDENCE">
+<option name="variable" value="val"/>
+<option name="inter" positionalBoolean="type" value=""/>
+<option name="false" positionalBoolean="dependent" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="LineBuffer" label="">
+<pragma name="DEPENDENCE">
+<option name="variable" value="val"/>
+<option name="intra" positionalBoolean="type" value=""/>
+<option name="false" positionalBoolean="dependent" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::shift_pixels_down" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::shift_pixels_down" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::shift_pixels_up" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::shift_pixels_up" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::insert_bottom_row" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::insert_top_row" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::get_col" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::get_col" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::getval" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::operator ()" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::shift_down" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::shift_up" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::insert_bottom" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T&gt;::insert_top" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer" label="">
+<pragma name="ARRAY_RESHAPE">
+<option name="variable" positionalBoolean="4" value="val"/>
+<option name="dim" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="LineBuffer" label="">
+<pragma name="DEPENDENCE">
+<option name="variable" value="val"/>
+<option name="inter" positionalBoolean="type" value=""/>
+<option name="false" positionalBoolean="dependent" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="LineBuffer" label="">
+<pragma name="DEPENDENCE">
+<option name="variable" value="val"/>
+<option name="intra" positionalBoolean="type" value=""/>
+<option name="false" positionalBoolean="dependent" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::shift_pixels_down" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::shift_pixels_down" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::shift_pixels_up" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::shift_pixels_up" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::insert_bottom_row" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::insert_top_row" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::get_col" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::get_col" label="">
+<pragma name="UNROLL"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::getval" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::operator ()" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::shift_down" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::shift_up" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::insert_bottom" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="LineBuffer&lt;ROWS, COLS, T, 1&gt;::insert_top" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="next" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="next" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="pixBuf"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="0"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="operator ()" label="">
+<pragma name="INLINE"/>
+</directive>
+<directive functionLabel="" functionName="Filter2D" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="coeffs"/>
+<option name="complete" positionalBoolean="type" value=""/>
+<option name="dim" value="0"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2D" label="">
+<pragma name="LOOP_FLATTEN">
+<option name="OFF" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2D" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="m_axi" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="src"/>
+<option name="offset" value="slave"/>
+<option name="bundle" value="gmem0"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="src"/>
+<option name="bundle" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="width"/>
+<option name="bundle" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="height"/>
+<option name="bundle" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="stride"/>
+<option name="bundle" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="m_axi" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="coeffs"/>
+<option name="offset" value="slave"/>
+<option name="bundle" value="gmem1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="coeffs"/>
+<option name="bundle" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="m_axi" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="dst"/>
+<option name="offset" value="slave"/>
+<option name="bundle" value="gmem1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="dst"/>
+<option name="bundle" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+<option name="bundle" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="src_pixels"/>
+<option name="depth" value="64"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="STREAM">
+<option name="variable" positionalBoolean="4" value="dst_pixels"/>
+<option name="depth" value="64"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="Filter2DKernel" label="">
+<pragma name="DATAFLOW"/>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

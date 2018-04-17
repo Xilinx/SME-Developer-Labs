@@ -1,0 +1,14 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/ipiprj/ipiprj.ip_user_files/bd/dr/ipshared/b96d/hdl/axilite_bridge.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity axilite_bridge
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/ipiprj/ipiprj.ip_user_files/bd/dr/ip/dr_slave_bridge_0/sim/dr_slave_bridge_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity dr_slave_bridge_0
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/ipiprj/ipiprj.ip_user_files/bd/dr/ipshared/1193/hdl/axifull_bridge.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity axifull_bridge
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/ipiprj/ipiprj.ip_user_files/bd/dr/ip/dr_master_bridge_0_0/sim/dr_master_bridge_0_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity dr_master_bridge_0_0
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/ipiprj/ipiprj.ip_user_files/bd/dr/ip/dr_master_bridge_1_0/sim/dr_master_bridge_1_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity dr_master_bridge_1_0
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/ipiprj/ipiprj.ip_user_files/bd/dr/ip/dr_master_bridge_2_0/sim/dr_master_bridge_2_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity dr_master_bridge_2_0
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/ipiprj/ipiprj.ip_user_files/bd/dr/ip/dr_master_bridge_3_0/sim/dr_master_bridge_3_0.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity dr_master_bridge_3_0

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.1_sdxop (64-bit)
+# SW Build 1933108 on Fri Jul 14 11:54:19 MDT 2017
+# IP Build 1908669 on Fri Jul 14 13:31:24 MDT 2017
+# Start of session at: Tue Apr 17 05:38:12 2018
+# Process ID: 11998
+# Current directory: /home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi
+# Command line: vivado -mode batch -notrace -source /home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/ipirun.tcl -messageDb /home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/vivado.pb
+# Log file: /home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/vivado.log
+# Journal file: /home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/vivado.jou
+#-----------------------------------------------------------
+source /home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/ipirun.tcl -notrace

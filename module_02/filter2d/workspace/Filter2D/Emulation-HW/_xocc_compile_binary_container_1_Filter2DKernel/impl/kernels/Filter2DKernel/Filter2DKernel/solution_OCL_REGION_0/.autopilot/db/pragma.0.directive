@@ -1,0 +1,44 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="AXIBursts2PixelStream" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1080"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="AXIBursts2PixelStream" label="">
+<pragma name="LOOP_FLATTEN">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="AXIBursts2PixelStream" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="AXIBursts2PixelStream" label="">
+<pragma name="PIPELINE">
+<option name="II" value="PIXELS_PER_AXIMM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="PixelStream2AXIBursts" label="">
+<pragma name="LOOP_TRIPCOUNT">
+<option name="max" value="1080"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="PixelStream2AXIBursts" label="">
+<pragma name="LOOP_FLATTEN">
+<option name="off" positionalBoolean="1" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="PixelStream2AXIBursts" label="">
+<pragma name="PIPELINE">
+<option name="II" value="PIXELS_PER_AXIMM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="PixelStream2AXIBursts" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

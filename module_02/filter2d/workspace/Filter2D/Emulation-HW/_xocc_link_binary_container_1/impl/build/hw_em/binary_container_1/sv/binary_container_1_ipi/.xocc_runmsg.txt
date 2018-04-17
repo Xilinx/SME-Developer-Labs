@@ -1,0 +1,2 @@
+ running Vivado to generate simulation models and scripts. 
+Log file:/home/centos/SME-Developer-Labs/module_02/filter2d/workspace/Filter2D/Emulation-HW/_xocc_link_binary_container_1/impl/build/hw_em/binary_container_1/sv/binary_container_1_ipi/vivado.log

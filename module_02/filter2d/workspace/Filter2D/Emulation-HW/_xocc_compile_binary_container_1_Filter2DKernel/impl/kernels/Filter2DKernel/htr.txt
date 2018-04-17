@@ -1,0 +1,9 @@
+#
+# xocc(TM)
+# htr.txt: a xocc-generated description of how-to-repeat the
+#          the basic steps of a run.  Note that runme.bat/sh needs
+#          to be invoked for xocc to track run status.
+# Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+#
+
+vivado_hls -f Filter2DKernel.tcl -messageDb vivado_hls.pb

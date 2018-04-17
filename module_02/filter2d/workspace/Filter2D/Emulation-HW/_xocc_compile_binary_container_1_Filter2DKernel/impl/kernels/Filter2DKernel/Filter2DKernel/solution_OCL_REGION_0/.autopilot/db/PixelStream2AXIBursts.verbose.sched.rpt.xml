@@ -1,0 +1,48 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'PixelStream2AXIBursts'" level="0">
+<item name = "Date">Tue Apr 17 05:37:04 2018
+</item>
+<item name = "Version">2017.1 (Build 1846317 on Fri Jul 14 12:21:14 MDT 2017)</item>
+<item name = "Project">Filter2DKernel</item>
+<item name = "Solution">solution_OCL_REGION_0</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcvu9p-flgb2104-2-i</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">4.00, 2.92, 1.08</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">1, 73003681, 1, 73003681, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- forEachRow">0, 73003680, 11 ~ 67596, -, -, 0 ~ 1080, no</column>
+<column name=" + pixels2bytes">1, 65537, 33, 32, 32, 0 ~ 2048, yes</column>
+<column name=" + bytes2aximm">0, 2049, 3, 1, 1, 0 ~ 2048, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

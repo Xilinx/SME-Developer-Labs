@@ -99,7 +99,7 @@ src/host/filter2d.o: ../src/host/filter2d.cpp ../src/host/filter2d.h ../src/host
 	@mkdir -p $(@D)
 	$(SDX_CXX) $(CXXFLAGS) -o "$@" "$<" -fopenmp
 
-src/host/host.o: ../src/host/host.cpp ../src/host/logger.h ../src/host/cmdlineparser.h ../src/host/xclbin_helper.h ../../../../../../../../../../opt/Xilinx/SDx/2017.1.op/Vivado_HLS/include/opencv2/opencv.hpp ../src/host/coefficients.h ../src/host/filter2d.h
+src/host/host.o: ../src/host/host.cpp ../src/host/logger.h ../src/host/cmdlineparser.h ../src/host/xclbin_helper.h ../../../../../../../../opt/Xilinx/SDx/2017.1.op/Vivado_HLS/include/opencv2/opencv.hpp ../src/host/coefficients.h ../src/host/filter2d.h
 	@mkdir -p $(@D)
 	$(SDX_CXX) $(CXXFLAGS) -o "$@" "$<" -fopenmp
 

@@ -1,0 +1,19 @@
+
+****** Vivado v2017.1_sdxop (64-bit)
+  **** SW Build 1933108 on Fri Jul 14 11:54:19 MDT 2017
+  **** IP Build 1908669 on Fri Jul 14 13:31:24 MDT 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+INFO: [Common 17-1460] Use of init.tcl in /opt/Xilinx/SDx/2017.1.op/Vivado/scripts/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/opt/Xilinx/SDx/2017.1.op/Vivado/scripts/init.tcl'
+0 Beta devices matching pattern found, 0 enabled.
+Loaded SDSoC Platform Tcl Library
+source run_ippack.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/SDx/2017.1.op/Vivado/data/ip'.
+WARNING: [Vivado 12-4404] The CPU emulation flow is not supported when using a packaged XO file with XOCC.
+Add Instance Filter2D Filter2D_U0 284
+Add Instance PixelStream2AXIBursts PixelStream2AXIBursts_U0 297
+Add Instance AXIBursts2PixelStream8 AXIBursts2PixelStream8_U0 308
+INFO: [Common 17-206] Exiting Vivado at Tue Apr 17 05:37:43 2018...

@@ -351,6 +351,8 @@ int main(int argc, char** argv)
 		std::cout << "CPU Throughput:  " 
 		          << (double) numRuns*3*nbytes / cpu_duration.count() / (1024.0*1024.0)
 		          << " MB/s" << std::endl;
+
+		std::cout << "FPGA Speedup:    " << cpu_duration.count() / fpga_duration.count() << "x" << std::endl;
 	}
 
 	// Release allocated memory

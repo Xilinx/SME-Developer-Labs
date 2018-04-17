@@ -122,7 +122,7 @@ The hello world example is an OpenCL application with a simple vector-addition a
 
     ```bash
     # Go to the example directory
-    cd ~/SME-Developer-Labs/helloworld_ocl
+    cd ~/SME-Developer-Labs/module_02/helloworld
 
     # Compile the host application (./helloworld)
     make TARGETS=hw DEVICES=$AWS_PLATFORM exe
