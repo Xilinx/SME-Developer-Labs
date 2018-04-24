@@ -26,6 +26,8 @@ We will follow these steps during this tutorial:
 * Merge our code into the FFmpeg code base
 * Rebuild FFmpeg with the Xilinx 2D filter plugin code
 
+### Building FFMpeg Application
+
 1. Right Click anywhere in the desktop and Open a Terminal
 2. Navigate to the FFmpeg lab directory
    ```bash
@@ -34,19 +36,17 @@ We will follow these steps during this tutorial:
 3. The directory contains following scripts and directories
  * build_ffmpeg.sh : Script to download the FFMpeg source code, its dependencies and build ```ffmpeg``` executable
  * merge_plugin_code.sh : Script to merge Xilinx 2D filter plugin code inside ffmpeg code base
- * build_ffmpeg_with_plugin.sh : Script to do incremental build with the Xilinx 2D filter plugin and rebuild ```ffmpeg``` executable
- * plugin_code : Directory contains Xilinx 2D filter plugin code
+ * build_ffmpeg_with_plugin.sh : Script to do an incremental build with the Xilinx 2D filter plugin and rebuild the ```ffmpeg``` executable
+ * plugin_code : Directory containing the Xilinx 2D filter plugin code
 
-#### Building FFMpeg Application
-
-We will execute script build_ffmpeg.sh to Build the FFMpeg executable.
+We will execute script build_ffmpeg.sh to Build the FFmpeg executable.
 The script will do following things
 1. Download and build FFMpeg Dependencies: NASM and YASM
 2. Clone FFMpeg from git.ffmpeg.org
 3. Copy Xilinx SDAccel Runtime library and OpenCL library
 4. Build FFMpeg
 
-This is pretty much standard FFMpeg building procedure. We have included Xilinx SDAccel runtime and OpenCL library as these libraries will be used when we add Xilinx 2D filter plugin code in next step. 
+This is pretty much standard FFmpeg building procedure. We have included the Xilinx SDAccel runtime and OpenCL library as these libraries will be used when we add the Xilinx 2D filter plugin code in the next step. 
 
 Execute the script 
 ```
@@ -56,7 +56,7 @@ This build procedure takes a little less than 5 minutes. Have a nice short break
 
 After the build process, you can find a new directory XlnxFilter (though it does not contain the Xilinx 2D filter yet). You can find the ```ffmpeg``` executable inside XlnxFilter/bin/ffmpeg
 
-#### Xilinx 2D filter FFmpeg plugin code
+### Xilinx 2D filter FFmpeg plugin code
 You can find all related code inside the **plugin_code** directory. 
 
 1.	First, we need to register the new filter. Open the **plugin_code/allfilters.c** file and find the following entry.
@@ -160,7 +160,7 @@ will update outlink->w and outlink->h.
 		av_frame_copy_props(out, in);
 		```
 
-#### Merge our plugin code into FFmpeg
+### Merge our plugin code into FFmpeg
 
 Now execute the following script so that these files will be copied inside the FFmpeg code base we built before. 
 
@@ -186,7 +186,7 @@ Execute the following script
 ./build_ffmpeg_with_plugin.sh
 ```
 
-The new ffmpeg executable will be created with the xilinx filter plugin. 
+The new ffmpeg executable will be created with the Xilinx 2D filter plugin. 
 
 
 ---------------------------------------
