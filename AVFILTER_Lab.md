@@ -188,6 +188,11 @@ Execute the following script
 
 The new ffmpeg executable will be created with the Xilinx 2D filter plugin. 
 
+### Summary  
+
+In this lab, you learned:
+* How to build your own ```FFmpeg``` plugin.
+* The 'anatomy' of an ```FFmpeg``` AVFilter plugin.
 
 ---------------------------------------
 
