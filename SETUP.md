@@ -84,12 +84,10 @@ You should now be connected to the remote F1 instance running Centos 7.
 
 #### Open the lab instructions on the remote F1 instance
 
-1. In the remote instance, double click on the **Chromium** icon.
-    - It opens the browser and loads the lab instructions.
+1. In the remote instance, open **Firefox** from the **Applications** menu (located in top left corner of the desktop)
+    - As it opens, the browser automatically loads this README file.
     
-    _Note: if a "keyring" popup comes up, click Cancel._
-
-1. Continue following the lab instructions from within the remote instance and the Chromium browser.
+1. Continue following the lab instructions from within the remote instance and the web browser.
     - We suggest you perform all your copy-paste from the instructions to the shell within the RDP session to avoid issues.
 
 #### Configure the Xilinx SDAccel environment and load the workshop files
