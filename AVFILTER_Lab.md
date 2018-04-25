@@ -7,8 +7,8 @@
     <td width="16%" align="center"><a href="SETUP.md">1. Connecting to your F1 instance</a></td> 
     <td width="17%" align="center"><a href="FFMPEG_Lab.md">2. Experiencing F1 acceleration</a></td>
     <td width="17%" align="center"><a href="FILTER2D_Lab.md">3. Developing F1 applications</a></td>
-    <td width="20%" align="center"><b>4. Creating a custom FFmpeg plug-in</b></td>
-    <td width="20%" align="center"><a href="WRAP_UP.md">5. Wrapping-up</td>
+    <td width="16%" align="center"><b>4. Creating a custom FFmpeg plug-in</b></td>
+    <td width="17%" align="center"><a href="WRAP_UP.md">5. Wrapping-up</td>
   </tr>
 </table>
 	
@@ -16,20 +16,61 @@
 	
 ### Creating a custom FFmpeg plug-in
 
-This tutorial is designed to teach how to add your own custom ```FFmpeg``` plugin. The filter will be added to the **libavfilter** library that provides a generic audio/video filtering framework containing several filters, sources, and sinks.
+This tutorial is designed to teach how to add your own custom FFmpeg plugin. The filter will be added to the libavfilter library that provides a generic audio/video filtering framework containing several filters, sources, and sinks. 
 
-1.	First, we need to register the new filter. Open the **allfilters.c** file and find the following entry.
+The kernel used in this tutorial is the 2D image filter, that you already have seen in the previous section while working with the standalone SDAccel environment. The kernel is already precompiled with SDAccel with 1 and 3 kernels per xclbin. This can be selected through the FFmpeg command line by ncompute_unit=1 and ncompute_unit=3, respectively. The OpenCL host code is used to write FFMpeg Plugin code by using standard FFMpeg filter writing process. 
+
+We will follow these steps during this tutorial:
+* Build FFmpeg standalone without the Xilinx 2D filter plugin
+* Observe the Xilinx 2D filter plugin code
+* Merge our code into the FFmpeg code base
+* Rebuild FFmpeg with the Xilinx 2D filter plugin code
+
+### Building FFMpeg Application
+
+1. Right Click anywhere in the desktop and Open a Terminal
+2. Navigate to the FFmpeg lab directory
+   ```bash
+    cd ~/SME-Developer-Labs/module_02/plugin
+    ```
+3. The directory contains following scripts and directories
+ * build_ffmpeg.sh : Script to download the FFMpeg source code, its dependencies and build ```ffmpeg``` executable
+ * merge_plugin_code.sh : Script to merge Xilinx 2D filter plugin code inside ffmpeg code base
+ * build_ffmpeg_with_plugin.sh : Script to do an incremental build with the Xilinx 2D filter plugin and rebuild the ```ffmpeg``` executable
+ * plugin_code : Directory containing the Xilinx 2D filter plugin code
+
+We will execute script build_ffmpeg.sh to Build the FFmpeg executable.
+The script will do following things
+1. Download and build FFMpeg Dependencies: NASM and YASM
+2. Clone FFMpeg from git.ffmpeg.org
+3. Copy Xilinx SDAccel Runtime library and OpenCL library
+4. Build FFMpeg
+
+This is pretty much standard FFmpeg building procedure. We have included the Xilinx SDAccel runtime and OpenCL library as these libraries will be used when we add the Xilinx 2D filter plugin code in the next step. 
+
+Execute the script 
+```
+  ./build_ffmpeg.sh
+```
+This build procedure takes a little less than 5 minutes. Have a nice short break :) 
+
+After the build process, you can find a new directory XlnxFilter (though it does not contain the Xilinx 2D filter yet). You can find the ```ffmpeg``` executable inside XlnxFilter/bin/ffmpeg
+
+### Xilinx 2D filter FFmpeg plugin code
+You can find all related code inside the **plugin_code** directory. 
+
+1.	First, we need to register the new filter. Open the **plugin_code/allfilters.c** file and find the following entry.
     ```bash
     REGISTER_FILTER(XLNXFILTER, xlnxfilter, vf);
 	```
-The **libavfilter/allfilters.c** file is parsed by the configure script, which in turn will define variables for the build system and the C sources.
-
-1.	The filter needs to be added to the **Makefile** of **libavfilter**. 
+	The **allfilters.c** file is parsed by the configure script, which in turn will define variables for the build system and the C sources.
+	
+2.	The filter needs to be added to the **Makefile** of **libavfilter**. 
     ```bash
 	OBJS-$(CONFIG_XLNXFILTER_FILTER) += vf_xlnxfilter.o xlnxfilter_core/xlnxfilter_core.o
 	```
 
-1.	Next open **vf_xlnxfilter.c**. This file implements the Xilinx hardware accelerated Filter 2D ```FFmpeg``` plugin.
+3.	Next open **vf_xlnxfilter.c**. This file implements the Xilinx hardware accelerated Filter 2D ```FFmpeg``` plugin.
 	* Take a look at the **context** structure. This contains the local state context and is where we put all "global" information that we need; typically the variables storing the user options. Notice the first field **const AVClass *class;** it is the only field we need to keep assuming we have a context.
     ```bash
 	typedef struct {
@@ -119,11 +160,40 @@ will update outlink->w and outlink->h.
 		av_frame_copy_props(out, in);
 		```
 
+### Merge our plugin code into FFmpeg
+
+Now execute the following script so that these files will be copied inside the FFmpeg code base we built before. 
+
+```
+  ./merge_plugin_code.sh
+```
+This script copies the plugin code to the proper directories. 
+
+```
+======================== Replacing allfilters.c=========================
+======================== Replacing Makefiles===========================
+======================== Copying vf_xlnxfilter.c=========================
+======================== Copying Directory xlnxfilter_core========================
+```
+
+### Rebuild FFmpeg with the Xilinx filter 2D plugin code
+
+Now finally you rebuild FFppeg with the new plugin code, and generate the executable that can be used to run the filter on the FPGA to enjoy the acceleration.
+
+Execute the following script
+
+```
+./build_ffmpeg_with_plugin.sh
+```
+
+The new ffmpeg executable will be created with the Xilinx 2D filter plugin. 
+
 ### Summary  
 
 In this lab, you learned:
 * How to build your own ```FFmpeg``` plugin.
- 
+* The 'anatomy' of an ```FFmpeg``` AVFilter plugin.
+
 ---------------------------------------
 
 <p align="center"><b>
