@@ -67,14 +67,11 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
     ```
 
     ```ffmpeg``` will show with a message similar to this one: 
-    
-     > Hardware time spent = 0.040000 seconds
+    ```bash
+      frame=  500 fps= 46 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.85x    
+   
+    ```
      
-     > Output #0, image2, to 'picadilly_1080p_fpga_1.bmp':
-
-     > real	0m1.356s
-
-     > user	0m0.085s
 
 
 
