@@ -16,11 +16,11 @@
 ---------------------------------------
 ### Experiencing F1 Acceleration
 
-In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 image, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
+In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 video, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
 
 ```ffmpeg``` is a very popular framework providing very fast video and audio converters. The ```ffmpeg``` code is open-source and allows for the addition of custom plugins. For this lab, a custom AVFilter plugin has been created to transparently use the hardware accelerated two-dimensional filter running on AWS F1.
 
-Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write image Y, U and V planes to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accesses via the ffmpeg command line.
+Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write Y, U and V planes of the video frames to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accesses via the ffmpeg command line.
 
 #### Setting-up the lab
 
@@ -59,7 +59,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 #### Step 2: Running with the filter on the F1 FPGA 
   
 
-1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding AFI. 
+1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding AFI. ALso note we are not specifying -frames switch so ffmpeg will process all 500 frames. 
 
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
@@ -98,7 +98,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     |                           | Filter on CPU | Filter on F1 (1 kernel) | Filter on F1 (3 kernels) |
     | :------------------------ |-------------:| -------:| -------:|
-    | duration                  | 1 fps sec     | 37 fps | 46 fps |
+    | performance                  | 1 fps sec     | 37 fps | 46 fps |
 
 1. Close your terminal to conclude this module.
     ```bash
