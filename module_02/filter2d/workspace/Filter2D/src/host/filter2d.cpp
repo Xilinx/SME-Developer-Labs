@@ -3,7 +3,7 @@
 #include "window2d.h"
 
 void Filter2D(
-        const    int   coeffs[FILTER2D_KERNEL_V_SIZE][FILTER2D_KERNEL_H_SIZE],
+        const    short coeffs[FILTER2D_KERNEL_V_SIZE][FILTER2D_KERNEL_H_SIZE],
 		unsigned char *srcImg,
 		unsigned int   width,
 		unsigned int   height,
@@ -21,7 +21,7 @@ void Filter2D(
 			bool is_valid = pixelWindow.next(srcImg, x, y);
 
 			//Apply 2D filter
-			long long sum = 0;
+			int sum = 0;
 			for(int row=0; row<FILTER2D_KERNEL_V_SIZE; row++)
 			{
 				for(int col=0; col<FILTER2D_KERNEL_H_SIZE; col++)
