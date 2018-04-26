@@ -53,6 +53,9 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 ```bash
   frame=   10 fps=1.0 q=-0.0 Lsize=   30375kB time=00:00:00.40 bitrate=622080.0kbits/s speed=0.0388x    
   ```
+  Note the FPS is slow 1
+
+  
 #### Step 2: Running with the filter on the F1 FPGA 
   
 
