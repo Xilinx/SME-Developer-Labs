@@ -16,11 +16,11 @@
 ---------------------------------------
 ### Experiencing F1 Acceleration
 
-In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 image, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
+In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 video, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
 
 ```ffmpeg``` is a very popular framework providing very fast video and audio converters. The ```ffmpeg``` code is open-source and allows for the addition of custom plugins. For this lab, a custom AVFilter plugin has been created to transparently use the hardware accelerated two-dimensional filter running on AWS F1.
 
-Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write image Y, U and V planes to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accesses via the ffmpeg command line.
+Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write Y, U and V planes of every frame to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accesses via the ffmpeg command line.
 
 #### Setting-up the lab
 
@@ -39,22 +39,20 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 #### Step 1: Running with the filter on the CPU 
 
 
-1. Run with the video filter running on the CPU. Plugin xlnxfilter takes two switches. Switch ncompute_unit denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU. Switch "coeff" specifies the type of applied filter on the input image. 
+1. Run with the video filter running on the CPU. Plugin xlnxfilter takes two switches. Switch ncompute_unit denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU. Switch "coeff" specifies the type of applied filter on the input video. 
+
+First we will run Filter operation on the host CPU. As CPU execution is slower, we will just run 10 Frames of the video. 
+
     ```bash
-    time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=0:coeff=blur" picadilly_1080p_cpu.bmp
+    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=0:coeff=blur" -frames 10 crowd_out_cpu.yuv
+
     ```
 
     ```ffmpeg``` will show with a message similar to this one: 
     
-    > Running Software version
+    frame=   10 fps=1.0 q=-0.0 Lsize=   30375kB time=00:00:00.40 bitrate=622080.0kbits/s speed=0.0388x    
 
-    > Software time spent = 2.230000 seconds
-    
-    > Output #0, image2, to 'picadilly_1080p_cpu.bmp':
-
-    > real	0m2.911s
-    
-    > user	0m2.268s
+Note the FPS is slow 1
 
 #### Step 2: Running with the filter on the F1 FPGA 
   
@@ -63,7 +61,8 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
-    time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
+    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=1:coeff=blur" crowd_fpga_1.yuv
+
     ```
 
     ```ffmpeg``` will show with a message similar to this one: 
