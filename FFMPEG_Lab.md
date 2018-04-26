@@ -104,6 +104,9 @@ We are getting approximately 25% better performance using more instances of filt
 #### Optional: Playing video
 You can run ffplay to view any video using the excutable inside the same directory. However, just aware that ffplay is very slow on F1 instance. 
 
+Original:
+./ffplay -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv
+Filtered:
 ./ffplay -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd_fpga_1.yuv
 
 #### Step 4: Exiting from the terminals 
