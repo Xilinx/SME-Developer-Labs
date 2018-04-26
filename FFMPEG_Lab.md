@@ -102,7 +102,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     |                           | Filter on CPU | Filter on F1 (1 kernel) | Filter on F1 (3 kernels) |
     | :------------------------ |-------------:| -------:| -------:|
-    | duration                  | 2.28 sec     | 0.04 sec | 0.03 sec |
+    | duration                  | 1 fps sec     | 37 fps | 46 fps |
 
 1. Close your terminal to conclude this module.
     ```bash
