@@ -46,15 +46,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     ```ffmpeg``` will show with a message similar to this one: 
     
-    > Running Software version
-
-    > Software time spent = 2.230000 seconds
     
-    > Output #0, image2, to 'picadilly_1080p_cpu.bmp':
-
-    > real	0m2.911s
-    
-    > user	0m2.268s
 
 #### Step 2: Running with the filter on the F1 FPGA 
   
