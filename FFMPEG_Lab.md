@@ -87,7 +87,9 @@ Note the FPS is slow 1
  
     ```
     
+You can run ffplay to view any video. However, just aware that ffplay is very slow on F1 instance. 
 
+./ffplay -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd_fpga_1.yuv
 
 #### Step 3: Comparing performance 
 
