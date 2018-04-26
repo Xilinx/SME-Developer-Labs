@@ -77,14 +77,15 @@ Note the FPS is slow 1
  
  ```bash
       fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
-    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=3:coeff=blur" crowd_fpga_1.yuv
+    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=3:coeff=blur" crowd_fpga_3.yuv
 
     ```
 
     ```ffmpeg``` will show with a message similar to this one: 
     
     ```bash
-    frame=  500 fps= 37 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.49x    
+    frame=  500 fps= 46 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.85x    
+ 
     ```
     
 
@@ -95,7 +96,7 @@ Note the FPS is slow 1
 
     |                           | Filter on CPU | Filter on F1 (1 kernel) | Filter on F1 (3 kernels) |
     | :------------------------ |-------------:| -------:| -------:|
-    | duration                  | 2.28 sec     | 0.04 sec | 0.03 sec |
+    | duration                  | 1 FPS     | 37 FPS | 46 FPS |
 
 1. Close your terminal to conclude this module.
     ```bash
