@@ -28,7 +28,7 @@ We will follow these steps during this tutorial:
 
 ### Building FFMpeg Application
 
-1. Right Click anywhere in the desktop and Open a Terminal
+1. Right Click anywhere in the desktop and Open a Terminal (Please make sure to open a new terminal and do not use the old terminal from previous lab). 
 2. Navigate to the FFmpeg lab directory
    ```bash
     cd ~/SME-Developer-Labs/module_02/plugin
