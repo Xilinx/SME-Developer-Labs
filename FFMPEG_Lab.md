@@ -26,6 +26,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 1. Open a new terminal by right-clicking anywhere in the Desktop area and selecting **Open Terminal**. 
 1. Navigate to the FFmpeg lab directory.
+
     ```bash
     cd ~/SME-Developer-Labs/module_02/ffmpeg
     ```
