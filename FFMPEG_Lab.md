@@ -63,7 +63,8 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
-    time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=1:coeff=blur" picadilly_1080p_fpga_1.bmp
+    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=1:coeff=blur" crowd_fpga_1.yuv
+
     ```
 
     ```ffmpeg``` will show with a message similar to this one: 
