@@ -50,8 +50,9 @@ First we will run Filter operation on the host CPU. As CPU execution is slower, 
 
     ```ffmpeg``` will show with a message similar to this one: 
     
+    ```bash
     frame=   10 fps=1.0 q=-0.0 Lsize=   30375kB time=00:00:00.40 bitrate=622080.0kbits/s speed=0.0388x    
-
+    ```
 Note the FPS is slow 1
 
 #### Step 2: Running with the filter on the F1 FPGA 
@@ -67,16 +68,11 @@ Note the FPS is slow 1
 
     ```ffmpeg``` will show with a message similar to this one: 
     
-     > Hardware time spent = 0.040000 seconds
-     
-     > Output #0, image2, to 'picadilly_1080p_fpga_1.bmp':
-
-     > real	0m1.356s
-
-     > user	0m0.085s
-
-
-
+    ```bash
+    frame=  500 fps= 37 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.49x    
+    ```
+    
+    
 1. Run with the filter running on the F1 FPGA, now using just three hardware unit for filter kernels
     ```bash
       fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
