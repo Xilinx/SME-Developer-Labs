@@ -44,7 +44,11 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 First we will run Filter operation on the host CPU. As CPU execution is slower, we will just run 10 Frames of the video.  
 
-    ```bash
+  ```bash
+     ./ffmpeg
+     ```
+
+```bash
     ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=0:coeff=blur" -frames 10 crowd_out_cpu.yuv
     ```
     
