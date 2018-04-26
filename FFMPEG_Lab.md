@@ -106,6 +106,7 @@ You can run ffplay to view any video using the excutable inside the same directo
 
 ./ffplay -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd_fpga_1.yuv
 
+#### Step 4: Exiting from the terminals 
 
 1. Close your terminal to conclude this module.
     ```bash
