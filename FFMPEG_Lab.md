@@ -42,13 +42,15 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 1. Run with the video filter running on the CPU. Plugin xlnxfilter takes two switches. Switch ncompute_unit denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU. Switch "coeff" specifies the type of applied filter on the input video. 
 
-First we will run Filter operation on the host CPU. As CPU execution is slower, we will just run 10 Frames of the video. 
+First we will run Filter operation on the host CPU. As CPU execution is slower, we will just run 10 Frames of the video.  
 
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
     ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=1:coeff=blur" crowd_fpga_1.yuv
 
     ```
+
+
 
 
 
