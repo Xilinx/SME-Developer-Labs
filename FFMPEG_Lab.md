@@ -45,16 +45,6 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 First we will run Filter operation on the host CPU. As CPU execution is slower, we will just run 10 Frames of the video.  
 
     ```bash
-    fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
-    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=1:coeff=blur" crowd_fpga_1.yuv
-
-    ```
-
-
-
-
-
-    ```bash
     ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=0:coeff=blur" -frames 10 crowd_out_cpu.yuv
     ```
     
