@@ -100,6 +100,13 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
     | :------------------------ |-------------:| -------:| -------:|
     | performance                  | 1 fps sec     | 37 fps | 46 fps |
 
+
+#### Optional: Playing video
+You can run ffplay to view any video using the excutable inside the same directory. However, just aware that ffplay is very slow on F1 instance. 
+
+./ffplay -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd_fpga_1.yuv
+
+
 1. Close your terminal to conclude this module.
     ```bash
     exit
