@@ -67,7 +67,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     ```
 
-    ```ffmpeg``` will show with a message similar to this one: 
+    ```ffmpeg``` will show with a message similar (the exact numbers such as fps may vary) to this one: 
     ```bash
         frame=  500 fps= 37 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.49x    
    
@@ -83,7 +83,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     ```
 
-    ```ffmpeg``` will show with a message similar to this one: 
+    ```ffmpeg``` will show with a message similar ((the exact numbers such as fps may vary) to this one: 
     
    ```bash
       frame=  500 fps= 46 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.85x    
@@ -116,7 +116,7 @@ In addition to video filtering, F1 instances are very well suited to accelerate 
 
 Now that you have experienced the performance potential of AWS F1 instances, the next lab will introduce you to the SDAccel IDE and how to develop, profile and optimize an F1 application.
 
-## OLD 
+# OLD (With Image input) 
 ### Experiencing F1 Acceleration
 
 In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 image, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
