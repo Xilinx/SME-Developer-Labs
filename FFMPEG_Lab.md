@@ -74,21 +74,19 @@ Note the FPS is slow 1
     
     
 1. Run with the filter running on the F1 FPGA, now using just three hardware unit for filter kernels
-    ```bash
+ 
+ ```bash
       fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
-      time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=3:coeff=blur" picadilly_1080p_fpga_3.bmp
+    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=3:coeff=blur" crowd_fpga_1.yuv
+
     ```
 
     ```ffmpeg``` will show with a message similar to this one: 
     
-    > Hardware time spent = 0.030000 seconds
+    ```bash
+    frame=  500 fps= 37 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.49x    
+    ```
     
-    > Output #0, image2, to 'picadilly_1080p_fpga_3.bmp':
-    
-    > real	0m1.319s
-    
-    > user	0m0.065s
-
 
 
 #### Step 3: Comparing performance 
