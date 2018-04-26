@@ -41,7 +41,8 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 1. Run with the video filter running on the CPU. Plugin xlnxfilter takes two switches. Switch ncompute_unit denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU. Switch "coeff" specifies the type of applied filter on the input image. 
     ```bash
-    time ./ffmpeg -i picadilly_1080p.bmp -vf "xlnxfilter=ncompute_unit=0:coeff=blur" picadilly_1080p_cpu.bmp
+      ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=0:coeff=blur" -frames 10 crowd_out_cpu.yuv
+
     ```
 
     ```ffmpeg``` will show with a message similar to this one: 
