@@ -86,7 +86,10 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     ```ffmpeg``` will show with a message similar to this one: 
     
-   
+   ```bash
+      fpga-load-
+      
+    ```
 
 
 
