@@ -47,7 +47,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
      
    As running on CPU is slow, we will process only 10 frames of the video
    ```bash
-  ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=0:coeff=blur" -frames 10 crowd_out_cpu.yuv
+  ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=0:coeff=blur" -frames 10 crowd_out_cpu.yuv
   ```
   ```ffmpeg``` will show with a message similar to this one: 
 ```bash
@@ -63,7 +63,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
-    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=1:coeff=blur" crowd_fpga_1.yuv
+    ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=1:coeff=blur" crowd_fpga_1.yuv
 
     ```
 
@@ -79,7 +79,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 1. Run with the filter running on the F1 FPGA, now using just three hardware unit for filter kernels
     ```bash
       fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
-      ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=3:coeff=blur" crowd_fpga_3.yuv
+      ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=3:coeff=blur" crowd_fpga_3.yuv
 
     ```
 
