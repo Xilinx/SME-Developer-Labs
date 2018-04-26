@@ -109,8 +109,9 @@ Original:
 ./ffplay -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv
 ```
 Filtered:
+```bash
 ./ffplay -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i crowd_fpga_1.yuv
-
+```
 #### Step 4: Exiting from the terminals 
 
 1. Close your terminal to conclude this module.
