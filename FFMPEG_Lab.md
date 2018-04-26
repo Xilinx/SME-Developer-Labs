@@ -87,8 +87,8 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
     ```ffmpeg``` will show with a message similar to this one: 
     
    ```bash
-      fpga-load-
-      
+      frame=  500 fps= 46 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.85x    
+   
     ```
 
 
