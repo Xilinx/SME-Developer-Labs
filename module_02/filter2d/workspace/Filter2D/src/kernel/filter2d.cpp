@@ -92,10 +92,10 @@ void Filter2DKernel(
 	AXIBursts2PixelStream((AXIMM)src, width, height, stride, src_pixels);
 
 	// Process incoming stream of pixels, and stream pixels out
-    Filter2D(coeffs, src_pixels, width, height, dst_pixels);
+	Filter2D(coeffs, src_pixels, width, height, dst_pixels);
 
 	// Write incoming stream of pixels and write them to global memory over AXI4 MM
-    PixelStream2AXIBursts(dst_pixels, width, height, stride, (AXIMM)dst);
+	PixelStream2AXIBursts(dst_pixels, width, height, stride, (AXIMM)dst);
 
   }
 
