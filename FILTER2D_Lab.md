@@ -426,7 +426,7 @@ These steps would take too long to complete during this tutorial, therefore prec
 	```
 
 	- Notice that there are three .awsxclbin files ready to use
-	- The two .awsxclbin files correspond to FPGA binaries with 1, 3 and 6 kernel instances, respectively 
+	- These .awsxclbin files correspond to FPGA binaries with 1, 3 and 6 kernel instances, respectively 
 
 1. Copy the host application executable built in the SDAccel workspace to the local directory.
 	```bash
