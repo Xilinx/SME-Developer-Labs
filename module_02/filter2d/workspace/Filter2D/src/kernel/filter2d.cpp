@@ -3,7 +3,7 @@
 
 
 static void Filter2D(
-        const short   *srcCoeffs, 
+		const short   *srcCoeffs, 
 		STREAM_PIXELS& srcImg,
 		U16            width,
 		U16            height,
@@ -13,9 +13,9 @@ static void Filter2D(
     I16 loopWidth  = width+(FILTER_KERNEL_H_SIZE/2);
 
     // Filtering 2D window
-	Window2D<MAX_WIDTH, FILTER_KERNEL_V_SIZE, FILTER_KERNEL_H_SIZE, U8> pixelWindow(width, height);
+    Window2D<MAX_WIDTH, FILTER_KERNEL_V_SIZE, FILTER_KERNEL_H_SIZE, U8> pixelWindow(width, height);
 
-	// Filtering coefficients
+    // Filtering coefficients
     short coeffs[15][15];
     #pragma HLS ARRAY_PARTITION variable=coeffs complete dim=0
 
@@ -26,14 +26,14 @@ static void Filter2D(
     {
         for(int x=0; x<loopWidth; ++x)
         {
-			#pragma HLS PIPELINE II=1
+            #pragma HLS PIPELINE II=1
 
             // Determine whether to get a new pixel and update the 2D window
-			bool is_valid = pixelWindow.next(srcImg, x, y);
+            bool is_valid = pixelWindow.next(srcImg, x, y);
 
-			//Apply 2D filter
-			int sum = 0;
-			for(int row=0; row<FILTER_KERNEL_V_SIZE; row++) {
+            //Apply 2D filter
+            int sum = 0;
+            for(int row=0; row<FILTER_KERNEL_V_SIZE; row++) {
 				for(int col=0; col<FILTER_KERNEL_H_SIZE; col++) {
 					sum += pixelWindow(row,col)*coeffs[row][col];
 				}
