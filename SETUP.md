@@ -98,7 +98,7 @@ You should now be connected to the remote F1 instance running Centos 7.
 1. In the terminal, `git clone` the AWS-F1-Developer-Labs repository to download the files for the Xilinx Developer Lab.
 
     ```bash  
-    cd /home/centos
+    cd ~
     git clone https://github.com/Xilinx/SME-Developer-Labs.git
     ```
 
