@@ -417,7 +417,7 @@ These steps would take too long to complete during this tutorial, therefore prec
 
 1. Make sure you are in the correct directory
 	```bash
-	cd /home/centos/SME-Developer-Labs/module_02/filter2d
+	cd ~/SME-Developer-Labs/module_02/filter2d
 	```
 
 1. List the content of the xclbin directory:
