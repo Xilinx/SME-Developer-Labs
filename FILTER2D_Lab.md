@@ -114,7 +114,7 @@ The kernel code is comprised of the following files:
 1. Using the **Outline** viewer, quickly look-up and inspect the other important function of the accelerator:
 	* The **Filter2D** function is the heart of the custom hardware accelerator that peforms the filter computations.
 	* It uses the **Window2D** class that provides an abstraction for getting a two-dimensial pixel window, then performs a simple convolution of the pixels in this window with a programmable filter.
-	* Note the ```#pragma HLS PIPELINE II=1``` statement on line 26. This pragma tells the compiler that a new iteration of the ```for x``` loop (on line 23) should be started exactly one clock cycle after the previous one.  As a result, the SDAccel compiler builds an  accelerator with 15*15=225 multipliers. Where the 225 multiply-add operations of the 2D convolution would be executed sequentially on a conventional CPU architecture, they are executed in parallel in the purpose-built FPGA accelerator. This results in a significant performance improvement.  
+	* Note the ```#pragma HLS PIPELINE II=1``` statement on line 29. This pragma tells the compiler that a new iteration of the for loop should be started exactly one clock cycle after the previous one.  As a result, the SDAccel compiler builds an accelerator with 15*15=225 multipliers. Where the 225 multiply-add operations of the 2D convolution would be executed sequentially on a conventional CPU architecture, they are executed in parallel in the purpose-built FPGA accelerator. This results in a significant performance improvement.  
 	
 1. Now open file **host.cpp** from the **src/host** folder of the **Project Explorer** view.  
 	* This C++ program initializes the test vectors, sets-up OpenCL, runs the reference model, runs the hardware accelerator, releases the OpenCL resources, and compares the results of the reference Filter2D model with the accelerator implementation.
@@ -138,7 +138,7 @@ The kernel code is comprised of the following files:
 
 1. Click on **Filter2DDispatcher** and press **F3** to go to the declaration of the class.
 
-	The class constructor (line 69) uses creates up the OpenCL objects required to communicate with the FPGA accelerator: 
+	The class constructor (line 69) creates the OpenCL objects required to communicate with the FPGA accelerator: 
 	* **clCreateKernel** is used to create the kernel object.
 	* **clCreateCommandQueue** is used to create the command-queue used to send commands to the FPGA device.  
 
@@ -425,8 +425,8 @@ These steps would take too long to complete during this tutorial, therefore prec
 	ls -la ./xclbin
 	```
 
-	- Notice that there are two .awsxclbin files ready to use
-	- The two .awsxclbin files correspond to FPGA binaries with 1 and 3 kernel instances, respectively 
+	- Notice that there are three .awsxclbin files ready to use
+	- The two .awsxclbin files correspond to FPGA binaries with 1, 3 and 6 kernel instances, respectively 
 
 1. Copy the host application executable built in the SDAccel workspace to the local directory.
 	```bash
@@ -450,19 +450,19 @@ These steps would take too long to complete during this tutorial, therefore prec
 
 1. Note the performance difference between the FPGA-accelerated and CPU-only executions of the 2D image filtering function. With a single kernel, the accelerated version is more than 19x faster than the multi-threaded CPU version.
 
-1. Now perform the same run using a binary containing 3 kernels instead of 1.
+1. Now perform the same run using the FPGA binary with 3 kernel instances.
 	```sh 
 	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga3k.awsxclbin
 	```
 
 1. Compare the new performance numbers: the version with 3 kernels is nearly 3x faster than the version with a single kernel.
 
-1. Now perform the same run using a binary containing 6 kernels.
+1. Now perform the same run using the FPGA binary with 6 kernel instances.
 	```sh 
 	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga6k.awsxclbin
 	```
 
-1. This version is more than 114x faster than the multi-threaded CPU version (!).
+1. This version is more than 112x faster than the multi-threaded CPU version (!).
 
 Additional kernels can easily be added (either more 2D filter kernels or different types of kernels) until all FPGA resources are utilized or until the global memory bandwidth is satured.
 	
