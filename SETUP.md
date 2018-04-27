@@ -65,7 +65,7 @@ The instance you just started is preconfigured with remote desktop protocol (RDP
     - On macOS: use the Microsoft Remote Desktop v8.0.43 (that version offers color depth settings) from the Mac App Store.
 
 1. **_IMPORTANT_**: Before connecting, set your remote desktop client to use **24-bit for color depth**
-    - Windows client: In the bottom-left corner of connection prompt, click Options, select the Display tab and set Colors to True Colors (24 bit)
+    - On Windows: In the bottom-left corner of connection prompt, click **Options**, select the **Display** tab and set **Colors** to **True Colors (24 bit)**
       
 1. In the RDP client, enter the **IPv4 Public IP** of your instance.
 
