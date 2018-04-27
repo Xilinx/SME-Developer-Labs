@@ -3,7 +3,7 @@
 
 
 static void Filter2D(
-        const int     *srcCoeffs, 
+		const short   *srcCoeffs, 
 		STREAM_PIXELS& srcImg,
 		U16            width,
 		U16            height,
@@ -12,25 +12,28 @@ static void Filter2D(
     I16 loopHeight = height+(FILTER_KERNEL_V_SIZE/2);
     I16 loopWidth  = width+(FILTER_KERNEL_H_SIZE/2);
 
-	Window2D<MAX_WIDTH, FILTER_KERNEL_V_SIZE, FILTER_KERNEL_H_SIZE, U8> pixelWindow(width, height);
+    // Filtering 2D window
+    Window2D<MAX_WIDTH, FILTER_KERNEL_V_SIZE, FILTER_KERNEL_H_SIZE, U8> pixelWindow(width, height);
 
-    int coeffs[15][15];
+    // Filtering coefficients
+    short coeffs[15][15];
     #pragma HLS ARRAY_PARTITION variable=coeffs complete dim=0
-    memcpy(&coeffs[0][0], &srcCoeffs[0], FILTER_KERNEL_V_SIZE*FILTER_KERNEL_V_SIZE*sizeof(int));
+
+    // Copy the coefficients from global memory to local memory
+    memcpy(&coeffs[0][0], &srcCoeffs[0], FILTER_KERNEL_V_SIZE*FILTER_KERNEL_V_SIZE*sizeof(short));
 
     for(int y=0; y<loopHeight; ++y)
     {
         for(int x=0; x<loopWidth; ++x)
         {
-#pragma HLS LOOP_FLATTEN OFF
-#pragma HLS PIPELINE II=1
+            #pragma HLS PIPELINE II=1
 
             // Determine whether to get a new pixel and update the 2D window
-			bool is_valid = pixelWindow.next(srcImg, x, y);
+            bool is_valid = pixelWindow.next(srcImg, x, y);
 
-			//Apply 2D filter
-			int sum = 0;
-			for(int row=0; row<FILTER_KERNEL_V_SIZE; row++) {
+            //Apply 2D filter
+            int sum = 0;
+            for(int row=0; row<FILTER_KERNEL_V_SIZE; row++) {
 				for(int col=0; col<FILTER_KERNEL_H_SIZE; col++) {
 					sum += pixelWindow(row,col)*coeffs[row][col];
 				}
@@ -53,7 +56,7 @@ static void Filter2D(
 extern "C" {
 
 void Filter2DKernel(
-        const int* coeffs,
+        const short* coeffs,
 		const ap_uint<AXIMM_DATA_WIDTH>* src,
 		unsigned int width,
 		unsigned int height,
@@ -76,10 +79,12 @@ void Filter2DKernel(
 	assert(height<= 1080);
 #endif
             
-	STREAM_PIXELS src_pixels;
-	STREAM_PIXELS dst_pixels;
+	// Stream of pixels from kernel input to filter, and from filter to output
+	hls::stream<U8> src_pixels;
+	hls::stream<U8> dst_pixels;
 	#pragma HLS stream variable=src_pixels depth=64
 	#pragma HLS stream variable=dst_pixels depth=64
+
 
 	#pragma HLS DATAFLOW
 
@@ -87,10 +92,10 @@ void Filter2DKernel(
 	AXIBursts2PixelStream((AXIMM)src, width, height, stride, src_pixels);
 
 	// Process incoming stream of pixels, and stream pixels out
-    Filter2D(coeffs, src_pixels, width, height, dst_pixels);
+	Filter2D(coeffs, src_pixels, width, height, dst_pixels);
 
 	// Write incoming stream of pixels and write them to global memory over AXI4 MM
-    PixelStream2AXIBursts(dst_pixels, width, height, stride, (AXIMM)dst);
+	PixelStream2AXIBursts(dst_pixels, width, height, stride, (AXIMM)dst);
 
   }
 

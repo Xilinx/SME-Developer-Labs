@@ -78,7 +78,7 @@ public:
   }
   
   Filter2DRequest* operator() (
-  	int              *coeffs,
+  	short            *coeffs,
 	unsigned char    *src,
 	unsigned int      width,
 	unsigned int      height,
@@ -94,7 +94,7 @@ public:
 	mSrcExt[0].flags = XCL_MEM_DDR_BANK0;
 	mSrcExt[0].param = 0;
 	mSrcExt[0].obj   = coeffs;
-  	mSrcBuf[0] = clCreateBuffer(mContext, CL_MEM_EXT_PTR_XILINX | CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,  (FILTER2D_KERNEL_V_SIZE*FILTER2D_KERNEL_V_SIZE)*sizeof(int), &mSrcExt[0], &mErr);
+  	mSrcBuf[0] = clCreateBuffer(mContext, CL_MEM_EXT_PTR_XILINX | CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,  (FILTER2D_KERNEL_V_SIZE*FILTER2D_KERNEL_V_SIZE)*sizeof(short), &mSrcExt[0], &mErr);
 
   	// Create input buffer for src (host to device)
 	mSrcExt[1].flags = XCL_MEM_DDR_BANK0;
@@ -230,7 +230,7 @@ int main(int argc, char** argv)
 	std::vector<uchar, aligned_allocator<uchar>> y_dst(nbytes);
 	std::vector<uchar, aligned_allocator<uchar>> u_dst(nbytes);
 	std::vector<uchar, aligned_allocator<uchar>> v_dst(nbytes);
-	std::vector<int  , aligned_allocator<int  >> coeff(FILTER2D_KERNEL_V_SIZE*FILTER2D_KERNEL_V_SIZE);
+	std::vector<short, aligned_allocator<short>> coeff(FILTER2D_KERNEL_V_SIZE*FILTER2D_KERNEL_V_SIZE);
 
 	// Create destination image
 	dst = cvCreateImage(cvSize(width, height), src->depth, src->nChannels);
@@ -239,7 +239,7 @@ int main(int argc, char** argv)
 	IplImage2Raw(src, y_src.data(), stride, u_src.data(), stride, v_src.data(), stride);
 
 	// Copy coefficients to 4k aligned vector
-	memcpy(coeff.data() , &filterCoeffs[coeffs][0][0], coeff.size()*sizeof(int) );
+	memcpy(coeff.data() , &filterCoeffs[coeffs][0][0], coeff.size()*sizeof(short) );
 
 	// ---------------------------------------------------------------------------------
 	// Make requests to kernel(s) 
@@ -352,7 +352,7 @@ int main(int argc, char** argv)
 		          << (double) numRuns*3*nbytes / cpu_duration.count() / (1024.0*1024.0)
 		          << " MB/s" << std::endl;
 
-		std::cout << "FPGA Speedup:    " << cpu_duration.count() / fpga_duration.count() << "x" << std::endl;
+		std::cout << "FPGA Speedup:    " << cpu_duration.count() / fpga_duration.count() << " x" << std::endl;
 	}
 
 	// Release allocated memory

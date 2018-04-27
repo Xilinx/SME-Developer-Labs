@@ -1,6 +1,6 @@
 #pragma once
 
-const int filterCoeffs[][15][15] = {
+const short filterCoeffs[][15][15] = {
 	{
 		// filterCoeffs[0] -> Identity
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
