@@ -394,7 +394,7 @@ We can improve the latency of our application by removing the idle time between 
     - The new sequence is: send 6 requests, wait for their completion
     - The result is less idle time and reduced latency
 
- By paying careful attention to how the code submits requests and waits for their completion, we can noticeably improve the performance of the application.
+By paying careful attention to how the code submits requests and waits for their completion, we can noticeably improve the performance of the application.
 
 ### Building the FPGA binary to execute on F1 
 
@@ -441,22 +441,30 @@ These steps would take too long to complete during this tutorial, therefore prec
 
 1. Execute on F1 using the FPGA binary with 1 kernel instance.    
 	```sh
-	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga.1k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
+	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga1k.awsxclbin
 	```
 
 	- The application loads a 1080p image (```-i``` argument)
 	- It processes this image 10 times (```-n``` argument)
 	- It uses a FPGA binary with 1 kernel (```-x``` argument)
 
-1. Note the performance difference between the FPGA-accelerated and CPU-only executions of the 2D image filtering function. With a single kernel, the accelerated version is already more than 20x faster than the multi-threaded CPU version.
+1. Note the performance difference between the FPGA-accelerated and CPU-only executions of the 2D image filtering function. With a single kernel, the accelerated version is more than 19x faster than the multi-threaded CPU version.
 
-1. Now perform the same run using 3 kernels instead of 1.
+1. Now perform the same run using a binary containing 3 kernels instead of 1.
 	```sh 
-	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga.3k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin
+	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga3k.awsxclbin
 	```
 
-1. Compare the new performance numbers.
+1. Compare the new performance numbers: the version with 3 kernels is nearly 3x faster than the version with a single kernel.
 
+1. Now perform the same run using a binary containing 6 kernels.
+	```sh 
+	./Filter2D.exe -i img/picadilly_1080p.bmp -n 10 -x ./xclbin/fpga6k.awsxclbin
+	```
+
+1. This version is more than 114x faster than the multi-threaded CPU version (!).
+
+Additional kernels can easily be added (either more 2D filter kernels or different types of kernels) until all FPGA resources are utilized or until the global memory bandwidth is satured.
 	
 ### Summary  
 
