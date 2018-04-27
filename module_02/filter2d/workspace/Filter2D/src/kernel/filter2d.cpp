@@ -79,10 +79,12 @@ void Filter2DKernel(
 	assert(height<= 1080);
 #endif
             
-	STREAM_PIXELS src_pixels;
-	STREAM_PIXELS dst_pixels;
+	// Stream of pixels from kernel input to filter, and from filter to output
+	hls::stream<U8> src_pixels;
+	hls::stream<U8> dst_pixels;
 	#pragma HLS stream variable=src_pixels depth=64
 	#pragma HLS stream variable=dst_pixels depth=64
+
 
 	#pragma HLS DATAFLOW
 
