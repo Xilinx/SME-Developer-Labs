@@ -72,12 +72,12 @@ int init_xlnxfilter_core(XlnxFilterContext *ctx)
 
 
            if(ncompute_unit ==0) {
-                av_log(NULL, AV_LOG_INFO, "INFO: No Compute Unit Specified, running Software version \n");
+                av_log(NULL, AV_LOG_INFO, "INFO: No Compute Unit Specified, Running Software version \n");
            } else if(ncompute_unit==1) {
-                av_log(NULL, AV_LOG_INFO, "INFO: ncompute_unit 1  \n");
+                av_log(NULL, AV_LOG_INFO, "INFO: ncompute_unit 1, Running Hardware version  \n");
                 xlnx_xclbin = "xclbin/fpga.1k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin";
            } else if(ncompute_unit==3) {
-                av_log(NULL, AV_LOG_INFO, "INFO: ncompute_unit 3  \n");
+                av_log(NULL, AV_LOG_INFO, "INFO: ncompute_unit 3, Running Hardware version  \n");
                 xlnx_xclbin = "xclbin/fpga.3k.hw.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.awsxclbin";
            } else {
                 av_log(NULL, AV_LOG_ERROR, "ERROR: ncompute_unit %d not supported, please specify 0,1 or 3 \n",ncompute_unit);
@@ -260,7 +260,7 @@ oclRequest* Execute (
 	B->mSrcExt.flags = XCL_MEM_DDR_BANK0;
 	B->mSrcExt.param = 0;
 	B->mSrcExt.obj   = src;
-  	B->mSrcBuf[0] = clCreateBuffer(B->mContext, CL_MEM_EXT_PTR_XILINX | CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,  nbytes, &(B->mSrcExt), &(B->mErr));
+  	B->mSrcBuf[0] = clCreateBuffer(B->mContext, CL_MEM_EXT_PTR_XILINX | CL_MEM_COPY_HOST_PTR | CL_MEM_READ_ONLY,  nbytes, &(B->mSrcExt), &(B->mErr));
 
         B->mCoeffExt.flags = XCL_MEM_DDR_BANK0;
         B->mCoeffExt.param = 0;
@@ -271,7 +271,7 @@ oclRequest* Execute (
 	B->mDstExt.flags = XCL_MEM_DDR_BANK0;
 	B->mDstExt.param = 0;
 	B->mDstExt.obj   = dst;
-	B->mDstBuf[0] = clCreateBuffer(B->mContext, CL_MEM_EXT_PTR_XILINX | CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, nbytes, &(B->mDstExt), &(B->mErr));
+	B->mDstBuf[0] = clCreateBuffer(B->mContext, CL_MEM_EXT_PTR_XILINX | CL_MEM_COPY_HOST_PTR | CL_MEM_WRITE_ONLY, nbytes, &(B->mDstExt), &(B->mErr));
   
 	// Schedule the writing of the inputs
 	clEnqueueMigrateMemObjects(B->mQueue, 1, B->mSrcBuf, 0, 0, NULL,  &req->mEvent[0]);	
@@ -373,7 +373,6 @@ int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *d
 	oclRequest* request[3];
 
           if((ncompute_unit == 3)||(ncompute_unit ==1)) {
-      printf("\n Running Hardware version\n");
 
       FilterDispatcher* Filter = ctx->filter;
 
@@ -398,7 +397,7 @@ int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *d
 
       clock_t end = clock();
       double hw_time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-      printf("\n Hardware time spent = %f seconds\n",hw_time_spent);
+      //printf("\n Hardware time spent = %f seconds\n",hw_time_spent);
 
 
 
@@ -408,7 +407,6 @@ int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *d
 
 
  if((ncompute_unit == 0) || (both==1)) {
-      printf("\nRunning Software version\n");
         uint8_t *y_ref = (uint8_t*) malloc(sizeof(uint8_t)*height*width);
         uint8_t *u_ref; 
         uint8_t *v_ref;
@@ -483,7 +481,7 @@ int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *d
   
       clock_t end = clock();
       double sw_time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-      printf("\n Software time spent = %f seconds\n",sw_time_spent);
+      //printf("\n Software time spent = %f seconds\n",sw_time_spent);
         free(y_ref);
         free(u_ref);
         free(v_ref);
