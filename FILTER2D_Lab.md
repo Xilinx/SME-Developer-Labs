@@ -413,7 +413,7 @@ These steps would take too long to complete during this tutorial, therefore prec
 
 ### Executing on F1 
 
-1. Close the SDAccel GUI and return to the terminal from which you started the tool.
+1. Quit the SDAccel GUI and return to the terminal from which you started the tool.
 
 1. Make sure you are in the correct directory
 	```bash
@@ -465,6 +465,12 @@ These steps would take too long to complete during this tutorial, therefore prec
 1. This version is more than 112x faster than the multi-threaded CPU version (!).
 
 Additional kernels can easily be added (either more 2D filter kernels or different types of kernels) until all FPGA resources are utilized or until the global memory bandwidth is satured.
+	
+1. Close your terminal to conclude this module.
+	```sh
+	exit
+	exit
+	```	
 	
 ### Summary  
 
