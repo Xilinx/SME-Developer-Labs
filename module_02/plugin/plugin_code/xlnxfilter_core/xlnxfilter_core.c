@@ -21,14 +21,17 @@ FilterDispatcher* FilterDispatcher_init(cl_device_id Device, cl_context Context,
 int init_xlnxfilter_core(XlnxFilterContext *ctx) 
 {
            int ncompute_unit = ctx->ncompute_unit; 
+           cl_int err;
 
            cl_platform_id platforms[16] = { 0 };
            cl_device_id devices[16];
            char platformName[256];
            char deviceName[256];
            cl_uint platformCount = 0;
+	   FilterDispatcher *Filter ; //(device, context, program);
+           unsigned const char* xlnx_xclbin ; //  = getenv("XLNX_XCLBIN");
 	   cl_env = av_opencl_alloc_external_env();
-           cl_int err = clGetPlatformIDs(0, 0, &platformCount);
+           err = clGetPlatformIDs(0, 0, &platformCount);
            err = clGetPlatformIDs(16, platforms, &platformCount);
            if (err != CL_SUCCESS) {
                return -1;
@@ -36,11 +39,15 @@ int init_xlnxfilter_core(XlnxFilterContext *ctx)
            cl_env->device_type = CL_DEVICE_TYPE_ACCELERATOR;
 
            for (cl_uint i = 0; i < platformCount; i++) {
+                cl_uint deviceCount = 0; 
+                cl_command_queue queue; 
+                cl_context context;
+                cl_context_properties contextData[3] = {CL_CONTEXT_PLATFORM, (cl_context_properties)platforms[i], 0}; 
+
                 err = clGetPlatformInfo(platforms[i], CL_PLATFORM_NAME, 256, platformName, 0);
                 if (err != CL_SUCCESS) {
                      return -1;
                 }
-                cl_uint deviceCount = 0;
                 err = clGetDeviceIDs(platforms[i], cl_env->device_type, 16, devices, &deviceCount);
                 if ((err != CL_SUCCESS) || (deviceCount == 0)) {
                     continue;
@@ -51,12 +58,11 @@ int init_xlnxfilter_core(XlnxFilterContext *ctx)
                     return -1;
                 }
 
-                cl_context_properties contextData[3] = {CL_CONTEXT_PLATFORM, (cl_context_properties)platforms[i], 0};
-                cl_context context = clCreateContextFromType(contextData, cl_env->device_type, 0, 0, &err);
+                context = clCreateContextFromType(contextData, cl_env->device_type, 0, 0, &err);
                 if (err != CL_SUCCESS) {
                     continue;
                 }
-                cl_command_queue queue = clCreateCommandQueue(context, devices[0], 0, &err);
+                queue = clCreateCommandQueue(context, devices[0], 0, &err); 
                 if (err != CL_SUCCESS) {
                     return -1;
                 }
@@ -68,7 +74,6 @@ int init_xlnxfilter_core(XlnxFilterContext *ctx)
                 break;
            }
 
-           unsigned char* xlnx_xclbin ; //  = getenv("XLNX_XCLBIN");
 
 
            if(ncompute_unit ==0) {
@@ -85,9 +90,11 @@ int init_xlnxfilter_core(XlnxFilterContext *ctx)
 
 
           if((ncompute_unit == 3)||(ncompute_unit ==1)) {
+           cl_int status; // FF
            unsigned char *kernelbinary = 0;
            size_t kernel_len = 0;
            int mlen = 0;
+           cl_program program;
            mlen = load_file_to_memory_copy(xlnx_xclbin, &kernelbinary);
 
              if (mlen < 0) {
@@ -98,10 +105,9 @@ int init_xlnxfilter_core(XlnxFilterContext *ctx)
 	     }
 
            kernel_len = mlen;
-           cl_int status;
 
 
-            cl_program program = clCreateProgramWithBinary(cl_env->context, 1, &(cl_env->device_id), &kernel_len, (const unsigned char**)&kernelbinary, &status, NULL);
+           program = clCreateProgramWithBinary(cl_env->context, 1, &(cl_env->device_id), &kernel_len, (const unsigned char**)&kernelbinary, &status, NULL);
            if( status != CL_SUCCESS || !program ) {
                av_log(NULL, AV_LOG_ERROR, "OpenCL unable to create fpga accelerator program\n");
                return -1;
@@ -122,7 +128,6 @@ int init_xlnxfilter_core(XlnxFilterContext *ctx)
 	// Load XCLBIN file, create OpenCL context, device and program
 	// ---------------------------------------------------------------------------------
 
-	FilterDispatcher *Filter ; //(device, context, program);
         Filter = FilterDispatcher_init(cl_env->device_id,cl_env->context, program);
 
         ctx->filter = Filter;
@@ -189,35 +194,30 @@ void xlnxfilter_software(
                 unsigned int   height,
                 unsigned int   stride,
                 int * coeff,
-                unsigned char *dstImg )
-{
+                unsigned char *dstImg ) {
 
         Window2D* win= initialize_Window2D(width, height, stride);
 
-    for(int y=0; y<height; ++y)
-    {
-        for(int x=0; x<width; ++x)
-        {
+    for(int y=0; y<height; ++y) {
+        for(int x=0; x<width; ++x) {
+              unsigned char outpix;
             // Determine whether to get a new pixel and update the 2D window
                         int is_valid = window_next(win,srcImg, x, y);
 
                         //Apply 2D filter
                         int sum = 0;
-                        for(int row=0; row<KERNEL_V_SIZE; row++)
-                        {
-                                for(int col=0; col<KERNEL_H_SIZE; col++)
-                                {
+                        for(int row=0; row<KERNEL_V_SIZE; row++) {
+                                for(int col=0; col<KERNEL_H_SIZE; col++) {
                                         sum += get_window(win,row,col)*(*(coeff+row*KERNEL_H_SIZE+col));
                                 }
                         }
 
                         //Clamp the normalized mean value to s7.4 bits
-                        unsigned char outpix = sum/(KERNEL_V_SIZE*KERNEL_H_SIZE);
+                        outpix = sum/(KERNEL_V_SIZE*KERNEL_H_SIZE);
 
-            // Take care of run-in effect, write output only when the window is valid
+                        // Take care of run-in effect, write output only when the window is valid
                         // i.e. if kernel is VxH need at least V/2 rows and H/2 pixels before generating output
-            if ( is_valid )
-            {
+            if ( is_valid ) {
                 dstImg[y*stride+x] = outpix;
             }
         }
@@ -267,11 +267,12 @@ oclRequest* Execute (
         B->mCoeffExt.obj   = coeff;
         B->mCoeffBuf[0] = clCreateBuffer(B->mContext, CL_MEM_EXT_PTR_XILINX | CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY,  900, &(B->mCoeffExt), &(B->mErr));
 	
+
 	// Create output buffer (device to host)
 	B->mDstExt.flags = XCL_MEM_DDR_BANK0;
 	B->mDstExt.param = 0;
 	B->mDstExt.obj   = dst;
-	B->mDstBuf[0] = clCreateBuffer(B->mContext, CL_MEM_EXT_PTR_XILINX | CL_MEM_COPY_HOST_PTR | CL_MEM_WRITE_ONLY, nbytes, &(B->mDstExt), &(B->mErr));
+	B->mDstBuf[0] = clCreateBuffer(B->mContext, CL_MEM_EXT_PTR_XILINX | CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, nbytes, &(B->mDstExt), &(B->mErr));
   
 	// Schedule the writing of the inputs
 	clEnqueueMigrateMemObjects(B->mQueue, 1, B->mSrcBuf, 0, 0, NULL,  &req->mEvent[0]);	
@@ -332,71 +333,92 @@ int load_file_to_memory_copy(const char *filename, unsigned char **result)
 int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *dst, unsigned int w, unsigned int h, unsigned int coeff_select, int ncompute_unit, unsigned int both, int format)
 {
 
-	int    numRuns    = 1; 
+	oclRequest* request[3];
+//	int    numRuns    = 1; 
 
 	unsigned width  = w;
 	unsigned height = h;
 	unsigned stride = width;
 
-	int *coeff_array; // = (int*) malloc(225*sizeof(int));
-        posix_memalign(&coeff_array,4096,225*sizeof(int));
+	void *coeff_array; // = (int*) malloc(225*sizeof(int));
+        posix_memalign(&coeff_array,4096,900);
 
         switch(coeff_select) {
              case 0:
-                for(int i=0;i<15;i++)
-                     for(int j=0;j<15;j++) {
-                          *(coeff_array + i*15+ j) = (int) blur_array[i][j];
-                      }
+                //for(int i=0;i<15;i++)
+                //     for(int j=0;j<15;j++) {
+                //          *(coeff_array + i*15+ j) = (int) blur_array[i][j];
+                //      }
+                memcpy(coeff_array,blur_array,900);
                 break;
              case 1:
-                for(int i=0;i<15;i++)
-                     for(int j=0;j<15;j++) {
-                          *(coeff_array + i*15+ j) = (int) identity_array[i][j];
-                      }
+                memcpy(coeff_array,identity_array,900);
+                //for(int i=0;i<15;i++)
+                //     for(int j=0;j<15;j++) {
+                //          *(coeff_array + i*15+ j) = (int) identity_array[i][j];
+                //      }
                 break;
              case 2:
-                for(int i=0;i<15;i++)
-                     for(int j=0;j<15;j++) {
-                          *(coeff_array + i*15+ j) = (int) motionblur_array[i][j];
-                      }
+                memcpy(coeff_array,motionblur_array,900);
+                //for(int i=0;i<15;i++)
+                //     for(int j=0;j<15;j++) {
+                //          *(coeff_array + i*15+ j) = (int) motionblur_array[i][j];
+                //      }
                 break;
              case 3:
-                for(int i=0;i<15;i++)
-                     for(int j=0;j<15;j++) {
-                          *(coeff_array + i*15+ j) = (int) emboss_array[i][j];
-                      }
+                memcpy(coeff_array,emboss_array,900);
+                //for(int i=0;i<15;i++)
+                //     for(int j=0;j<15;j++) {
+                //          *(coeff_array + i*15+ j) = (int) emboss_array[i][j];
+                //      }
                 break;
              default:
                 break;
          }
 
-	oclRequest* request[3];
 
           if((ncompute_unit == 3)||(ncompute_unit ==1)) {
 
       FilterDispatcher* Filter = ctx->filter;
 
-      clock_t begin = clock();
-            // Make independent requests to Y, U and V planes
-            // Requests will run sequentially if there is a single kernel
-            // Requests will run in parallel is there are two or more kernels
-            request[0] = Execute(Filter,pic->data[0], width, height, stride, coeff_array, dst->data[0]);
-            if(format == AV_PIX_FMT_YUV444P) {
-                request[1] = Execute(Filter,pic->data[1], width, height, stride, coeff_array, dst->data[1]);
-                request[2] = Execute(Filter,pic->data[2], width, height, stride, coeff_array, dst->data[2]);
-            }
-            if(format == AV_PIX_FMT_YUV420P) {
-                request[1] = Execute(Filter,pic->data[1], width/2, height/2, stride/2, coeff_array, dst->data[1]);
-                request[2] = Execute(Filter,pic->data[2], width/2, height/2, stride/2, coeff_array, dst->data[2]);
-            }
+        // For destination
+	void* dst_aligned_y; // = (int*) malloc(225*sizeof(int));
+	void* dst_aligned_u; // = (int*) malloc(225*sizeof(int));
+	void* dst_aligned_v; // = (int*) malloc(225*sizeof(int));
+
+        int uv_copy_size;
+        if(format == AV_PIX_FMT_YUV444P) {
+           uv_copy_size = height*stride;
+        }
+        if(format == AV_PIX_FMT_YUV420P) {
+           uv_copy_size = height*stride/4;
+        }
+
+        posix_memalign(&dst_aligned_y,4096,height*stride);
+        posix_memalign(&dst_aligned_u,4096,uv_copy_size);
+        posix_memalign(&dst_aligned_v,4096,uv_copy_size);
+
+        request[0] = Execute(Filter,pic->data[0], width, height, stride, coeff_array, dst_aligned_y);
+        if(format == AV_PIX_FMT_YUV444P) {
+            request[1] = Execute(Filter,pic->data[1], width, height, stride, coeff_array, dst_aligned_u);
+            request[2] = Execute(Filter,pic->data[2], width, height, stride, coeff_array, dst_aligned_v);
+        }
+        if(format == AV_PIX_FMT_YUV420P) {
+            request[1] = Execute(Filter,pic->data[1], width/2, height/2, stride/2, coeff_array, dst_aligned_u);
+            request[2] = Execute(Filter,pic->data[2], width/2, height/2, stride/2, coeff_array, dst_aligned_v);
+        }
 
 
-            sync(request[0]);
-            sync(request[1]);
-            sync(request[2]);
+        sync(request[0]);
+        sync(request[1]);
+        sync(request[2]);
 
-      clock_t end = clock();
-      double hw_time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+        memcpy(dst->data[0],dst_aligned_y,height*stride);
+        memcpy(dst->data[1],dst_aligned_u,uv_copy_size);
+        memcpy(dst->data[2],dst_aligned_v,uv_copy_size);
+
+      //clock_t end = clock();
+      //double hw_time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
       //printf("\n Hardware time spent = %f seconds\n",hw_time_spent);
 
 
@@ -419,7 +441,7 @@ int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *d
             u_ref = (uint8_t*) malloc(sizeof(uint8_t)*height*width);
             v_ref = (uint8_t*) malloc(sizeof(uint8_t)*height*width);
         }
-      clock_t begin = clock();
+      //clock_t begin = clock();
         // Compute reference results
         if(both==0) {
             xlnxfilter_software(pic->data[0], width, height, stride, coeff_array,dst->data[0]);
@@ -433,6 +455,7 @@ int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *d
             }
 
         } else {
+            int diff=0;
             xlnxfilter_software(pic->data[0], width, height, stride, coeff_array,y_ref);
             if(format == AV_PIX_FMT_YUV444P) {
             xlnxfilter_software(pic->data[1], width, height, stride, coeff_array, u_ref);
@@ -443,7 +466,6 @@ int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *d
                 xlnxfilter_software(pic->data[2], width/2, height/2, stride/2, coeff_array, v_ref);
             }
 
-            int diff = 0;
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                         if ( dst->data[0][y*stride+x] != y_ref[y*stride+x] ) diff = 1;
@@ -479,8 +501,8 @@ int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *d
             }
         }
   
-      clock_t end = clock();
-      double sw_time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+      //clock_t end = clock();
+      //double sw_time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
       //printf("\n Software time spent = %f seconds\n",sw_time_spent);
         free(y_ref);
         free(u_ref);
