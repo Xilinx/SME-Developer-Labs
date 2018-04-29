@@ -70,8 +70,6 @@ static int config_input(AVFilterLink *inlink)
     const AVPixFmtDescriptor *desc = av_pix_fmt_desc_get(inlink->format);
     XlnxFilterContext *s = inlink->dst->priv;
 
-    unsigned int h,w;
-
     s->depth = desc->comp[0].depth;
     s->width = inlink->w;
     s->height = inlink->h;
@@ -124,6 +122,8 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
     AVFrame *out;
     int ret;
     unsigned int w,h;
+    unsigned int nk;
+    unsigned both;
 
     out = ff_get_video_buffer(outlink, outlink->w, outlink->h);
 
@@ -138,10 +138,9 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
     w = s->width;
     h = s->height;
 
-    unsigned int nk;
     nk=s->ncompute_unit;
 
-    unsigned both=s->both;
+    both=s->both;
 
     ret = xlnxfilter_core(s,in, out, w,h, s->coeff,nk,both, inlink->format);
 
