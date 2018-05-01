@@ -60,20 +60,23 @@ After the build process, you can find a new directory XlnxFilter (though it does
 
 ### Xilinx 2D filter FFmpeg plugin code
 You can find all related code inside the **plugin_code** directory. 
+The steps below describe how Xilinx 2D filter is integrated inside the FFMpeg. You DO NOT need to edit any file. 
 
-1.	First, we need to register the new filter. Open the **plugin_code/allfilters.c** file and find the following entry.
+1.	First step to register the new filter. Open the **plugin_code/allfilters.c** file and find the following entry (**line 140**).
     ```bash
     REGISTER_FILTER(XLNXFILTER, xlnxfilter, vf);
 	```
 	The **allfilters.c** file is parsed by the configure script, which in turn will define variables for the build system and the C sources.
 	
 2.	The filter needs to be added to the **Makefile** of **libavfilter**. 
+        Open **plugin_code/Makefile** and look at **line 130** 
     ```bash
-	OBJS-$(CONFIG_XLNXFILTER_FILTER) += vf_xlnxfilter.o xlnxfilter_core/xlnxfilter_core.o
+	OBJS-$(CONFIG_XLNXFILTER_FILTER)             += vf_xlnxfilter.o
 	```
-
-3.	Next open **vf_xlnxfilter.c**. This file implements the Xilinx hardware accelerated Filter 2D ```FFmpeg``` plugin.
-	* Take a look at the **context** structure. This contains the local state context and is where we put all "global" information that we need; typically the variables storing the user options. Notice the first field **const AVClass *class;** it is the only field we need to keep assuming we have a context.
+       
+       
+3.	Next open **plugin_code/xlnxfilter_core/xlnxfilter_core.h**. 
+	* Take a look at the **context** structure (**line 67**). This contains the local state context and is where we put all "global" information that we need; typically the variables storing the user options. Notice the first field **const AVClass *class;** it is the only field we need to keep assuming we have a context.
     ```bash
 	typedef struct {
 		const AVClass *class;
@@ -86,8 +89,10 @@ You can find all related code inside the **plugin_code** directory.
 		int ncompute_unit;
 	} XlnxFilterContext;
 	```
-	
-	* The **options** array defines the user accessible options. For example, -vf xlnxfilter=coeff=blur:ncompute_unit=3. Most options
+
+4. Next open **plugin_code/vf_xlnxfilter.c**  This file implements the Xilinx hardware accelerated Filter 2D ```FFmpeg``` plugin.
+
+	* The **options** array (**line 46**) defines the user accessible options. For example, -vf xlnxfilter=coeff=blur:ncompute_unit=3. Most options
 have the following pattern:
 		* name, description, offset, type, default value, minimum value, maximum value, flags
 		* **name** is the option name, keep it simple and lowercase
@@ -109,7 +114,7 @@ have the following pattern:
 		};
 		```
 
-	* All filters are described by an AVFilter structure. This structure gives information needed to initialize the filter, and information on the entry points (callbacks) into the filter code. The **AVFilter** structure is declared in **libavfilter/avfilter.h**.
+	* All filters are described by an AVFilter structure (**line 181**) . This structure gives information needed to initialize the filter, and information on the entry points (callbacks) into the filter code. The **AVFilter** structure is declared in **libavfilter/avfilter.h**.
 		```bash
 		AVFilter ff_vf_xlnxfilter = {
 			.name          = "xlnxfilter",
