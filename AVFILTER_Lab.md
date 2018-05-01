@@ -193,8 +193,16 @@ Execute the following script
 ./build_ffmpeg_with_plugin.sh
 ```
 
-The new ffmpeg executable will be created with the Xilinx 2D filter plugin. 
+The new ffmpeg executable (**./XlnxFilter/bin/ffmpeg**) will be created with the Xilinx 2D filter plugin. 
 
+### Run newly created FFMpeg executable (Optional)
+
+```
+sudo sh
+source /opt/Xilinx/SDx/2017.1.rte/setup.sh
+fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
+./XlnxFilter/bin/ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=3:coeff=blur" crowd_fpga_3.yuv
+```
 ### Summary  
 
 In this lab, you learned:
