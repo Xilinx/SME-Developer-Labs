@@ -59,8 +59,7 @@ This build procedure takes a little less than 5 minutes. Have a nice short break
 After the build process, you can find a new directory XlnxFilter (though it does not contain the Xilinx 2D filter yet). You can find the ```ffmpeg``` executable inside XlnxFilter/bin/ffmpeg
 
 ### Xilinx 2D filter FFmpeg plugin code
-You can find all related code inside the **plugin_code** directory. 
-The steps below describe how Xilinx 2D filter is integrated inside the FFMpeg. You DO NOT need to edit any file. 
+You can find all plugin related code inside the **plugin_code** directory. We will observe these files to understand how we have integrated Xilinx 2D filter inside the FFMpeg. **You DO NOT need to edit any file in this section**. 
 
 1.	First step to register the new filter. Open the **plugin_code/allfilters.c** file and find the following entry (**line 140**).
     ```bash
