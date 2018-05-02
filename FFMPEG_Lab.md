@@ -69,9 +69,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     ```ffmpeg``` will show with a message similar (the exact numbers such as fps may vary) to this one: 
     ```bash
-        frame=  500 fps= 40 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed= 1.6x   
-  
-   
+        frame=  500 fps= 40 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed= 1.6x      
     ```
      
 
@@ -87,11 +85,10 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
     ```ffmpeg``` will show with a message similar (the exact numbers such as fps may vary) to this one: 
     
    ```bash
-      frame=  500 fps= 46 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.85x    
-   
+      frame=  500 fps= 53 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=2.11x       
     ```
 
-We are getting approximately 1.43x better performance using more instances of filter kernels on hardware
+
 
 #### Step 3: Comparing performance 
 
@@ -99,7 +96,7 @@ We are getting approximately 1.43x better performance using more instances of fi
 
     |                           | Filter on CPU | Filter on F1 (1 kernel) | Filter on F1 (3 kernels) |
     | :------------------------ |-------------:| -------:| -------:|
-    | performance                  | 1 fps sec     | 37 fps | 53 fps |
+    | performance                  | 1 fps sec     | 40 fps | 53 fps |
 
 
 #### Optional: Playing video
