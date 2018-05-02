@@ -98,7 +98,7 @@ We are getting approximately 25% better performance using more instances of filt
 
     |                           | Filter on CPU | Filter on F1 (1 kernel) | Filter on F1 (3 kernels) |
     | :------------------------ |-------------:| -------:| -------:|
-    | performance                  | 1 fps sec     | 37 fps | 46 fps |
+    | performance                  | 1 fps sec     | 37 fps | 53 fps |
 
 
 #### Optional: Playing video
