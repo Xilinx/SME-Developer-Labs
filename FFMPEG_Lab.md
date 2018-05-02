@@ -90,7 +90,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
    
     ```
 
-We are getting approximately 25% better performance using more instances of filter kernels on hardware
+We are getting approximately 1.43x better performance using more instances of filter kernels on hardware
 
 #### Step 3: Comparing performance 
 
