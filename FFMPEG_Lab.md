@@ -96,7 +96,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     |                           | Filter on CPU | Filter on F1 (1 kernel) | Filter on F1 (3 kernels) |
     | :------------------------ |-------------:| -------:| -------:|
-    | performance                  | 1 fps sec     | 40 fps | 53 fps |
+    | performance                  | 1 fps      | 40 fps | 53 fps |
 
 
 #### Optional: Playing video
