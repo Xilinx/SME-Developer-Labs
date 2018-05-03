@@ -91,7 +91,7 @@ The kernel code is comprised of the following files:
 
 ### Overview of the kernel code
 
-_Note: this section has already been explained in the preceding presention. You can either read it for additional details or jump to the next section about the host application source code_
+_Note: the main information about the kernel code was provided in the preceding presentation. You can either read what follows for additional details or [jump to the next section](FILTER2D_Lab.md#overview-of-the-host-application-code) covering the host application source code_
 
 1. Now open the **filter2d.cpp** file in the **src/kernel** folder.
 
