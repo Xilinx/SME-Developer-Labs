@@ -69,7 +69,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     ```ffmpeg``` will show with a message similar (the exact numbers such as fps may vary) to this one: 
     ```bash
-        frame=  500 fps= 40 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed= 1.6x      
+        frame=  500 fps= 45 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=1.81x      
     ```
      
 
@@ -85,7 +85,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
     ```ffmpeg``` will show with a message similar (the exact numbers such as fps may vary) to this one: 
     
    ```bash
-      frame=  500 fps= 53 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=2.11x       
+      frame=  500 fps= 58 q=-0.0 Lsize= 1518750kB time=00:00:20.00 bitrate=622080.0kbits/s speed=2.31x       
     ```
 
 
@@ -96,7 +96,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
     |                           | Filter on CPU | Filter on F1 (1 kernel) | Filter on F1 (3 kernels) |
     | :------------------------ |-------------:| -------:| -------:|
-    | performance                  | 1 fps      | 40 fps | 53 fps |
+    | performance                  | 1 fps      | 45 fps | 58 fps |
 
 
 #### Optional: Playing video
