@@ -17,6 +17,7 @@
  *
  */
 
+
 #ifndef _XLNXFILTER_CORE_H_
 #define _XLNXFILTER_CORE_H_
 
@@ -26,6 +27,11 @@
 #include "libavutil/opencl.h"
 #include "libavutil/log.h"
 #include <CL/cl_ext.h>
+
+typedef int COEFFTYPE;
+#define COEFF_ARRAY_SIZE 900
+//typedef short COEFFTYPE;
+//#define COEFF_ARRAY_SIZE 450
 
 typedef enum {
      RUN_SW,
@@ -45,22 +51,33 @@ typedef struct Window2D {
 typedef struct oclRequest_t {
 
   cl_event mEvent[3];	
+  //cl_event mEventF[2];	
   int      mId;
 } oclRequest;
 
 typedef struct FilterDispatcher_t {
 
-  cl_kernel         mKernel;
+  cl_kernel         mKernel[3];
   cl_command_queue  mQueue;	
   cl_context        mContext;  
   cl_program        mProgram;
-  cl_mem_ext_ptr_t  mSrcExt;
+  cl_mem_ext_ptr_t  mSrcExtY;
+  cl_mem_ext_ptr_t  mSrcExtU;
+  cl_mem_ext_ptr_t  mSrcExtV;
   cl_mem_ext_ptr_t  mCoeffExt;
-  cl_mem_ext_ptr_t  mDstExt;
+  cl_mem_ext_ptr_t  mDstExtY;
+  cl_mem_ext_ptr_t  mDstExtU;
+  cl_mem_ext_ptr_t  mDstExtV;
   cl_int            mErr;
-  cl_mem            mSrcBuf[1];
+  //cl_mem            mSrcBuf[3];
+  cl_mem            mSrcBufY[1];
+  cl_mem            mSrcBufU[1];
+  cl_mem            mSrcBufV[1];
   cl_mem            mCoeffBuf[1];
-  cl_mem            mDstBuf[1]; 
+  //cl_mem            mDstBuf[3]; 
+  cl_mem            mDstBufY[1]; 
+  cl_mem            mDstBufU[1]; 
+  cl_mem            mDstBufV[1]; 
   int               mCounter; 
 }FilterDispatcher;
 
@@ -84,12 +101,12 @@ typedef struct {
 
 
 FilterDispatcher* FilterDispatcher_init(cl_device_id Device, cl_context Context, cl_program Program );
-oclRequest* Execute ( FilterDispatcher* B, unsigned char    *src, unsigned int      width, unsigned int      height, unsigned int      stride, int* coeff, unsigned char    *dst );
+oclRequest* Execute ( FilterDispatcher* B, unsigned char    *src, unsigned int      width, unsigned int      height, unsigned int      stride, COEFFTYPE* coeff, unsigned char    *dst , int num);
 int init_xlnxfilter_core(XlnxFilterContext *ctx);
 void release_xlnxfilter_core(XlnxFilterContext *ctx);
 void FilterDispatcher_destroy(FilterDispatcher* B);
 
-int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *dst, unsigned int w, unsigned int h, unsigned int coeff_select,int ncompute_unit,unsigned int both,int format);
+int xlnxfilter_core(XlnxFilterContext *ctx, const AVFrame *pic, const AVFrame *dst, int format);
 int window_next(Window2D* win, unsigned char *srcImg, unsigned x, unsigned y);
 unsigned char get_window (Window2D* win, int row, int col); 
 Window2D* initialize_Window2D(unsigned short width, unsigned short height, unsigned short stride);
