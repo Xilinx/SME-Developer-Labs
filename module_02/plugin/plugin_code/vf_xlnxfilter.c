@@ -121,9 +121,6 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
     AVFilterLink *outlink = ctx->outputs[0];
     AVFrame *out;
     int ret;
-    unsigned int w,h;
-    unsigned int nk;
-    unsigned both;
 
     out = ff_get_video_buffer(outlink, outlink->w, outlink->h);
 
@@ -134,15 +131,8 @@ static int filter_frame(AVFilterLink *inlink, AVFrame *in)
     }
     av_frame_copy_props(out, in);
 
-    // If hardware is detected and xclbin is successfully loaded, hardware processing is done here
-    w = s->width;
-    h = s->height;
 
-    nk=s->ncompute_unit;
-
-    both=s->both;
-
-    ret = xlnxfilter_core(s,in, out, w,h, s->coeff,nk,both, inlink->format);
+    ret = xlnxfilter_core(s,in, out,inlink->format);
 
     if ((ret < 0) ) {
             printf("Error while processing in HW...\n");
