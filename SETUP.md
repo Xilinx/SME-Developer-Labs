@@ -75,7 +75,7 @@ The instance you just started is preconfigured with remote desktop protocol (RDP
 
 1. Login with the following credentials:
     - User: **centos**
-    - Password: ******** _(provided at the event)_
+    - Password: **sdaccel_labs**
    
     ![Remote](./images/setup_lab/remote1.png?raw=true)
    
