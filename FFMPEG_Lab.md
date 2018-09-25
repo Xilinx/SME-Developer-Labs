@@ -59,7 +59,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 #### Step 2: Running with the filter on the F1 FPGA 
   
 
-1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding AFI. Also note we are not specifying -frames switch so ffmpeg will process all 500 frames. 
+1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding Amazon FPGA Image (AFI). Also note we are not specifying -frames switch so ffmpeg will process all 500 frames. 
 
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
