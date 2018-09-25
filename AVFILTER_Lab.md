@@ -18,7 +18,7 @@
 
 This tutorial is designed to teach how to add your own custom FFmpeg plugin. The filter will be added to the libavfilter library that provides a generic audio/video filtering framework containing several filters, sources, and sinks. 
 
-The kernel used in this tutorial is the 2D image filter, that you already have seen in the previous section while working with the standalone SDAccel environment. The kernel is already precompiled with SDAccel with 1 and 3 kernels per xclbin. This can be selected through the FFmpeg command line by ncompute_unit=1 and ncompute_unit=3, respectively. The OpenCL host code is used to write FFMpeg Plugin code by using standard FFMpeg filter writing process. 
+The kernel used here is the same 2D Filter that you developed with SDAccel in the previous module. The plugin code adheres to the interfaces required by FFmpeg and uses OpenCL APIs to interact with the kernel. FPGA binaries with 1 and 3 kernels are precompiled. They can be selected through the FFmpeg command line by specifying ncompute_unit=1 and ncompute_unit=3, respectively. 
 
 We will follow these steps during this tutorial:
 * Build FFmpeg standalone without the Xilinx 2D filter plugin
