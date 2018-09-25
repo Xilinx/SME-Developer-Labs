@@ -17,12 +17,12 @@
 
 In this module you will start a pre-configured EC2 F1 instance and connect to it using a remote desktop client. Once connected, you will download the lab files and confirm you can execute a simple application on F1.
 
-For this event, each registered participant has been attributed a preconfigured EC2 F1 instance and should have received an email with the following details:
+For this event, each registered participant has been attributed a preconfigured EC2 F1 instance and should have received instructions with the following details:
 - Account ID
 - IAM username
 - Link to access a preconfigured EC2 F1 instance
 
-If you have not received that email, please contact an Xilinx event staff member now.
+If you have not received these instructions, please contact an Xilinx event staff member now.
 
 #### Start a preconfigured EC2 F1 instance
 
@@ -141,7 +141,7 @@ The hello world example is an OpenCL application with a simple vector-addition a
     ./helloworld
     ```
 
-    The host application executes using the vector_addition kernel running in the FPGA and produces the following results:
+    The host application sends vectors of data to a kernel running in the FPGA. The kernel adds the vectors together and the ouput values are transfered back to the host. The host prints these values as ASCII characters producing the following output:
 
     ```shell
     Device/Slot[0] (/dev/xdma0, 0:0:1d.0)
