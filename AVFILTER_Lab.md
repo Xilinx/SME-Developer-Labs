@@ -36,10 +36,10 @@ We will follow these steps during this tutorial:
     cd ~/SME-Developer-Labs/module_02/plugin
     ```
 3. The directory contains following scripts and directories
- * build_ffmpeg.sh : Script to download the FFMpeg source code, its dependencies and build ```ffmpeg``` executable
- * merge_plugin_code.sh : Script to merge Xilinx 2D filter plugin code inside ffmpeg code base
- * build_ffmpeg_with_plugin.sh : Script to do an incremental build with the Xilinx 2D filter plugin and rebuild the ```ffmpeg``` executable
- * plugin_code : Directory containing the Xilinx 2D filter plugin code
+ * **build_ffmpeg.sh** : Script to download the FFMpeg source code, its dependencies and build ```ffmpeg``` executable
+ * **merge_plugin_code.sh** : Script to merge Xilinx 2D filter plugin code inside ffmpeg code base
+ * **build_ffmpeg_with_plugin.sh** : Script to do an incremental build with the Xilinx 2D filter plugin and rebuild the ```ffmpeg``` executable
+ * **plugin_code** : Directory containing the Xilinx 2D filter plugin code
 
 We will execute script build_ffmpeg.sh to Build the FFmpeg executable.
 The script will do following things
@@ -75,7 +75,7 @@ You can find all plugin related code inside the **plugin_code** directory. We wi
        
        
 3.	Next open **plugin_code/xlnxfilter_core/xlnxfilter_core.h**. 
-	* Take a look at the **context** structure (**line 67**). This contains the local state context and is where we put all "global" information that we need; typically the variables storing the user options. Notice the first field **const AVClass *class;** it is the only field we need to keep assuming we have a context.
+	* Take a look at the **context** structure (**line 84**). This contains the local state context and is where we put all "global" information that we need; typically the variables storing the user options. Notice the first field **const AVClass *class;** it is the only field we need to keep assuming we have a context.
     ```bash
 	typedef struct {
 		const AVClass *class;
@@ -89,7 +89,7 @@ You can find all plugin related code inside the **plugin_code** directory. We wi
 	} XlnxFilterContext;
 	```
 
-4. Next open **plugin_code/vf_xlnxfilter.c**  This file implements the Xilinx hardware accelerated Filter 2D ```FFmpeg``` plugin.
+4. Next open **plugin_code/vf_xlnxfilter.c**. This file implements the Xilinx hardware accelerated Filter 2D ```FFmpeg``` plugin.
 
 	* The **options** array (**line 46**) defines the user accessible options. For example, -vf xlnxfilter=coeff=blur:ncompute_unit=3. Most options
 have the following pattern:
@@ -113,7 +113,7 @@ have the following pattern:
 		};
 		```
 
-	* All filters are described by an AVFilter structure (**line 181**) . This structure gives information needed to initialize the filter, and information on the entry points (callbacks) into the filter code. The **AVFilter** structure is declared in **libavfilter/avfilter.h**.
+	* Further down in **plugin_code/vf_xlnxfilter.c**, the filter is declared using the **AVFilter** structure (**line 171**). Inputs and outputs to the filter are defined right above (**line 153** and **line163**). The **AVFilter** structure provides information neededed by FFmpeg to operate the filter, including how to initialize it, and information on the entry points (callbacks) into the filter code. The **AVFilter** structure is declared in **libavfilter/avfilter.h**.  
 		```bash
 		AVFilter ff_vf_xlnxfilter = {
 			.name          = "xlnxfilter",
@@ -194,7 +194,7 @@ Execute the following script
 
 The new ffmpeg executable (**./XlnxFilter/bin/ffmpeg**) will be created with the Xilinx 2D filter plugin. 
 
-### Run newly created FFMpeg executable (Optional)
+### Run newly created FFmpeg executable (Optional)
 
 ```
 sudo sh
@@ -205,8 +205,8 @@ fpga-load-local-image -S 0 -I agfi-0aca85d72bf96b3f4
 ### Summary  
 
 In this lab, you learned:
-* How to build your own ```FFmpeg``` plugin.
-* The 'anatomy' of an ```FFmpeg``` AVFilter plugin.
+* The 'anatomy' of an FFmpeg AVFilter plugin.
+* How to build your own FFmpeg plugin interacting with an FPGA accelerator
 
 ---------------------------------------
 
