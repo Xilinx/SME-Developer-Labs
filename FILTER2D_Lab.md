@@ -91,7 +91,7 @@ The kernel code is comprised of the following files:
 
 ### Overview of the kernel code
 
-1. Now open the **filter2d.cpp** file in the **src/kernel** folder.
+1. Now double-click on the **filter2d.cpp** file in the **src/kernel** folder to open it.
 
 1. Locate the **Outline** viewer located on the right side of the GUI. 
 	* This view provides a convenient way of looking-up and navigating the code hierarchy. 
