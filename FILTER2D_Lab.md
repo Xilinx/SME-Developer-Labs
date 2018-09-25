@@ -77,21 +77,19 @@ The project is comprised of two directories:
 
 1. Expand the **host** directory in the **Project Explorer**. 
 The host code is comprised of the following files:
-	* **host.cpp** contains the main application code.
-	* **filter2d.cpp** contains the code for the filter function running on the CPU.
-	* **xclbin_helper.cpp** and **.h** contains helper code for downloading accelerators to the FPGA.
-	* **cmdlineparser.cpp** and **.h** contains the code for parsing command line arguments.
-	* **logger.cpp** and **.h** contains code for logging information.
+	* **host.cpp** - main application code.
+	* **filter2d.cpp**, **filter2d.h**, **coefficients.h** and **window2d.h** - code for the filter function running on the CPU.
+	* **xclbin_helper.cpp** and **xclbin_helper.h** - helper code for downloading accelerators to the FPGA.
+	* **cmdlineparser.cpp** and **cmdlineparser.h** - code for parsing command line arguments.
+	* **logger.cpp** and **logger.h** - code for logging information.
 
 1. Expand the **kernel** directory in the **Project Explorer**. 
 The kernel code is comprised of the following files:
-	* **filter2d.cpp** contains the code for the filter function running on the FPGA.
-	* **axi2stream.cpp** and **.h** contains the code for efficiently reading from and writing to memory.
-	* **window_2d.h** and **hls_video_mem.h** contains the code for handling video line buffers and pixel windows.
+	* **filter2d.cpp** and **filter2d.h** - code for the filter function running on the FPGA.
+	* **axi2stream.cpp** and **axi2stream.h** - code for efficiently reading from and writing to memory.
+	* **window_2d.h** and **hls_video_mem.h** - code for handling video line buffers and pixel windows.
 
 ### Overview of the kernel code
-
-_Note: the main information about the kernel code was provided in the preceding presentation. You can either read what follows for additional details or [jump to the next section](FILTER2D_Lab.md#overview-of-the-host-application-code) covering the host application source code_
 
 1. Now open the **filter2d.cpp** file in the **src/kernel** folder.
 
@@ -130,7 +128,7 @@ _Note: the main information about the kernel code was provided in the preceding 
 1. Using the right mouse button, click on the **load_xclbin_file** function and chose **Open Declaration** to jump to the declaration of the function located in the **xclbin_helper.cpp** file.
 	* This function takes care of retrieving the OpenCL platform, device ID, creating the OpenCL context and create the OpenCL program. These four steps are typical of all SDAccel application.
 	* The functions implementing these four steps (also located in the **xclbin_helper.cpp** file) will look very familiar to developers with prior OpenCL experience. This code can often be reused as-is from project to project. 
-	* Of particular note is the call to **clCreateProgramWithBinary** (line 87). This function loads contents of the specified FPGA binary file (xclbin file) into the FPGA device of the AWS EC2 F1 instance. 
+	* Of particular note is the call to **clCreateProgramWithBinary** (line 87). This function loads contents of the specified FPGA binary file (.xclbin or .awsxclbin file) into the FPGA device of the AWS EC2 F1 instance. 
 	* All objects accessed through a **clCreate...** function call are to be released before terminating the program by calling **clRelease...**. This avoids memory leakage and clears the lock on the device.
 
 1. Now go back to the **host.cpp** file and go to line 304. This where the image is processed using a conventional software implementation.
