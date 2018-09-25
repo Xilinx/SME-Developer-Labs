@@ -16,11 +16,11 @@
 ---------------------------------------
 ### Experiencing F1 Acceleration
 
-In this module you will experience the acceleration potential of AWS F1 instances by using ffmpeg to filter raw YUV 1920x1080 video, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
+In this module you will experience the acceleration potential of AWS F1 instances by using FFmpeg to filter raw YUV 1920x1080 video, first using the filter executing on the CPU, and then executing the hardware accelerated filter optimized for F1 FPGAs. 
 
-```ffmpeg``` is a very popular multimedia framework able to decode, encode, transcode, mux, demux, stream, filter and play pretty much any audio/video format that exists. The ```ffmpeg``` code is open-source and allows for the addition of custom plugins. For this lab, a custom AVFilter plugin has been created to transparently use the hardware accelerated two-dimensional filter running on AWS F1.
+FFmpeg is a very popular multimedia framework able to decode, encode, transcode, mux, demux, stream, filter and play pretty much any audio/video format that exists. The FFmpeg code is open-source and allows for the addition of custom plugins. For this lab, a custom AVFilter plugin has been created to transparently use the hardware accelerated two-dimensional filter running on AWS F1.
 
-Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write Y, U and V planes of the video frames to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accessed via the ffmpeg command line.
+Users can switch between the filter running on the CPU and the F1-accelerated implementation by simply changing a parameter on the FFmpeg command line. The plugin uses OpenCL API calls to write Y, U and V planes of the video frames to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accessed via the ffmpeg command line.
 
 #### Setting-up the lab
 
@@ -41,11 +41,11 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 1. Run with the video filter running on the CPU. 
 
-  Plugin xlnxfilter takes two switches:
-   * Switch "ncompute_unit" denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU.
-   * Switch "coeff" specifies the type of applied filter on the input frames. 
+  Plugin **xlnxfilter** takes two switches:
+   * **ncompute_unit** denotes how many hardware units will be used to accelerate the application. ncompute_unit=0 runs the application completely on CPU.
+   * **coeff** specifies the type of filter applied on the input frames. 
      
-   As running on CPU is slow, we will process only 10 frames of the video
+   As running on the CPU is slow, we will process only 10 frames of the video
    ```bash
   ./ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 1920x1080 -i /home/centos/vectors/crowd8_420_1920x1080_50.yuv -vf "xlnxfilter=ncompute_unit=0:coeff=blur" -frames 10 crowd_out_cpu.yuv
   ```
