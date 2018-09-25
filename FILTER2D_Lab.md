@@ -203,10 +203,10 @@ In this lab, we will only run the hardware emulation flow.
 	*******************************************************
 	MATCH PASS: Output matches reference
 	*******************************************************
-	INFO: [SDx-EM 22] [Wall clock time: 23:29, Emulation time: 0.183738 ms] Data transfer between kernel(s) and global memory(s)
-	BANK0          RD = 48.094 KB              WR = 27.000 KB
-	BANK1          RD = 0.000 KB               WR = 0.000 KB
-	BANK2          RD = 0.000 KB               WR = 0.000 KB
+	INFO: [SDx-EM 22] [Wall clock time: 01:14, Emulation time: 0.473166 ms] Data transfer between kernel(s) and global memory(s)
+	BANK0          RD = 69.094 KB              WR = 48.000 KB       
+	BANK1          RD = 0.000 KB               WR = 0.000 KB        
+	BANK2          RD = 0.000 KB               WR = 0.000 KB        
 	BANK3          RD = 0.000 KB               WR = 0.000 KB 	    
 	```
 
