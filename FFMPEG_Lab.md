@@ -20,7 +20,7 @@ In this module you will experience the acceleration potential of AWS F1 instance
 
 ```ffmpeg``` is a very popular multimedia framework able to decode, encode, transcode, mux, demux, stream, filter and play pretty much any audio/video format that exists. The ```ffmpeg``` code is open-source and allows for the addition of custom plugins. For this lab, a custom AVFilter plugin has been created to transparently use the hardware accelerated two-dimensional filter running on AWS F1.
 
-Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write Y, U and V planes of the video frames to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accesses via the ffmpeg command line.
+Users can switch between the filter running on CPU and the F1-accelerated implementation by simply changing a parameter on the ```ffmpeg``` command line. The plugin uses OpenCL API calls to write Y, U and V planes of the video frames to the FPGA, execute the filter on the FPGA, and read back the filtered planes. A number of preset filters (identity, blur, motionblur, sharpen) can be accessed via the ffmpeg command line.
 
 #### Setting-up the lab
 
@@ -59,7 +59,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 #### Step 2: Running with the filter on the F1 FPGA 
   
 
-1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding AFI. ALso note we are not specifying -frames switch so ffmpeg will process all 500 frames. 
+1. Run with the filter running on the F1 FPGA, using just one hardware unit for filter kernels. Before running the FPGA executable we will load the corresponding AFI. Also note we are not specifying -frames switch so ffmpeg will process all 500 frames. 
 
     ```bash
     fpga-load-local-image -S 0 -I agfi-08afc45e98b56134e
@@ -100,7 +100,7 @@ Users can switch between the filter running on CPU and the F1-accelerated implem
 
 
 #### Optional: Playing video
-You can run ffplay to view any video using the excutable inside the same directory. However, just aware that ffplay is very slow on F1 instance. 
+You can run ffplay to view any video using the excutable inside the same directory. However, be aware that playing video over RDP is not very efficient and frames will be skipped. Since the "blur" preset was applied, the filtered video appears blurred. Make sure to close the player after you have confirmed the output is filtered as expected.
 
 Original:
 ```bash
