@@ -31,14 +31,14 @@ The architecture of the AWS F1 platform and the SDAccel development flow are pic
 
 #### Overview of the Xilinx Developer Lab modules
 
-This developer lab is divided in 4 modules. It is recommended to complete each module before proceeding to the next.
+This developer lab is divided into 4 modules. It is recommended to complete each module before proceeding to the next.
 
 1. **Connecting to your F1 instance** \
 You will start a pre-configured EC2 F1 instance and connect to it using a remote desktop client. Once connected, you will download the lab files and confirm you can execute a simple application on F1.
 1. **Experiencing F1 acceleration** \
 AWS F1 instances are ideal to accelerate complex workloads. In this module you will experience the potential of F1 by using FFmpeg to run both a software implementation and an F1-optimized implementation of a two-dimensional video filter accelerator. 
 1. **Developing and optimizing F1 applications with SDAccel** \
-You will use the SDAccel development environment to create, profile and optimize an F1 accelerator. The lab focuses on a programmable two-dimensional video filter, a compute intensive function used at the heart of many video algorithms such as noise reduction, and image sharpening.
+You will use the SDAccel development environment to create, profile and optimize an F1 accelerator. The lab focuses on a programmable two-dimensional video filter, a compute intensive function used at the heart of many video algorithms such as noise reduction, and image blurring or sharpening.
 1. **Creating a custom FFmpeg plugin** \
 You will learn how the F1-optimized implementation of the video filter is integrated as a custom filter plugin into FFmpeg.
 1. **Wrap-up and next steps** \
