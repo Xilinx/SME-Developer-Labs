@@ -141,7 +141,7 @@ The hello world example is an OpenCL application with a simple vector-addition a
     ./helloworld
     ```
 
-    The host application sends vectors of data to a kernel running in the FPGA. The kernel adds the vectors together and the ouput values are transfered back to the host. The host prints these values as ASCII characters producing the following output:
+    The host application sends vectors of data to a kernel running in the FPGA. The kernel adds the vectors together and the output values are transferred back to the host. The host prints these values as ASCII characters producing the following output:
 
     ```shell
     Device/Slot[0] (/dev/xdma0, 0:0:1d.0)
