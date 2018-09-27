@@ -44,7 +44,7 @@ To take your AWS F1 and SDAccel experience further, we recommend the following r
 
 | Resource | Title                       | Description  |
 | -------- |---------------------------- | ----- |
-| Tutorial | ** On-demand SDAccel lab on AWS ** | Try one of the on-demand SDAccel labs on AWS to learn about more app optimization techniques. [**Click here**](https://www.author.xilinx.com/products/design-tools/cloud-based-acceleration/aws-f1-developer-lab-form.html). |
+| Tutorial | **On-demand SDAccel lab on AWS** | Try one of the on-demand SDAccel labs on AWS to learn about more app optimization techniques. [**Click here**](https://www.author.xilinx.com/products/design-tools/cloud-based-acceleration/aws-f1-developer-lab-form.html). |
 | Tutorial | **Get started on F1 with the SDAccel C/OpenCL flow** | This guide takes new users through all the steps required to build a first working application on F1. [**Click here**](https://github.com/Xilinx/SDAccel_Examples/wiki/Getting-Started-on-AWS-F1-with-SDAccel-and-C-OpenCL-Kernels). |
 | Tutorial | **Get started on F1 with the SDAccel RTL flow** | This guide is targeted to developers with prior hardware design experience and legacy RTL designs. [**Click here**](https://github.com/Xilinx/SDAccel_Examples/wiki/Getting-Started-on-AWS-F1-with-SDAccel-and-RTL-Kernels). |
 | F1 App | **Test-drive Xilinx GoogLeNet / ResNet on AWS F1** | See for yourself how Xilinx can accelerate machine learning image classification on AWS F1. [**Click here**](https://www.xilinx.com/applications/megatrends/machine-learning/aws-f1-test-drive.html). |
