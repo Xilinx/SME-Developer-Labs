@@ -17,12 +17,12 @@
 
 In this module you will start a pre-configured EC2 F1 instance and connect to it using a remote desktop client. Once connected, you will download the lab files and confirm you can execute a simple application on F1.
 
-For this event, each registered participant has been attributed a preconfigured EC2 F1 instance and should have received an email with the following details:
+For this event, each registered participant has been attributed a preconfigured EC2 F1 instance and should have received instructions with the following details:
 - Account ID
 - IAM username
 - Link to access a preconfigured EC2 F1 instance
 
-If you have not received that email, please contact an Xilinx event staff member now.
+If you have not received these instructions, please contact an Xilinx event staff member now.
 
 #### Start a preconfigured EC2 F1 instance
 
@@ -58,11 +58,9 @@ If you have not received that email, please contact an Xilinx event staff member
 The instance you just started is preconfigured with remote desktop protocol (RDP) services.
 
 1. From your local machine, start a remote desktop protocol client
-    - On Windows: press the Windows key and type "remote desktop".
-      - You should see the "Remote Desktop Connection" in the list of programs.
-      - Alternatively you can also simply type `mstsc.exe` in the Windows run prompt.
-    - On Linux: RDP clients such a Remmina or Vinagre are suitable.
-    - On macOS: use the Microsoft Remote Desktop v8.0.43 (that version offers color depth settings) from the Mac App Store.
+    - On Windows: press the Windows key and type "mstsc.exe" in the Windows run prompt
+    - On Linux: use an RDP client such a Remmina or Vinagre
+    - On macOS: use the Microsoft Remote Desktop v8.0.43 (that version offers color depth settings) from the Mac App Store
 
 1. **_IMPORTANT_**: Before connecting, set your remote desktop client to use **24-bit for color depth**
     - On Windows: In the bottom-left corner of connection prompt, click **Options**, select the **Display** tab and set **Colors** to **True Colors (24 bit)**
@@ -75,7 +73,7 @@ The instance you just started is preconfigured with remote desktop protocol (RDP
 
 1. Login with the following credentials:
     - User: **centos**
-    - Password: **sdaccel_labs**
+    - Password: _provided at the event_
    
     ![Remote](./images/setup_lab/remote1.png?raw=true)
    
@@ -141,7 +139,7 @@ The hello world example is an OpenCL application with a simple vector-addition a
     ./helloworld
     ```
 
-    The host application executes using the vector_addition kernel running in the FPGA and produces the following results:
+    The host application sends vectors of data to a kernel running in the FPGA. The kernel adds the vectors together and the output values are transferred back to the host. The host prints these values as ASCII characters producing the following output:
 
     ```shell
     Device/Slot[0] (/dev/xdma0, 0:0:1d.0)
