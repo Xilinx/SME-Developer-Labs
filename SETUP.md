@@ -17,27 +17,29 @@
 
 In this module you will start a pre-configured EC2 F1 instance and connect to it using a remote desktop client. Once connected, you will download the lab files and confirm you can execute a simple application on F1.
 
-For this event, each registered participant has been attributed a preconfigured EC2 F1 instance and should have received instructions with the following details:
+For this event, each registered participant has been attributed a preconfigured EC2 F1 instance and should have received a handout with the following details:
+- Link to access a preconfigured EC2 F1 instance
 - Account ID
 - IAM username
-- Link to access a preconfigured EC2 F1 instance
+- AWS console password
+- Centos OS password
 
 If you have not received these instructions, please contact an Xilinx event staff member now.
 
 #### Start a preconfigured EC2 F1 instance
 
-1. Open the above mentionned email containing your connection credentials.
+1. Open a web browser.
 
-1. Click on the link to your preconfigured instance. 
+1. Type in the **link to your preconfigured EC2 F1 instance** from your handout. 
     - You will be asked to sign-in before accessing your instance in the AWS EC2 Console.
 
-1. In the AWS sign-in page, enter the **Account ID** which was emailed to you
+1. In the AWS sign-in page, enter the **Account ID** from your handout.
 
 1. Click **Next**.
 
-1. Enter the **IAM user name** which was emailed to you.
+1. Enter the **IAM user name** from your handout.
 
-1. Enter the **Password** provided at the event.
+1. Enter the **Password** from your handout.
 
 1. Click **Sign In**.
     - You should now be logged in the AWS EC2 Console and you should see an **f1.2xlarge** instance in the **stopped** state.
@@ -73,7 +75,7 @@ The instance you just started is preconfigured with remote desktop protocol (RDP
 
 1. Login with the following credentials:
     - User: **centos**
-    - Password: _provided at the event_
+    - Password: _Centos OS password on your handout_
    
     ![Remote](./images/setup_lab/remote1.png?raw=true)
    
